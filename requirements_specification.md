@@ -6,6 +6,29 @@
 
 
 
+### Vágyálom rendszer
+
+A projekt célja, hogy egy megbízható, könnyen kezelhető és átlátható webáruház jöjjön létre,
+amely a mesterséges intelligencia segítségével segíti a vásárlókat és az adminisztrátorokat a mindennapi működésben.
+A rendszernek egyszerűen használhatónak kell lennie, hogy a vásárlási folyamat gyorsan és problémamentesen végbemenjen.
+
+A vásárlók számára a legfontosabb, hogy könnyen megtalálják a keresett termékeket.
+Ezt az **AI-asszisztens** támogatja, aki természetes nyelven is képes értelmezni a kérdéseket,
+és segít a termékek közötti eligazodásban. A felületnek biztosítania kell a szűrési és keresési lehetőségeket mint például ár,
+típus vagy márka alapján —, hogy a felhasználó rövid idő alatt megtalálhassa, amit keres.
+
+A rendszernek valós idejű információt kell nyújtania a termékekről, a készletekről és a rendelési folyamat állapotáról.
+Az AI képes jelezni az alacsony készletszintet, így az adminisztrátor időben intézkedhet a feltöltésről.
+A készletbővítésnek és termékkezelésnek egyszerűen, néhány kattintással kell történnie.
+
+Az adminisztrátor feladata a rendszer felügyelete, az új termékek feltöltése, valamint a felhasználók és rendelési adatok kezelése.
+A felületnek áttekinthető módon kell megjelenítenie az eladásokat, bevételeket és forgalmi adatokat,
+hogy az admin könnyen értékelhesse a teljesítményt.
+
+A cél egy olyan rendszer kialakítása, amely nem túl bonyolult, de kellően okos ahhoz,
+hogy megkönnyítse a vásárlók döntéseit és az adminisztrátor napi munkáját.
+Az **AI-powered Phoneshop** így egy stabil, praktikus és korszerű alapot biztosít a mindennapi online értékesítéshez.
+
 
 4-es
 ### Funkcionális követelmények
