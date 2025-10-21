@@ -42,3 +42,53 @@
 Összességében a jelenlegi rendszer alapvető e-kereskedelmi funkciókat kínál, de hiányzik belőle az automatizálás, 
 a mesterséges intelligencia támogatása és a személyre szabott vásárlói élmény. A folyamatok többsége manuális, 
 ami időigényes és növeli a hibalehetőségeket.
+
+
+7-es
+### Igényelt üzleti folyamatok modellje
+
+- **Termékfeltöltés az adminfelületen** –
+A rendszernek lehetővé kell tennie új termékek gyors és strukturált feltöltését az adminisztrációs felületen keresztül,
+sablonalapú űrlappal és AI-támogatott adatkitöltéssel.
+
+- **Termékadatok kezelése (név, leírás, ár, kép, specifikációk)** – 
+Az adminisztrátor egyszerűen adhat meg részletes termékinformációkat, amelyek alapján a vásárló pontos képet kap a termékről.
+
+- **Kategorizálás, módosítás, törlés** –
+A termékek kategóriákba rendezhetők, amelyek szükség esetén módosíthatók vagy törölhetők. Az AI képes javaslatot tenni a 
+kategóriák finomítására.
+
+- **Készletkezelés integráció** –
+A webáruház automatikusan szinkronizálja a készletadatokat a raktárkészlettel, és figyelmeztet, ha egy termék elérhetősége 
+alacsony.
+
+- **AI-alapú keresés és szűrés** –
+A felhasználók kulcsszavak vagy természetes nyelvű lekérdezések alapján kereshetnek. A rendszer szűrési lehetőségeket kínál ár, 
+típus, márka és kategória szerint.
+
+- **Kosár funkció (hozzáadás, eltávolítás, mennyiség módosítása)** – A felhasználó a kiválasztott termékeket egy 
+kattintással a kosárba helyezheti, módosíthatja a mennyiséget vagy eltávolíthat tételeket. A rendszer automatikusan 
+frissíti a végösszeget.
+
+- **Megrendelés leadása és visszaigazolása** – 
+A vásárló a kosár tartalmát megerősítve elindíthatja a rendelési folyamatot. Sikeres tranzakció esetén a 
+rendszer automatikus visszaigazolást küld e-mailben, és a rendelés státusza nyomon követhető.
+
+- **Regisztráció, bejelentkezés, rendeléskövetés** –
+A felhasználók saját fiókot hozhatnak létre, ahol kezelhetik adataikat, megtekinthetik rendeléseiket és korábbi vásárlásaikat.
+
+- **Termékek, rendelések és felhasználók kezelése** –
+Az adminisztrátor kezelheti a terméklistát, felhasználói fiókokat és rendeléseket. Az AI figyelmezteti a hibás 
+adatbevitelekre és javaslatot tesz hiányzó információk pótlására.
+
+- **Készletfigyelés és raktárriasztás** – 
+A rendszer valós időben követi a készletmozgásokat, és automatikus értesítéseket küld az adminisztrátornak a 
+várható hiányokról vagy rendellenes eladási mintákról.
+
+- **Bevétel–kiadás kimutatás** – 
+A rendszer automatikusan generál napi, heti és havi pénzügyi jelentéseket,
+ amelyek tartalmazzák az eladásokat, bevételeket és kiadásokat. Az AI elemzései segítik az üzleti döntéshozatalt.
+
+Az igényelt üzleti folyamatok célja, hogy a rendszer hatékony, átlátható és részben automatizált módon 
+támogassa az értékesítést, az adminisztrációt és a pénzügyi kimutatásokat, miközben csökkenti a manuális 
+beavatkozás szükségességét.
