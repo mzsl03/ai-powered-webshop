@@ -145,3 +145,68 @@ vásárlói szokásokat és kiugró adatokat (pl. legjobban teljesítő termék)
 - **AI-ügyféltámogatás és visszaküldés kezelése** –
 A vásárlók az AI-asszisztensen keresztül kezdeményezhetnek visszaküldést, panaszt vagy kérhetnek segítséget. Az AI automatikusan 
 dokumentálja az esetet, és szükség esetén továbbítja az adminhoz.
+
+### Használati esetek
+
+1. Adminisztrátor
+
+Az Adminisztrátor felelős a rendszer zavartalan működéséért, az adatok pontosságáért és a vásárlói élmény felügyeletéért.
+Jogosultsága a teljes rendszerre kiterjed, beleértve az AI-funkciókat és a riportkészítést.
+
+- Feladatai:
+  - Bejelentkezés
+  - Az adminisztrátor email-cím és jelszó megadásával lép be a rendszerbe.
+  - Kétlépcsős hitelesítés és AI-alapú gyanús bejelentkezés-észlelés védi a fiókot.
+  - Felhasználókezelés
+  - Hozzáférés a vásárlói és admin fiókok listájához.
+  - Felhasználók adatainak módosítása (név, email, státusz, jogosultság).
+  - Fiókok zárolása, törlése vagy jogosultság-módosítása.
+  - Termékkezelés és készletfelügyelet
+  - Új termékek feltöltése, kategóriák létrehozása, módosítása, törlése.
+  - Az AI-asszisztens javaslatokat tesz kategorizálásra, árazásra és készletbővítésre.
+  - Riasztás alacsony készlet esetén, előrejelzés a fogyó termékekről.
+  - Riportálás és statisztika
+  - Az admin megtekintheti az AI által automatikusan generált napi, heti és havi riportokat.
+  - A riportok tartalmazzák az eladásokat, vásárlói viselkedést és AI-interakciókat.
+  - Az AI képes kiemelni trendeket és anomáliákat (pl. forgalomcsökkenés, népszerű termékek).
+  - Globális rendszerfelügyelet
+  - A rendszerbeállítások, jogosultságok és biztonsági modulok kezelése.
+  - AI-logok és adatvédelmi beállítások ellenőrzése a GDPR-nak megfelelően.
+  - Az AI működésének felügyelete és finomhangolása (pl. ajánlórendszer, chatbot-tanítás).
+
+2. Vásárló
+
+A Vásárló a rendszer elsődleges felhasználója, aki böngészi, keresheti és megvásárolhatja a termékeket.
+Az AI-asszisztens személyre szabott élményt és támogatást biztosít számára minden lépésben.
+
+- Lehetőségei:
+  - Regisztráció és bejelentkezés
+  - Saját fiók létrehozása email és jelszó segítségével.
+  - Az AI segít az adatok ellenőrzésében és jelszó-erősség kiértékelésében.
+  - Termékböngészés és keresés
+  - Termékek megtekintése AI-alapú ajánlások és kategóriák szerint.
+  - Természetes nyelvű keresés: pl. „Mutass nekem egy jó kamerás, de olcsó telefont.”
+  - Az AI figyelembe veszi a vásárlási előzményeket, hogy releváns találatokat adjon.
+  - Kosár és vásárlási folyamat
+  - Termékek hozzáadása vagy eltávolítása a kosárból.
+  - Az AI ajánl kiegészítőket („Ehhez a telefonhoz illik ez a tok és töltő”).
+  - Vásárlási folyamat indítása, fizetési mód és szállítás kiválasztása az AI útmutatásával.
+  - Rendeléskövetés és ügyféltámogatás
+  - Saját profilban megtekintheti rendelései állapotát.
+  - Az AI válaszol a státuszra vonatkozó kérdésekre („Mikor érkezik meg a csomagom?”).
+  - A vásárló visszaküldést vagy reklamációt is indíthat az AI segítségével.
+  - Személyre szabás és ajánlások
+  - Az AI tanul a vásárlási szokásokból, és egyre pontosabb termékajánlásokat tesz.
+  - A vásárló kedvenc termékeket menthet és akcióértesítéseket kaphat.
+
+3. AI-asszisztens
+
+Az AI-asszisztens az alkalmazás intelligens központi eleme, amely a vásárlók és az adminisztrátorok munkáját egyaránt támogatja.
+
+- Feladatai:
+  - Természetes nyelvű kommunikáció a vásárlókkal (chat vagy hangalapú formában).
+  - Termékkeresés, ajánlás és vásárlási folyamat támogatása.
+  - Ügyféltámogatás: panaszkezelés, rendeléskövetés, visszaküldés indítása.
+  - Admin számára riport- és trendgenerálás.
+  - Készletfigyelés és előrejelzés a forgalmi adatok alapján.
+  - AI-tanulás: a rendszer folyamatosan fejleszti magát a felhasználói interakciók alapján.
