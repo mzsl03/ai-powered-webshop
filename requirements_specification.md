@@ -179,3 +179,16 @@ beavatkozás szükségességét.
 | Rendszer       | Biztonság és adatvédelem   | Az adatok kezelése a GDPR és az ISO/IEC 27001 szabvány szerint történik, kódolt adatbázis-tárolással.                                |
 | Rendszer       | Naplózás és átláthatóság   | A rendszer minden műveletet naplóz, ezzel segítve az adminisztrációt és a hibák visszakövetését.                                     |
 | Rendszer       | AI-támogatás               | A mesterséges intelligencia elemzi a felhasználói viselkedést, támogatja a keresést, az ajánlásokat és a riportokat.                 |
+
+| Fogalomtár      |                                                                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Vásárló         | A rendszer felhasználója, aki termékeket keres, kosárba helyez, megrendel és nyomon követi rendeléseit.                             |
+| Adminisztrátor  | Jogosult felhasználó, aki kezeli a termékeket, felhasználókat, riportokat és a rendszer általános működését.                        |
+| AI-asszisztens  | Beépített intelligens funkció, amely segíti a vásárlót a keresésben, ajánlásokat ad, valamint támogatja a riportok értelmezését.    |
+| Riport          | Összesítő dokumentum, amely tartalmazza az adott időszakban (nap, hét, hónap) eladott termékek adatait, bevételt és statisztikákat. |
+| Szűrés          | A termékek listájának leszűkítése ár, típus, kategória vagy más jellemző alapján a gyorsabb keresés érdekében.                      |
+| Keresési mező   | Olyan felület, ahol a vásárló kulcsszavakat vagy természetes nyelvű kérdéseket adhat meg az AI által támogatott kereséshez.         |
+| Kosár           | A vásárló által kezelt funkció, amely tartalmazza a kiválasztott termékeket, mennyiségeket és azok végösszegét.                     |
+| Rendelés        | A vásárló által véglegesített tranzakció, amely tartalmazza a megrendelt termékeket és a fizetési adatokat.                         |
+| Készletfigyelés | Az adminisztrátor által használt funkció, amely valós időben mutatja a termékek elérhetőségét és raktárkészletét.                   |
+| Sztornózás      | Hibás vagy visszavont rendelés érvénytelenítése a rendszerben, amely frissíti a készletadatokat is.                                 |
