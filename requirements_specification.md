@@ -7,6 +7,24 @@
 
 
 
+4-es
+### Funkcionális követelmények
+
+| Kategória       | Funkció                            | Leírás                                                                                                  |
+|-----------------|------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Felhasználói    | Regisztráció és bejelentkezés      | A vásárlók saját fiókot hozhatnak létre, bejelentkezés után személyre szabott tartalom jelenik meg.     |
+| Felhasználói    | Termékkeresés és szűrés            | A felhasználók ár, típus, márka vagy tulajdonság alapján kereshetnek, az AI pedig segíti a találatokat. |
+| Felhasználói    | AI-asszisztens támogatás           | A beépített AI-asszisztens természetes nyelven segít a termékkeresésben és a vásárlási folyamatban.     |
+| Felhasználói    | Kosár funkció                      | A kiválasztott termékek kosárban kezelhetők, a rendszer automatikusan számolja a végösszeget.           |
+| Felhasználói    | Vásárlási folyamat és fizetés      | A rendszer több fizetési módot támogat, az AI-asszisztens segít a hibák elkerülésében.                  |
+| Felhasználói    | Rendeléskövetés                    | A vásárló a saját fiókjában nyomon követheti rendeléseinek státuszát és számláit.                       |
+| Felhasználói    | Termékajánlások                    | Az AI személyre szabott ajánlásokat jelenít meg a felhasználói viselkedés alapján.                      |
+| Adminisztrációs | Termék- és készletkezelés          | Az admin termékeket tölthet fel, módosíthat, törölhet, és figyelheti a készletmozgásokat.               |
+| Adminisztrációs | Felhasználó- és jogosultságkezelés | Az admin felügyeli a vásárlók és adminisztrátorok fiókjait, jogosultságokat oszt ki.                    |
+| Adminisztrációs | Riportok és kimutatások            | Az AI automatikus napi, heti és havi riportokat generál az eladásokról és a bevételekről.               |
+| Egyéb           | AI-támogatott naplózás             | A rendszer automatikusan rögzíti a műveleteket és az interakciókat az átláthatóság érdekében.           |
+| Egyéb           | Rendszerstabilitás és biztonság    | A felület gyors, megbízható és megfelel a GDPR-előírásoknak.                                            |
+| Egyéb           | Vásárlói élmény és támogatás       | Az AI gördülékennyé teszi a vásárlási folyamatot, segít az ügyfélszolgálat tehermentesítésében.         |
 
 6-os
 ### Jelenlegi üzleti folyamatok modellje
