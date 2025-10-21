@@ -136,3 +136,23 @@ A rendszer automatikusan generál napi, heti és havi pénzügyi jelentéseket,
 Az igényelt üzleti folyamatok célja, hogy a rendszer hatékony, átlátható és részben automatizált módon 
 támogassa az értékesítést, az adminisztrációt és a pénzügyi kimutatásokat, miközben csökkenti a manuális 
 beavatkozás szükségességét.
+
+8-as
+### Követelmény lista
+
+| Modul          | Név                        | Kifejtés                                                                                                                             |
+|----------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| Jogosultság    | Regisztráció és belépés    | A felhasználó e-mail-cím és jelszó segítségével regisztrálhat és léphet be a rendszerbe; hibás adatok esetén hibaüzenet jelenik meg. |
+| Jogosultság    | Jogosultsági szintek       | Az adminisztrátor és a vásárlók eltérő hozzáférési jogokkal rendelkeznek; az admin teljes rendszerfelügyeletet kap.                  |
+| Felhasználói   | Terméklista                | A rendszer bejelentkezés után megjeleníti az aktuálisan elérhető termékeket, az árakkal és készletinformációkkal együtt.             |
+| Felhasználói   | AI-alapú keresés és szűrés | A felhasználók természetes nyelven vagy kulcsszavakkal kereshetnek, szűrhetnek ár, típus vagy márka alapján.                         |
+| Felhasználói   | Kosár funkció              | A kiválasztott termékek kosárba helyezhetők, a mennyiségek módosíthatók, és a végösszeg automatikusan frissül.                       |
+| Felhasználói   | Rendelés és visszaigazolás | A vásárló a kosár tartalmát megerősítve megrendelést adhat le, amelyről automatikus visszaigazolást kap.                             |
+| Felhasználói   | Rendeléskövetés            | A felhasználó a fiókjában nyomon követheti korábbi és aktuális rendeléseit, azok státuszát és számláit.                              |
+| Adminisztráció | Termék- és készletkezelés  | Az admin új termékeket tölthet fel, módosíthatja az adatokat, és követheti a készletmozgásokat valós időben.                         |
+| Adminisztráció | Felhasználókezelés         | Az adminisztrátor kezelheti a felhasználókat, hozzáadhat új fiókokat, és módosíthatja jogosultságaikat.                              |
+| Adminisztráció | Riportkészítés             | Az admin napi, heti és havi riportokat generálhat, amelyek az eladásokat, készleteket és bevételeket tartalmazzák.                   |
+| Rendszer       | Stabil működés             | A rendszernek gyorsan és megbízhatóan kell működnie, még nagy terhelés alatt is.                                                     |
+| Rendszer       | Biztonság és adatvédelem   | Az adatok kezelése a GDPR és az ISO/IEC 27001 szabvány szerint történik, kódolt adatbázis-tárolással.                                |
+| Rendszer       | Naplózás és átláthatóság   | A rendszer minden műveletet naplóz, ezzel segítve az adminisztrációt és a hibák visszakövetését.                                     |
+| Rendszer       | AI-támogatás               | A mesterséges intelligencia elemzi a felhasználói viselkedést, támogatja a keresést, az ajánlásokat és a riportokat.                 |
