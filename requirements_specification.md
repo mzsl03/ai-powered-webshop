@@ -26,6 +26,32 @@
 | Egyéb           | Rendszerstabilitás és biztonság    | A felület gyors, megbízható és megfelel a GDPR-előírásoknak.                                            |
 | Egyéb           | Vásárlói élmény és támogatás       | Az AI gördülékennyé teszi a vásárlási folyamatot, segít az ügyfélszolgálat tehermentesítésében.         |
 
+5-os
+### A rendszerre vonatkozó törvények, rendeletek, szabványok
+
+A rendszernek meg kell felelnie a személyes adatok kezelésére és információbiztonságra vonatkozó jogszabályoknak,
+különös tekintettel a **GDPR** (General Data Protection Regulation) előírásaira.
+A vásárlók személyes adatait kizárólag a szükséges mértékben, biztonságosan és átlátható módon szabad kezelni.
+
+Az **AI-powered Phoneshop** köteles betartani az **elektronikus kereskedelemről szóló hazai és uniós előírásokat**,
+beleértve a fogyasztóvédelmi, számlázási és online fizetési szabályokat.
+A rendszernek biztosítania kell a vásárlói jogok érvényesítését, a visszaküldés és reklamáció folyamatának jogszerű lebonyolítását, 
+valamint a biztonságos online tranzakciókat.
+
+Az adatok tárolását és továbbítását **kódolt formában** kell megvalósítani, az **ISO/IEC 27001**
+információbiztonsági szabvány követelményeinek megfelelően. 
+A mesterséges intelligencia működésének átláthatósága és elszámoltathatósága érdekében a rendszernek összhangban kell állnia az **EU AI Act**
+alapelveivel is.
+
+A szoftver minőségbiztosítását az **ISO/IEC 25010** szabvány irányelvei alapján kell megvalósítani, 
+különös figyelmet fordítva a megbízhatóságra, a teljesítményre, a használhatóságra és a biztonságra.
+
+A pénzügyi és riportálási funkcióknak támogatniuk kell a **számviteli és adózási előírások** betartását,
+a naplózott adatoknak pedig visszakövethetőnek és hitelesnek kell lenniük.
+
+Összességében a rendszernek biztonságosnak, jogszerűnek, átláthatónak és hosszú távon fenntarthatónak kell működnie,
+garantálva a vásárlók adatainak védelmét és a rendszer megbízható üzemeltetését.
+
 6-os
 ### Jelenlegi üzleti folyamatok modellje
 
