@@ -4,6 +4,34 @@
 
 
 
+3-as
+### Követelmény lista
+
+| Modul            | Név                      | Kifejtés                                                                                                                            |
+|------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Jogosultság      | Bejelentkezés            | A felhasználó (vásárló vagy admin) email-cím és jelszó segítségével léphet be; hibás adatok esetén az AI-asszisztens figyelmezteti. |
+| Jogosultság      | Regisztráció             | Új vásárlók regisztrációja biztonságos (kódolt) jelszótárolással, email-validációval és AI-alapú űrlapsegítséggel.                  |
+| Jogosultság      | Jogosultsági szintek     | Többszintű hozzáférés (admin, vásárló); az admin kezelhet, a vásárló böngészhet, vásárolhat és követhet rendeléseket.               |
+| Vásárlói felület | Terméklista              | Az AI valós időben frissített terméklistát jelenít meg, személyre szabott sorrendben a felhasználói szokások alapján.               |
+| Vásárlói felület | AI-asszisztens           | Az AI természetes nyelvű interakciót biztosít, ajánlásokat tesz, kérdésekre válaszol és segít a vásárlási folyamatban.              |
+| Vásárlói felület | Keresés                  | Az AI értelmezi a természetes nyelvű lekérdezéseket (pl. „Mutass olcsó 5G-s telefonokat”) és releváns találatokat ad.               |
+| Vásárlói felület | Szűrés                   | AI-támogatott szűrés kategória, ár, gyártó, teljesítmény vagy felhasználói értékelések alapján.                                     |
+| Vásárlói felület | Termékajánlás            | Az AI a vásárlói előzmények és trendek alapján javaslatokat tesz kiegészítő vagy hasonló termékekre.                                |
+| Vásárlói felület | Kosár funkció            | A vásárló kosárba helyezheti a termékeket, az AI ajánlhat hozzájuk kiegészítőket vagy kedvezményeket.                               |
+| Vásárlói felület | Vásárlás támogatása      | Az AI végigkíséri a vásárlást, segít a fizetési mód kiválasztásában és a számlaadatok kitöltésében.                                 |
+| Vásárlói felület | Rendeléskövetés          | A vásárló nyomon követheti rendelését az AI segítségével (pl. „Mikor érkezik meg a rendelésem?”).                                   |
+| Vásárlói felület | Számlák kezelése         | Automatikus számlagenerálás PDF formátumban; AI-asszisztens segíti a reklamáció vagy sztornó folyamatát.                            |
+| Riport           | Napi riport              | Az AI automatikusan összesíti a napi eladásokat és vásárlói aktivitást, admin számára egy kattintással elérhető.                    |
+| Riport           | Heti/Havi riport         | Az AI automatikusan generál riportokat a forgalomról és vásárlói szokásokról, Excel vagy grafikus formában.                         |
+| Riport           | Riport tartalom          | A riportok tartalmazzák az eladások, bevételek, készletmozgások és AI-interakciók statisztikáit.                                    |
+| Adminisztráció   | Termékfeltöltés          | Az admin új termékeket tölthet fel, kategóriákat hozhat létre, képeket és specifikációkat adhat hozzá.                              |
+| Adminisztráció   | Készletkezelés           | Az admin manuálisan vagy automatizáltan frissítheti a készletet, AI-értesítést kap alacsony szint esetén.                           |
+| Adminisztráció   | Felhasználókezelés       | Az admin vásárlói fiókokat kezelhet, jogosultságokat módosíthat, aktivitást figyelhet.                                              |
+| Adminisztráció   | Riportkészítés           | Az admin megtekintheti az AI által generált eladási, forgalmi és interakciós riportokat.                                            |
+| Rendszer         | Stabil működés           | A rendszer reszponzív, skálázható és nagy forgalom mellett is gyors, felhőalapú architektúrával.                                    |
+| Rendszer         | Biztonság                | Titkosított adatátvitel (SSL), biztonságos hitelesítés és GDPR-kompatibilis adatkezelés.                                            |
+| Rendszer         | AI-etikai megfelelés     | Az AI működésének átláthatónak kell lennie, nem gyűjthet indokolatlan adatokat, és feleljen meg az EU AI-rendeletnek.               |
+| Rendszer         | Szabványoknak megfelelés | A rendszer igazodjon az ISO/IEC 27001, ISO/IEC 25010 és ISO/IEC 42001 (AI-irányítás) szabványokhoz.                                 |
 
 4-es
 ### Jelenlegi üzleti folyamatok modellje
