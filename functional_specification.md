@@ -210,3 +210,25 @@ Az AI-asszisztens az alkalmazás intelligens központi eleme, amely a vásárló
   - Admin számára riport- és trendgenerálás.
   - Készletfigyelés és előrejelzés a forgalmi adatok alapján.
   - AI-tanulás: a rendszer folyamatosan fejleszti magát a felhasználói interakciók alapján.
+
+### Funkció – követelmény megfeleltetés
+
+| Funkció                    | Modul            | Kapcsolódó követelmény(ek)                                                                                                        |
+|----------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| Bejelentkezés              | Jogosultság      | A rendszernek biztosítania kell, hogy csak regisztrált vásárlók és adminisztrátorok férjenek hozzá a funkciókhoz.                 |
+| Regisztráció               | Jogosultság      | A felhasználók biztonságos módon hozhatnak létre fiókot; az AI segít az űrlapkitöltésben és adatellenőrzésben.                    |
+| AI-asszisztens             | AI modul         | Az AI természetes nyelvű interakciót biztosít, ajánlásokat ad, és támogatja a vásárlási folyamatot.                               |
+| Terméklista                | Vásárlói felület | A rendszernek meg kell jelenítenie az elérhető termékeket, az AI-nak pedig személyre szabott sorrendben kell azokat ajánlania.    |
+| Természetes nyelvű keresés | Vásárlói felület | Az AI-nak értelmeznie kell a felhasználói kéréseket (pl. „Mutass olcsó 5G-s telefont”) és releváns találatokat kell biztosítania. |
+| Szűrés                     | Vásárlói felület | A rendszernek lehetőséget kell adnia AI-támogatott szűrésre kategória, ár, gyártó és értékelés alapján.                           |
+| Termékajánlás              | AI modul         | Az AI vásárlói előzmények és viselkedés alapján releváns termékeket ajánl.                                                        |
+| Kosár funkció              | Vásárlói felület | A vásárlónak lehetőséget kell biztosítani termékek kosárba helyezésére, módosítására és végösszeg megtekintésére.                 |
+| Vásárlás támogatása        | Vásárlói felület | Az AI-asszisztens segíti a vásárlót a fizetési és szállítási folyamat során, ellenőrzi az adatok helyességét.                     |
+| Rendeléskövetés            | Vásárlói felület | A vásárló valós időben követheti rendeléseit, az AI válaszol a státuszra vonatkozó kérdésekre.                                    |
+| Számlák kezelése           | Vásárlói felület | A rendszer automatikusan számlát generál a vásárlásról; az AI-asszisztens segíthet a sztornózás vagy visszaküldés folyamatában.   |
+| Készletfigyelés            | Adminisztráció   | Az admin valós időben figyelheti a készletmozgásokat; az AI előrejelzi a fogyó termékeket és javaslatot tesz utánrendelésre.      |
+| Felhasználókezelés         | Adminisztráció   | Az admin kezelheti a vásárlói fiókokat, jogosultságokat, aktivitást; az AI automatikusan jelent a gyanús tevékenységekről.        |
+| Riportkészítés             | Adminisztráció   | Az AI automatikusan generál riportokat az eladásokról, trendekről és felhasználói viselkedésről.                                  |
+| Stabil működés             | Rendszer         | A rendszernek reszponzívnak, skálázhatónak és hibamentesnek kell maradnia magas terhelés esetén is.                               |
+| Biztonság és adatvédelem   | Rendszer         | Az adatkezelésnek GDPR-kompatibilisnek kell lennie, titkosított adattárolással és AI-adatnaplózással.                             |
+| AI-etikai megfelelés       | Rendszer         | Az AI működésének átláthatónak, adatvédelminek és az EU AI Act előírásainak megfelelőnek kell lennie.                             |
