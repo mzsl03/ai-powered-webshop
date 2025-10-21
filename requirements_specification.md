@@ -7,6 +7,50 @@
 
 
 
+4-es
+### Funkcionális követelmények
+
+| Kategória       | Funkció                            | Leírás                                                                                                  |
+|-----------------|------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Felhasználói    | Regisztráció és bejelentkezés      | A vásárlók saját fiókot hozhatnak létre, bejelentkezés után személyre szabott tartalom jelenik meg.     |
+| Felhasználói    | Termékkeresés és szűrés            | A felhasználók ár, típus, márka vagy tulajdonság alapján kereshetnek, az AI pedig segíti a találatokat. |
+| Felhasználói    | AI-asszisztens támogatás           | A beépített AI-asszisztens természetes nyelven segít a termékkeresésben és a vásárlási folyamatban.     |
+| Felhasználói    | Kosár funkció                      | A kiválasztott termékek kosárban kezelhetők, a rendszer automatikusan számolja a végösszeget.           |
+| Felhasználói    | Vásárlási folyamat és fizetés      | A rendszer több fizetési módot támogat, az AI-asszisztens segít a hibák elkerülésében.                  |
+| Felhasználói    | Rendeléskövetés                    | A vásárló a saját fiókjában nyomon követheti rendeléseinek státuszát és számláit.                       |
+| Felhasználói    | Termékajánlások                    | Az AI személyre szabott ajánlásokat jelenít meg a felhasználói viselkedés alapján.                      |
+| Adminisztrációs | Termék- és készletkezelés          | Az admin termékeket tölthet fel, módosíthat, törölhet, és figyelheti a készletmozgásokat.               |
+| Adminisztrációs | Felhasználó- és jogosultságkezelés | Az admin felügyeli a vásárlók és adminisztrátorok fiókjait, jogosultságokat oszt ki.                    |
+| Adminisztrációs | Riportok és kimutatások            | Az AI automatikus napi, heti és havi riportokat generál az eladásokról és a bevételekről.               |
+| Egyéb           | AI-támogatott naplózás             | A rendszer automatikusan rögzíti a műveleteket és az interakciókat az átláthatóság érdekében.           |
+| Egyéb           | Rendszerstabilitás és biztonság    | A felület gyors, megbízható és megfelel a GDPR-előírásoknak.                                            |
+| Egyéb           | Vásárlói élmény és támogatás       | Az AI gördülékennyé teszi a vásárlási folyamatot, segít az ügyfélszolgálat tehermentesítésében.         |
+
+5-os
+### A rendszerre vonatkozó törvények, rendeletek, szabványok
+
+A rendszernek meg kell felelnie a személyes adatok kezelésére és információbiztonságra vonatkozó jogszabályoknak,
+különös tekintettel a **GDPR** (General Data Protection Regulation) előírásaira.
+A vásárlók személyes adatait kizárólag a szükséges mértékben, biztonságosan és átlátható módon szabad kezelni.
+
+Az **AI-powered Phoneshop** köteles betartani az **elektronikus kereskedelemről szóló hazai és uniós előírásokat**,
+beleértve a fogyasztóvédelmi, számlázási és online fizetési szabályokat.
+A rendszernek biztosítania kell a vásárlói jogok érvényesítését, a visszaküldés és reklamáció folyamatának jogszerű lebonyolítását, 
+valamint a biztonságos online tranzakciókat.
+
+Az adatok tárolását és továbbítását **kódolt formában** kell megvalósítani, az **ISO/IEC 27001**
+információbiztonsági szabvány követelményeinek megfelelően. 
+A mesterséges intelligencia működésének átláthatósága és elszámoltathatósága érdekében a rendszernek összhangban kell állnia az **EU AI Act**
+alapelveivel is.
+
+A szoftver minőségbiztosítását az **ISO/IEC 25010** szabvány irányelvei alapján kell megvalósítani, 
+különös figyelmet fordítva a megbízhatóságra, a teljesítményre, a használhatóságra és a biztonságra.
+
+A pénzügyi és riportálási funkcióknak támogatniuk kell a **számviteli és adózási előírások** betartását,
+a naplózott adatoknak pedig visszakövethetőnek és hitelesnek kell lenniük.
+
+Összességében a rendszernek biztonságosnak, jogszerűnek, átláthatónak és hosszú távon fenntarthatónak kell működnie,
+garantálva a vásárlók adatainak védelmét és a rendszer megbízható üzemeltetését.
 
 6-os
 ### Jelenlegi üzleti folyamatok modellje
@@ -92,3 +136,23 @@ A rendszer automatikusan generál napi, heti és havi pénzügyi jelentéseket,
 Az igényelt üzleti folyamatok célja, hogy a rendszer hatékony, átlátható és részben automatizált módon 
 támogassa az értékesítést, az adminisztrációt és a pénzügyi kimutatásokat, miközben csökkenti a manuális 
 beavatkozás szükségességét.
+
+8-as
+### Követelmény lista
+
+| Modul          | Név                        | Kifejtés                                                                                                                             |
+|----------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| Jogosultság    | Regisztráció és belépés    | A felhasználó e-mail-cím és jelszó segítségével regisztrálhat és léphet be a rendszerbe; hibás adatok esetén hibaüzenet jelenik meg. |
+| Jogosultság    | Jogosultsági szintek       | Az adminisztrátor és a vásárlók eltérő hozzáférési jogokkal rendelkeznek; az admin teljes rendszerfelügyeletet kap.                  |
+| Felhasználói   | Terméklista                | A rendszer bejelentkezés után megjeleníti az aktuálisan elérhető termékeket, az árakkal és készletinformációkkal együtt.             |
+| Felhasználói   | AI-alapú keresés és szűrés | A felhasználók természetes nyelven vagy kulcsszavakkal kereshetnek, szűrhetnek ár, típus vagy márka alapján.                         |
+| Felhasználói   | Kosár funkció              | A kiválasztott termékek kosárba helyezhetők, a mennyiségek módosíthatók, és a végösszeg automatikusan frissül.                       |
+| Felhasználói   | Rendelés és visszaigazolás | A vásárló a kosár tartalmát megerősítve megrendelést adhat le, amelyről automatikus visszaigazolást kap.                             |
+| Felhasználói   | Rendeléskövetés            | A felhasználó a fiókjában nyomon követheti korábbi és aktuális rendeléseit, azok státuszát és számláit.                              |
+| Adminisztráció | Termék- és készletkezelés  | Az admin új termékeket tölthet fel, módosíthatja az adatokat, és követheti a készletmozgásokat valós időben.                         |
+| Adminisztráció | Felhasználókezelés         | Az adminisztrátor kezelheti a felhasználókat, hozzáadhat új fiókokat, és módosíthatja jogosultságaikat.                              |
+| Adminisztráció | Riportkészítés             | Az admin napi, heti és havi riportokat generálhat, amelyek az eladásokat, készleteket és bevételeket tartalmazzák.                   |
+| Rendszer       | Stabil működés             | A rendszernek gyorsan és megbízhatóan kell működnie, még nagy terhelés alatt is.                                                     |
+| Rendszer       | Biztonság és adatvédelem   | Az adatok kezelése a GDPR és az ISO/IEC 27001 szabvány szerint történik, kódolt adatbázis-tárolással.                                |
+| Rendszer       | Naplózás és átláthatóság   | A rendszer minden műveletet naplóz, ezzel segítve az adminisztrációt és a hibák visszakövetését.                                     |
+| Rendszer       | AI-támogatás               | A mesterséges intelligencia elemzi a felhasználói viselkedést, támogatja a keresést, az ajánlásokat és a riportokat.                 |
