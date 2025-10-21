@@ -3,6 +3,8 @@
 
 
 
+
+
 4-es
 ### Jelenlegi üzleti folyamatok modellje
 
@@ -44,3 +46,63 @@
 - Riportokat érhet el a bevételről, rendelések számáról és AI-interakciókról.
 - Az AI értesíti az admint, ha a készlet alacsony, egy termék népszerűvé válik, vagy a felhasználók gyakori hibát tapasztalnak.
 - A pénzügyi kimutatások és forgalmi riportok automatikusan, időzítetten készülnek.
+
+
+5-os
+### Igényelt üzleti folyamatok modellje
+
+- **AI-támogatott termékfeltöltés** –
+A rendszer lehetővé teszi új termékek gyors és strukturált feltöltését az adminfelületen. Az AI automatikusan javaslatot tesz 
+kategóriákra, címkékre és kulcsszavakra a termékadatok alapján.
+
+- **Termékadatok begyűjtése és elemzése (név, leírás, ár, kép, specifikációk)** –
+A feltöltött információkat az AI értékeli, és segít optimalizálni a leírásokat a keresőoptimalizálás (SEO) 
+és vásárlói megértés javítása érdekében.
+
+- **Kategorizálás, módosítás, törlés** –
+A termékek automatikusan kategorizálódnak az AI által, de az admin manuálisan is módosíthatja ezeket. Az AI javaslatot tehet új 
+kategóriák vagy címkék létrehozására a felhasználói keresési minták alapján.
+
+- **Intelligens készletkezelés integráció** –
+A rendszer valós időben kapcsolódik a raktárkészlethez. Az AI előrejelzést készít a várható készlethiányokról, 
+és javaslatot tesz utánrendelésre.
+
+- **Természetes nyelvű keresés és AI-szűrés** –
+A felhasználók természetes nyelven kereshetnek („Ajánlj nekem egy olcsó, de jó kamerás telefont”). Az AI személyre szabott 
+találatokat jelenít meg az előzmények és preferenciák alapján.
+
+- **Termékajánlás és kiegészítő javaslatok** –
+Az AI vásárlási szokások és korábbi rendelések alapján személyre szabott ajánlásokat jelenít meg. Kosárhoz adáskor releváns 
+kiegészítőket ajánl (pl. tok, kijelzővédő).
+
+- **Kosárkezelés és dinamikus vásárlási folyamat** –
+A vásárló termékeket adhat a kosárhoz vagy távolíthat el onnan, miközben az AI valós időben javaslatokat ad akciókra vagy 
+olcsóbb alternatívákra.
+
+- **Vásárlási folyamat támogatása AI-asszisztenssel** –
+A vásárló a kosár tartalmát jóváhagyva indíthatja a fizetést, miközben az AI-asszisztens segít a szállítási és fizetési 
+opciók kiválasztásában. Hibás adatok esetén az AI azonnali visszajelzést ad és javítási javaslatokat kínál.
+
+- **Rendeléskövetés és visszajelzés** –
+A sikeres tranzakció után a vásárló valós időben követheti rendelését, státuszváltozásról automatikus AI-értesítést kap.
+Az AI képes megválaszolni kérdéseket, pl. „Mikor érkezik meg a rendelésem?”
+
+- **Regisztráció, bejelentkezés és személyre szabás** –
+A vásárlók saját profilt hozhatnak létre, ahol megtekinthetik rendeléseiket, kedvenceiket és ajánlásaikat. Az AI tanul a 
+felhasználó viselkedéséből, hogy egyre pontosabb termékjavaslatokat adhasson.
+
+- **Termékek, rendelések, vásárlók kezelése (Adminisztráció)** –
+Az admin a felületen keresztül kezelheti a terméklistát, vásárlói fiókokat és rendeléseket. Az AI statisztikákat generál 
+az eladási trendekről és figyelmeztet a rendellenes aktivitásra.
+
+- **Készletfigyelés és előrejelzés** –
+Az AI elemzi az értékesítési adatokat, és előrejelzést készít a készletmozgásokról. Hiány esetén automatikus riasztást 
+küld az adminnak, és javaslatot tesz utánpótlási mennyiségre.
+
+- **Bevétel-kiadás kimutatás és AI-riportálás** –
+A rendszer automatikus pénzügyi kimutatásokat készít, vizualizált riportokkal. Az AI képes kiemelni a forgalmi trendeket, 
+vásárlói szokásokat és kiugró adatokat (pl. legjobban teljesítő termék).
+
+- **AI-ügyféltámogatás és visszaküldés kezelése** –
+A vásárlók az AI-asszisztensen keresztül kezdeményezhetnek visszaküldést, panaszt vagy kérhetnek segítséget. Az AI automatikusan 
+dokumentálja az esetet, és szükség esetén továbbítja az adminhoz.
