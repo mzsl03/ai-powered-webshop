@@ -2,7 +2,18 @@
 
 
 
+### Jelenlegi helyzet
 
+A digitális értékesítés rohamos fejlődése miatt a vásárlók ma már elvárják,
+hogy az online vásárlási élmény gyors, intuitív és személyre szabott legyen.
+A jelenleg használt webáruház-rendszerek azonban sok esetben nem képesek megfelelni ezeknek az igényeknek:
+a felületek bonyolultak, az ajánlások nem relevánsak, és a keresés gyakran pontatlan.
+
+A jelenlegi rendszer nem tartalmaz mesterséges intelligenciát,
+ezért nem tudja értelmezni a felhasználók természetes nyelvű kéréseit
+(pl. „Mutass nekem olcsó, jó kamerás telefont”), és nem képes személyre szabott termékajánlásokat nyújtani.
+A hagyományos keresés és szűrés korlátozott, így a vásárlók nehezebben találják meg, amit keresnek,
+ami csökkenti az értékesítési arányt és a felhasználói elégedettséget.
 
 3-as
 ### Követelmény lista
