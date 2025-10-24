@@ -1,4 +1,25 @@
+### Áttekintés
 
+A **AI powered webshop** rendszer célja, hogy a vásárlók számára egy modern,
+gyors és személyre szabott online értékesítési felületet biztosítson.
+Az alkalmazás kulcseleme az AI-asszisztens, amely természetes nyelven segíti a felhasználókat.
+
+A rendszer funkcionális felépítése az online értékesítési folyamat AI-alapú támogatására épül.
+Az alkalmazás egyik fő modulja a bejelentkezés és jogosultságkezelés,
+mivel a vásárlók és adminisztrátorok csak azonosítás után férhetnek hozzá személyre szabott funkcióikhoz.
+A jogosultsági szintek határozzák meg, hogy ki milyen funkciókat érhet el (pl. adminisztrátor, vásárló).
+
+A vásárló az AI által támogatott intelligens terméklista segítségével böngészhet a rendelkezésre álló termékek között,
+amelyekhez a rendszer valós idejű készletinformációkat jelenít meg. 
+Az AI figyelmeztet alacsony készletszint esetén, és javaslatot tesz alternatív termékekre vagy előrendelésre.
+
+A felhasználók intelligens keresőmező és AI-alapú szűrés segítségével természetes nyelven is megtalálhatják a kívánt termékeket
+(pl. „Mutass olcsó 5G-s telefonokat” vagy „Szeretnék egy jó kamerás modellt”).
+
+A kiválasztott termékek kosárba helyezhetők, amelyet az AI dinamikusan kezel és
+javaslatokat ad kiegészítő termékekre, csomagajánlatokra vagy akciókra.
+A vásárló döntését követően az AI-asszisztens segíti a rendelés véglegesítését,
+a fizetési folyamatot és a számlaadatok kitöltését.
 
 
 
