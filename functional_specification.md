@@ -232,6 +232,31 @@ Az AI-asszisztens az alkalmazás intelligens központi eleme, amely a vásárló
   - Készletfigyelés és előrejelzés a forgalmi adatok alapján.
   - AI-tanulás: a rendszer folyamatosan fejleszti magát a felhasználói interakciók alapján.
 
+### Forgatókönyv
+
+- Cél:  
+  A vásárló az AI-asszisztens segítségével sikeresen kiválaszt és megvásárol egy terméket, majd nyomon követi rendelését.  
+  Az adminisztrátor a háttérben automatikus AI-riportot kap az eladásról.
+
+- Szereplők:
+    - Vásárló
+    - AI-asszisztens
+    - Rendszer
+    - Adminisztrátor
+
+- Lépések:
+    1. A vásárló megnyitja a webáruházat, ahol az AI-asszisztens köszönti („Üdv! Segíthetek megtalálni az ideális telefont?”).
+    2. A vásárló természetes nyelven beírja: „Olyan telefont keresek, ami jó kamerás és 250 000 Ft alatt van.”
+    3. Az AI feldolgozza a kérdést, és listázza a releváns termékeket, rövid ajánlásokkal.
+    4. A vásárló rákattint az egyik ajánlott termékre, ahol részletes specifikációkat és vásárlói értékeléseket lát.
+    5. Az AI felajánl kiegészítő termékeket (pl. tok, kijelzővédő).
+    6. A vásárló a kívánt terméket a kosárba helyezi, majd az AI megerősíti a műveletet és megjeleníti a végösszeget.
+    7. A vásárló elindítja a vásárlási folyamatot, az AI-asszisztens segít a fizetési és szállítási adatok kitöltésében.
+    8. A rendszer biztonságosan feldolgozza a fizetést, majd automatikusan digitális számlát generál és elküldi a vásárlónak e-mailben.
+    9. A vásárló később megkérdezi: „Mikor érkezik meg a rendelésem?”, az AI pedig lekéri a rendelés állapotát és tájékoztatja.
+    10. Az adminisztrátor a nap végén megtekinti az AI által automatikusan generált riportot, amely tartalmazza az eladásokat, forgalmat és felhasználói aktivitást.  
+
+
 ### Funkció – követelmény megfeleltetés
 
 | Funkció                    | Modul            | Kapcsolódó követelmény(ek)                                                                                                        |
