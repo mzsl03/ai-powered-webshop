@@ -6,6 +6,29 @@
 
 
 
+### Vágyálom rendszer
+
+A projekt célja, hogy egy megbízható, könnyen kezelhető és átlátható webáruház jöjjön létre,
+amely a mesterséges intelligencia segítségével segíti a vásárlókat és az adminisztrátorokat a mindennapi működésben.
+A rendszernek egyszerűen használhatónak kell lennie, hogy a vásárlási folyamat gyorsan és problémamentesen végbemenjen.
+
+A vásárlók számára a legfontosabb, hogy könnyen megtalálják a keresett termékeket.
+Ezt az **AI-asszisztens** támogatja, aki természetes nyelven is képes értelmezni a kérdéseket,
+és segít a termékek közötti eligazodásban. A felületnek biztosítania kell a szűrési és keresési lehetőségeket mint például ár,
+típus vagy márka alapján —, hogy a felhasználó rövid idő alatt megtalálhassa, amit keres.
+
+A rendszernek valós idejű információt kell nyújtania a termékekről, a készletekről és a rendelési folyamat állapotáról.
+Az AI képes jelezni az alacsony készletszintet, így az adminisztrátor időben intézkedhet a feltöltésről.
+A készletbővítésnek és termékkezelésnek egyszerűen, néhány kattintással kell történnie.
+
+Az adminisztrátor feladata a rendszer felügyelete, az új termékek feltöltése, valamint a felhasználók és rendelési adatok kezelése.
+A felületnek áttekinthető módon kell megjelenítenie az eladásokat, bevételeket és forgalmi adatokat,
+hogy az admin könnyen értékelhesse a teljesítményt.
+
+A cél egy olyan rendszer kialakítása, amely nem túl bonyolult, de kellően okos ahhoz,
+hogy megkönnyítse a vásárlók döntéseit és az adminisztrátor napi munkáját.
+Az **AI-powered Phoneshop** így egy stabil, praktikus és korszerű alapot biztosít a mindennapi online értékesítéshez.
+
 
 4-es
 ### Funkcionális követelmények
@@ -156,3 +179,16 @@ beavatkozás szükségességét.
 | Rendszer       | Biztonság és adatvédelem   | Az adatok kezelése a GDPR és az ISO/IEC 27001 szabvány szerint történik, kódolt adatbázis-tárolással.                                |
 | Rendszer       | Naplózás és átláthatóság   | A rendszer minden műveletet naplóz, ezzel segítve az adminisztrációt és a hibák visszakövetését.                                     |
 | Rendszer       | AI-támogatás               | A mesterséges intelligencia elemzi a felhasználói viselkedést, támogatja a keresést, az ajánlásokat és a riportokat.                 |
+
+| Fogalomtár      |                                                                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Vásárló         | A rendszer felhasználója, aki termékeket keres, kosárba helyez, megrendel és nyomon követi rendeléseit.                             |
+| Adminisztrátor  | Jogosult felhasználó, aki kezeli a termékeket, felhasználókat, riportokat és a rendszer általános működését.                        |
+| AI-asszisztens  | Beépített intelligens funkció, amely segíti a vásárlót a keresésben, ajánlásokat ad, valamint támogatja a riportok értelmezését.    |
+| Riport          | Összesítő dokumentum, amely tartalmazza az adott időszakban (nap, hét, hónap) eladott termékek adatait, bevételt és statisztikákat. |
+| Szűrés          | A termékek listájának leszűkítése ár, típus, kategória vagy más jellemző alapján a gyorsabb keresés érdekében.                      |
+| Keresési mező   | Olyan felület, ahol a vásárló kulcsszavakat vagy természetes nyelvű kérdéseket adhat meg az AI által támogatott kereséshez.         |
+| Kosár           | A vásárló által kezelt funkció, amely tartalmazza a kiválasztott termékeket, mennyiségeket és azok végösszegét.                     |
+| Rendelés        | A vásárló által véglegesített tranzakció, amely tartalmazza a megrendelt termékeket és a fizetési adatokat.                         |
+| Készletfigyelés | Az adminisztrátor által használt funkció, amely valós időben mutatja a termékek elérhetőségét és raktárkészletét.                   |
+| Sztornózás      | Hibás vagy visszavont rendelés érvénytelenítése a rendszerben, amely frissíti a készletadatokat is.                                 |
