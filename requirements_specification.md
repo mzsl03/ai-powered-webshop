@@ -26,8 +26,19 @@ bevételek, vásárlói aktivitások és termékforgalmak adatait,
 támogatva a stratégiai döntéshozatalt és a készletgazdálkodás hatékony működését.
 
 
+### Jelenlegi helyzet
 
+A digitális vásárlási igények rohamos növekedésével a partnereink egyre inkább igénylik egy korszerű,
+mesterséges intelligenciával támogatott online rendszer bevezetését, 
+amely képes gyorsan és pontosan kiszolgálni a felhasználókat.
+A jelenlegi, hagyományos webáruház-megoldások azonban már nem felelnek meg ezeknek az elvárásoknak.
 
+A meglévő rendszerek felülete nehezen kezelhető és nem képes alkalmazkodni a vásárlók egyéni igényeihez. 
+A termékek közötti böngészés és keresés lassú, sokszor pontatlan, 
+mivel a rendszer nem használ fejlett szűrési vagy ajánlórendszert.
+Ennek következtében a felhasználók gyakran elvesznek a termékek között, ami csökkenti a vásárlási élményt és a konverziós arányt.
+
+A háttérfolyamatok szintén problémásak: az adminisztrátorok számára az adatok elemzése és riportálása manuális, időigényes feladat.
 
 
 ### Vágyálom rendszer
