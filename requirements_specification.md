@@ -215,6 +215,29 @@ beavatkozás szükségességét.
 | Rendszer       | Naplózás és átláthatóság   | A rendszer minden műveletet naplóz, ezzel segítve az adminisztrációt és a hibák visszakövetését.                                     |
 | Rendszer       | AI-támogatás               | A mesterséges intelligencia elemzi a felhasználói viselkedést, támogatja a keresést, az ajánlásokat és a riportokat.                 |
 
+
+### Riportok
+
+- **Szabad riport**  
+  A szabad riport során a megrendelő általános igényeit és elvárásait rögzítettük az új, AI-támogatott webshop rendszerrel kapcsolatban.  
+  A legfontosabb megállapítások:
+    - A rendszer legyen **gyors, stabil és könnyen kezelhető**, mivel a vásárlók és adminisztrátorok napi szinten használják.
+    - A **termékek böngészése, keresése és szűrése** intuitív, reszponzív felületen történjen, amelyet az AI is támogat javaslatokkal.
+    - Az AI képes legyen **értékesítési mintákat felismerni**, és automatikus javaslatokat tenni a készletfeltöltésre.
+    - Fontos a **rendelések és vásárlói aktivitás átlátható nyomon követése**, valamint a tranzakciók biztonságos kezelése.
+    - A **riportolási funkciók** kiemelt jelentőségűek: napi, heti és havi riportok szükségesek az eladások, készletek és bevételek ellenőrzésére.
+
+- **Irányított riport**  
+  Az irányított riport kérdőíves, célzott kérdésekre épült, amelyek segítségével a funkcionális igények pontosítása megtörtént.  
+  A legfontosabb eredmények:
+    - A riportok formátuma **Excel vagy PDF** legyen, így egyszerűen továbbíthatók és archiválhatók.
+    - A **heti és havi riportok automatikusan generálódjanak**, a nap végi riportok pedig manuálisan indíthatók legyenek.
+    - A riportok tartalmazzák a **termékek eladási adatait, bevételi statisztikákat**, valamint az AI által készített előrejelzéseket.
+    - Minden partnercég esetében a riportban szerepeljen **céges azonosító és felhasználói aktivitás** is.
+    - A riportgenerálás **háttérfolyamatban** fusson, hogy ne terhelje a rendszer működését.
+    - Az AI-asszisztens képes legyen **összefoglaló riportmagyarázatot készíteni**, így az adminisztrátor gyorsan átláthatja a trendeket.  
+
+
 | Fogalomtár      |                                                                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | Vásárló         | A rendszer felhasználója, aki termékeket keres, kosárba helyez, megrendel és nyomon követi rendeléseit.                             |
