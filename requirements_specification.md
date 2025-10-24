@@ -1,5 +1,29 @@
 
+### Áttekintés
 
+Az **AI-powered Phoneshop** célja, hogy modern, mesterséges intelligenciával támogatott online felületet biztosítson a vásárlók számára, 
+amely kényelmes, intuitív és személyre szabott vásárlási élményt nyújt. A rendszer felhasználóbarát,
+reszponzív kialakítása lehetővé teszi, hogy a vásárlók könnyedén böngésszenek a termékek között,
+miközben az **AI-asszisztens** természetes nyelven segíti őket a keresésben, a választásban és a vásárlás lebonyolításában.
+
+A bejelentkezést követően a vásárló azonnal láthatja a személyre szabott termékajánlásokat és az aktuális készleteket.
+A rendszer figyelmeztet az esetleges készlethiányokra,
+az AI előrejelzései pedig támogatják az adminisztrátort a raktárkészlet optimális fenntartásában.
+
+A vásárlók keresőmező és AI-alapú szűrők segítségével gyorsan megtalálhatják a kívánt termékeket,
+akár természetes nyelvű lekérdezésekkel is (például: „Mutass nekem olcsó 5G-s telefonokat 200 000 Ft alatt”).
+A keresési eredmények és termékajánlások dinamikusan igazodnak a felhasználói preferenciákhoz, 
+böngészési előzményekhez és vásárlási szokásokhoz, így minden felhasználó személyre szabott kínálatot kap.
+
+A vásárlási folyamatot egy AI-támogatott kosárfunkció teszi gördülékennyé,
+ahol a rendszer automatikusan kiszámítja a végösszeget, javaslatot tesz kiegészítő termékekre,
+és segíti a fizetési folyamatot. A vásárlás végén a rendszer automatikusan digitális számlát generál,
+amely letölthető a felhasználói fiókból, és az AI-asszisztens segítségével reklamáció vagy sztornózás is egyszerűen kezdeményezhető.
+
+Az adminisztrátorok számára a rendszer napi, heti és havi riportokat biztosít, 
+amelyeket az AI automatikusan generál. Ezek a riportok tartalmazzák az eladások,
+bevételek, vásárlói aktivitások és termékforgalmak adatait,
+támogatva a stratégiai döntéshozatalt és a készletgazdálkodás hatékony működését.
 
 
 
