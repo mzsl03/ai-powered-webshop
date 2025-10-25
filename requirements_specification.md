@@ -1,9 +1,44 @@
 
+### Áttekintés
+
+Az **AI-powered Phoneshop** célja, hogy modern, mesterséges intelligenciával támogatott online felületet biztosítson a vásárlók számára, 
+amely kényelmes, intuitív és személyre szabott vásárlási élményt nyújt. A rendszer felhasználóbarát,
+reszponzív kialakítása lehetővé teszi, hogy a vásárlók könnyedén böngésszenek a termékek között,
+miközben az **AI-asszisztens** természetes nyelven segíti őket a keresésben, a választásban és a vásárlás lebonyolításában.
+
+A bejelentkezést követően a vásárló azonnal láthatja a személyre szabott termékajánlásokat és az aktuális készleteket.
+A rendszer figyelmeztet az esetleges készlethiányokra,
+az AI előrejelzései pedig támogatják az adminisztrátort a raktárkészlet optimális fenntartásában.
+
+A vásárlók keresőmező és AI-alapú szűrők segítségével gyorsan megtalálhatják a kívánt termékeket,
+akár természetes nyelvű lekérdezésekkel is (például: „Mutass nekem olcsó 5G-s telefonokat 200 000 Ft alatt”).
+A keresési eredmények és termékajánlások dinamikusan igazodnak a felhasználói preferenciákhoz, 
+böngészési előzményekhez és vásárlási szokásokhoz, így minden felhasználó személyre szabott kínálatot kap.
+
+A vásárlási folyamatot egy AI-támogatott kosárfunkció teszi gördülékennyé,
+ahol a rendszer automatikusan kiszámítja a végösszeget, javaslatot tesz kiegészítő termékekre,
+és segíti a fizetési folyamatot. A vásárlás végén a rendszer automatikusan digitális számlát generál,
+amely letölthető a felhasználói fiókból, és az AI-asszisztens segítségével reklamáció vagy sztornózás is egyszerűen kezdeményezhető.
+
+Az adminisztrátorok számára a rendszer napi, heti és havi riportokat biztosít, 
+amelyeket az AI automatikusan generál. Ezek a riportok tartalmazzák az eladások,
+bevételek, vásárlói aktivitások és termékforgalmak adatait,
+támogatva a stratégiai döntéshozatalt és a készletgazdálkodás hatékony működését.
 
 
+### Jelenlegi helyzet
 
+A digitális vásárlási igények rohamos növekedésével a partnereink egyre inkább igénylik egy korszerű,
+mesterséges intelligenciával támogatott online rendszer bevezetését, 
+amely képes gyorsan és pontosan kiszolgálni a felhasználókat.
+A jelenlegi, hagyományos webáruház-megoldások azonban már nem felelnek meg ezeknek az elvárásoknak.
 
+A meglévő rendszerek felülete nehezen kezelhető és nem képes alkalmazkodni a vásárlók egyéni igényeihez. 
+A termékek közötti böngészés és keresés lassú, sokszor pontatlan, 
+mivel a rendszer nem használ fejlett szűrési vagy ajánlórendszert.
+Ennek következtében a felhasználók gyakran elvesznek a termékek között, ami csökkenti a vásárlási élményt és a konverziós arányt.
 
+A háttérfolyamatok szintén problémásak: az adminisztrátorok számára az adatok elemzése és riportálása manuális, időigényes feladat.
 
 
 ### Vágyálom rendszer
@@ -179,6 +214,29 @@ beavatkozás szükségességét.
 | Rendszer       | Biztonság és adatvédelem   | Az adatok kezelése a GDPR és az ISO/IEC 27001 szabvány szerint történik, kódolt adatbázis-tárolással.                                |
 | Rendszer       | Naplózás és átláthatóság   | A rendszer minden műveletet naplóz, ezzel segítve az adminisztrációt és a hibák visszakövetését.                                     |
 | Rendszer       | AI-támogatás               | A mesterséges intelligencia elemzi a felhasználói viselkedést, támogatja a keresést, az ajánlásokat és a riportokat.                 |
+
+
+### Riportok
+
+- **Szabad riport**  
+  A szabad riport során a megrendelő általános igényeit és elvárásait rögzítettük az új, AI-támogatott webshop rendszerrel kapcsolatban.  
+  A legfontosabb megállapítások:
+    - A rendszer legyen **gyors, stabil és könnyen kezelhető**, mivel a vásárlók és adminisztrátorok napi szinten használják.
+    - A **termékek böngészése, keresése és szűrése** intuitív, reszponzív felületen történjen, amelyet az AI is támogat javaslatokkal.
+    - Az AI képes legyen **értékesítési mintákat felismerni**, és automatikus javaslatokat tenni a készletfeltöltésre.
+    - Fontos a **rendelések és vásárlói aktivitás átlátható nyomon követése**, valamint a tranzakciók biztonságos kezelése.
+    - A **riportolási funkciók** kiemelt jelentőségűek: napi, heti és havi riportok szükségesek az eladások, készletek és bevételek ellenőrzésére.
+
+- **Irányított riport**  
+  Az irányított riport kérdőíves, célzott kérdésekre épült, amelyek segítségével a funkcionális igények pontosítása megtörtént.  
+  A legfontosabb eredmények:
+    - A riportok formátuma **Excel vagy PDF** legyen, így egyszerűen továbbíthatók és archiválhatók.
+    - A **heti és havi riportok automatikusan generálódjanak**, a nap végi riportok pedig manuálisan indíthatók legyenek.
+    - A riportok tartalmazzák a **termékek eladási adatait, bevételi statisztikákat**, valamint az AI által készített előrejelzéseket.
+    - Minden partnercég esetében a riportban szerepeljen **céges azonosító és felhasználói aktivitás** is.
+    - A riportgenerálás **háttérfolyamatban** fusson, hogy ne terhelje a rendszer működését.
+    - Az AI-asszisztens képes legyen **összefoglaló riportmagyarázatot készíteni**, így az adminisztrátor gyorsan átláthatja a trendeket.  
+
 
 | Fogalomtár      |                                                                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------|

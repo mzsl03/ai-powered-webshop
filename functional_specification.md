@@ -1,4 +1,25 @@
+### Áttekintés
 
+A **AI powered webshop** rendszer célja, hogy a vásárlók számára egy modern,
+gyors és személyre szabott online értékesítési felületet biztosítson.
+Az alkalmazás kulcseleme az AI-asszisztens, amely természetes nyelven segíti a felhasználókat.
+
+A rendszer funkcionális felépítése az online értékesítési folyamat AI-alapú támogatására épül.
+Az alkalmazás egyik fő modulja a bejelentkezés és jogosultságkezelés,
+mivel a vásárlók és adminisztrátorok csak azonosítás után férhetnek hozzá személyre szabott funkcióikhoz.
+A jogosultsági szintek határozzák meg, hogy ki milyen funkciókat érhet el (pl. adminisztrátor, vásárló).
+
+A vásárló az AI által támogatott intelligens terméklista segítségével böngészhet a rendelkezésre álló termékek között,
+amelyekhez a rendszer valós idejű készletinformációkat jelenít meg. 
+Az AI figyelmeztet alacsony készletszint esetén, és javaslatot tesz alternatív termékekre vagy előrendelésre.
+
+A felhasználók intelligens keresőmező és AI-alapú szűrés segítségével természetes nyelven is megtalálhatják a kívánt termékeket
+(pl. „Mutass olcsó 5G-s telefonokat” vagy „Szeretnék egy jó kamerás modellt”).
+
+A kiválasztott termékek kosárba helyezhetők, amelyet az AI dinamikusan kezel és
+javaslatokat ad kiegészítő termékekre, csomagajánlatokra vagy akciókra.
+A vásárló döntését követően az AI-asszisztens segíti a rendelés véglegesítését,
+a fizetési folyamatot és a számlaadatok kitöltését.
 
 
 
@@ -210,6 +231,31 @@ Az AI-asszisztens az alkalmazás intelligens központi eleme, amely a vásárló
   - Admin számára riport- és trendgenerálás.
   - Készletfigyelés és előrejelzés a forgalmi adatok alapján.
   - AI-tanulás: a rendszer folyamatosan fejleszti magát a felhasználói interakciók alapján.
+
+### Forgatókönyv
+
+- Cél:  
+  A vásárló az AI-asszisztens segítségével sikeresen kiválaszt és megvásárol egy terméket, majd nyomon követi rendelését.  
+  Az adminisztrátor a háttérben automatikus AI-riportot kap az eladásról.
+
+- Szereplők:
+    - Vásárló
+    - AI-asszisztens
+    - Rendszer
+    - Adminisztrátor
+
+- Lépések:
+    1. A vásárló megnyitja a webáruházat, ahol az AI-asszisztens köszönti („Üdv! Segíthetek megtalálni az ideális telefont?”).
+    2. A vásárló természetes nyelven beírja: „Olyan telefont keresek, ami jó kamerás és 250 000 Ft alatt van.”
+    3. Az AI feldolgozza a kérdést, és listázza a releváns termékeket, rövid ajánlásokkal.
+    4. A vásárló rákattint az egyik ajánlott termékre, ahol részletes specifikációkat és vásárlói értékeléseket lát.
+    5. Az AI felajánl kiegészítő termékeket (pl. tok, kijelzővédő).
+    6. A vásárló a kívánt terméket a kosárba helyezi, majd az AI megerősíti a műveletet és megjeleníti a végösszeget.
+    7. A vásárló elindítja a vásárlási folyamatot, az AI-asszisztens segít a fizetési és szállítási adatok kitöltésében.
+    8. A rendszer biztonságosan feldolgozza a fizetést, majd automatikusan digitális számlát generál és elküldi a vásárlónak e-mailben.
+    9. A vásárló később megkérdezi: „Mikor érkezik meg a rendelésem?”, az AI pedig lekéri a rendelés állapotát és tájékoztatja.
+    10. Az adminisztrátor a nap végén megtekinti az AI által automatikusan generált riportot, amely tartalmazza az eladásokat, forgalmat és felhasználói aktivitást.  
+
 
 ### Funkció – követelmény megfeleltetés
 
