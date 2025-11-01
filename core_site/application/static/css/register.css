@@ -1,0 +1,24 @@
+@import url('style.css');
+@import url('login.css');
+
+.password-group input {
+  margin-bottom: 4px;
+}
+
+.password-hint {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.2;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  text-align: left;
+  letter-spacing: 0.2px;
+}
+
+.form-success {
+  color: #48d36f;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
