@@ -1,6 +1,9 @@
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Products, Cart, Sales, Specs, Orders
+
+from .forms.register_form import RegistrationForm
+from .models import Products, Cart, Sales, Specs, Orders, UserInfo
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from support_files.add_prod import ProductForm
@@ -73,27 +76,26 @@ def sort_product(request, products):
     categories = Products.objects.values_list('category', flat=True).distinct()
 
     return products, categories, filters
-
 def register_view(request):
     if request.method == 'POST':
-        form = {
-            'last_name': request.POST.get('last_name', '').strip(),
-            'first_name': request.POST.get('first_name', '').strip(),
-            'username': request.POST.get('username', '').strip(),
-            'address': request.POST.get('address', '').strip(),
-            'password': request.POST.get('password', '').strip(),
-        }
-        password = form['password']
-
-        if not all([form['last_name'], form['first_name'], form['username'], password, form['address']]):
-            return render(request, 'register.html', {'error': 'Minden mező kitöltése kötelező!', 'form': form})
-        if len(password) < 8:
-            return render(request, 'register.html', {'error': 'A jelszónak legalább 8 karakter hosszúnak kell lennie!', 'form': form})
-
-        return render(request, 'register.html', {'success': 'Sikeres regisztráció!', 'form': form, 'redirect': True})
-
-    return render(request, 'register.html')
-
+        form = RegistrationForm(request.POST)
+        user = User.objects.create_user(
+            last_name=form.cleaned_data['last_name'],
+            first_name=form.cleaned_data['first_name'],
+            username=form.cleaned_data['username'],
+            email=form.cleaned_data['email'],
+            password=form.cleaned_data['password']
+        )
+        UserInfo.objects.create(
+            user=user,
+            address=form.cleaned_data['address'],
+            birth_date=form.cleaned_data['birth_date'],
+            phone_number=form.cleaned_data['phone_number'],
+        )
+        return redirect('login')
+    else:
+        form = RegistrationForm()
+    return render(request, 'register.html', {'form': form})
 
 @login_required(login_url='/')
 def add_product(request):
