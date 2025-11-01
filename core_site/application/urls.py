@@ -7,5 +7,7 @@ urlpatterns = [
     path("home/", views.home, name="home"),
     path('register/', views.register_view, name='register'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
-    path("add_product/", views.add_product, name="add_product")
+    path("add_product/", views.add_product, name="add_product"),
+    path('product/<int:product_id>/add_specs/', views.add_specs, name='add_specs'),
+
 ]
