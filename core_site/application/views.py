@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from .models import Products, Cart, Sales, Specs, Orders
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from support_files.add_prod import ProductForm
+from django.contrib import messages
 
 
 
@@ -91,3 +93,35 @@ def register_view(request):
         return render(request, 'register.html', {'success': 'Sikeres regisztráció!', 'form': form, 'redirect': True})
 
     return render(request, 'register.html')
+
+
+@login_required(login_url='/')
+def add_product(request):
+    all_categories = Products.objects.values_list("category", flat=True).distinct()
+
+    if not request.user.is_superuser:
+        return redirect('home')
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            category = form.cleaned_data["category"]
+
+            if Products.objects.filter(name=name, category=category).exists():
+                messages.add_message(request, messages.ERROR, "Ez a termék már létezik!")
+                return render(request, 'add_product.html', {
+                    'form': form,
+                    "categories": all_categories
+                })
+
+            product = form.save()
+            if product.category == 'Telefon':
+                return redirect('edit_specs', product_id=product.id)
+            else:
+                return redirect('home')
+    else:
+        form = ProductForm()
+    return render(request, 'add_product.html', {
+        'form': form,
+        "categories": all_categories
+    })
