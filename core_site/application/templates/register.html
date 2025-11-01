@@ -2,57 +2,60 @@
 {% load static %}
 <html lang="hu">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Regisztráció</title>
-  <link rel="stylesheet" href="{% static 'css/register.css' %}"/>
-  {% if redirect %}
-  <meta http-equiv="refresh" content="2; url={% url 'login' %}">
-  {% endif %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+        Ai Powered Webshop
+    </title>
+
+    <link rel="stylesheet" href="{% static 'css/form.css' %}"/>
 </head>
-<body class="login-page">
-<div class="login-div">
-  <div class="login-container">
-    <form method="post" class="login-form">
-      {% csrf_token %}
-      <h2 class="login-title-card">Regisztráció</h2>
+<body>
+<div class="form-page">
+<div class="form-div">
+    <div class="form-container">
+        <form method="POST" class="form-form">
+            <h3 class="form-title-card">Felhasználó regisztrációja</h3>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Felhasználónév</label>
+                {{ form.username }}
+                <p class="error">{{ form.username.errors.0 }}</p>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">E-mail</label>
+                {{ form.email }}
+                <p class="error">{{ form.email.errors.0 }}</p>
+            </div>
 
-      {% if error %}
-        <p class="form-error">{{ error }}</p>
-      {% endif %}
-      {% if success %}
-        <p class="form-success">{{ success }}</p>
-      {% endif %}
-
-      <div class="login-group">
-        <input type="text" name="last_name" placeholder="Vezetéknév" required
-               value="{{ form.last_name|default:'' }}">
-      </div>
-      <div class="login-group">
-        <input type="text" name="first_name" placeholder="Keresztnév" required
-               value="{{ form.first_name|default:'' }}">
-      </div>
-      <div class="login-group">
-        <input type="text" name="username" placeholder="Felhasználónév" required
-               value="{{ form.username|default:'' }}">
-      </div>
-      <div class="login-group password-group">
-        <input type="password" name="password" placeholder="Jelszó" required
-               value="{{ form.password|default:'' }}">
-        <small class="password-hint">(Min. 8 karakter)</small>
-      </div>
-      <div class="login-group" style="margin-bottom:14px;">
-        <input type="text" name="address" placeholder="Cím" required
-               value="{{ form.address|default:'' }}">
-      </div>
-
-      <button type="submit" class="btn">Regisztrálok</button>
-
-      <p class="form-hint">
-        Már van fiókod? <a href="{% url 'login' %}">Bejelentkezés</a>
-      </p>
-    </form>
-  </div>
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Jelszó</label>
+                {{ form.password }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.first_name.id_for_label }}">Keresztnév</label>
+                {{ form.first_name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.last_name.id_for_label }}">Vezetéknév</label>
+                {{ form.last_name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.address.id_for_label }}">Cím</label>
+                {{ form.address }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.birth_date.id_for_label }}">Születési dátum</label>
+                {{ form.birth_date }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.phone_number.id_for_label }}">Telefonszám</label>
+                {{ form.phone_number }}
+            </div>
+            <button class="btn" type="submit">Regisztráció</button>
+        </form>
+    </div>
+</div>
 </div>
 </body>
 </html>
