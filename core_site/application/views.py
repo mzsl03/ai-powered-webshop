@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.shortcuts import render, redirect
 from .models import Products, Cart, Sales, Specs, Orders
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -20,6 +21,8 @@ def login(request):
             return render(request, 'login.html', {'error': 'Hibás felhasználónév vagy jelszó!'})
     return render(request, 'login.html')
 
+
+@login_required(login_url='/')
 def home(request):
     products = Products.objects.all()
 
