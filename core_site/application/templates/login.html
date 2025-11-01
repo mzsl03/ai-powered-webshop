@@ -7,16 +7,17 @@
     <title>
         Ai Powered Webshop
     </title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+
+    <link rel="stylesheet" href="{% static 'css/form.css' %}"/>
 </head>
-<body class="login-page">
-<div class="login-div">
-    <div class="login-container">
-        <form method="post" class="login-form">
+<body>
+<div class="form-page">
+<div class="form-div">
+    <div class="form-container">
+        <form method="post" class="form-form">
             {% csrf_token %}
-            <h2 class="login-title-card">Bejelentkezés</h2>
-            <div class="login-group" style="margin-bottom: 12px;">
+            <h2 class="form-title-card">Bejelentkezés</h2>
+            <div class="form-group" style="margin-bottom: 12px;">
                 <label for="username"></label>
                 <input
                         type="text"
@@ -26,7 +27,7 @@
                         required
                 >
             </div>
-            <div class="login-group">
+            <div class="form-group">
                 <label for="password"></label>
                 <input
                         type="password"
@@ -44,10 +45,11 @@
                 <a href="{% url 'register' %}">Regisztráció</a>
             </p>
             {% if error %}
-                <p>{{ error }}</p>
+            <p>{{ error }}</p>
             {% endif %}
         </form>
     </div>
+</div>
 </div>
 </body>
 </html>
