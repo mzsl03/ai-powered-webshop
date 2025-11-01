@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login as auth_login
 from django.shortcuts import render, redirect
 from .models import Products, Cart, Sales, Specs, Orders
+from django.db.models import Q
+
 
 
 def login(request):
@@ -21,12 +23,52 @@ def login(request):
 def home(request):
     products = Products.objects.all()
 
-    
+    all_categories = Products.objects.values_list("category", flat=True).distinct()
+
+    products, categories, filters= sort_product(request, products)
+
     context = {
         'products': products,
+        'categories': categories,
+        'allCategory': all_categories,
+        "filters": filters
     }
 
     return render(request, "index.html", context)
+
+
+def sort_product(request, products):
+    name = request.GET.get('name')
+    category = request.GET.get('category')
+    min_price = request.GET.get('minPrice')
+    max_price = request.GET.get('maxPrice')
+
+    filters = {
+        "name": name,
+        "category": category,
+        "min_price": min_price,
+        "max_price": max_price,
+    }
+
+    if name:
+        name = name.replace(" ", "").lower()
+        products = [p for p in products if name in p.name.replace(" ", "").lower()]
+
+
+    if category and category != "all":
+        products = [p for p in products if p.category == category]
+
+    if min_price:
+        products = [p for p in products if p.price >= int(min_price)]
+
+    if max_price:
+        products = [p for p in products if p.price <= int(max_price)]
+
+
+    categories = Products.objects.values_list('category', flat=True).distinct()
+
+    return products, categories, filters
+
 def register_view(request):
     if request.method == 'POST':
         form = {
