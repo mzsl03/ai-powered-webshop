@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login as auth_login
 from django.shortcuts import render, redirect
+from .models import Products, Cart, Sales, Specs, Orders
 
 
 def login(request):
@@ -17,6 +18,15 @@ def login(request):
             return render(request, 'login.html', {'error': 'Hibás felhasználónév vagy jelszó!'})
     return render(request, 'login.html')
 
+def home(request):
+    products = Products.objects.all()
+
+    
+    context = {
+        'products': products,
+    }
+
+    return render(request, "index.html", context)
 def register_view(request):
     if request.method == 'POST':
         form = {
@@ -36,5 +46,3 @@ def register_view(request):
         return render(request, 'register.html', {'success': 'Sikeres regisztráció!', 'form': form, 'redirect': True})
 
     return render(request, 'register.html')
-
-

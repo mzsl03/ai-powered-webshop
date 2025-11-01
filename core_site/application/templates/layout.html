@@ -1,0 +1,56 @@
+<!doctype html>
+{% load static %}
+<html lang="hu">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+        PhoneShop
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <ul class="nav--list">
+                <li class="active"></li>
+                {% comment %} <li class="logout"> {% endcomment %}
+                    {% comment %} <form method="POST" action="{% url 'logout' %}"> {% endcomment %}
+                        {% comment %} {% csrf_token %} {% endcomment %}
+                        {% comment %} <button class="btn" id="logout">Kijelentkezés</button> {% endcomment %}
+                    {% comment %} </form> {% endcomment %}
+                {% comment %} </li> {% endcomment %}
+                <li class="item"><a href="/home/">Home</a></li>
+                {% comment %} {% if request.user.is_authenticated and not request.user.is_staff %}
+                    <li class="item"><a href="{% url 'user_cart' %}">Kosár</a></li>
+                {% endif %}
+                <li class="item"><a href="/receipts/">Számlák</a></li>
+                {% if request.user.is_authenticated and request.user.is_staff %}
+                    <li class="item"><a href="/register/">Regisztráció</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated and request.user.is_staff %}
+                    <li class="item"><a href="/add_prod/">Termék létrehozása</a></li>
+                {% endif %}
+                <li class="item"><a href="/order/">Rendelések</a></li>
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <li class="item"><a href="/user_list/">Felhasználók listája</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated and not request.user.is_staff %}
+                    <li class="item"><a href="/export/report/">Riport generálás</a></li>
+                {% endif %} {% endcomment %}
+
+            </ul>
+        </nav>
+    </div>
+</header>
+<main class="wrap" id="app" style="padding-top:22px; display:flex; gap:20px;">
+    {% block main %}
+    {% endblock %}
+</main>
+<footer class="footer">
+    SZFM-Webshop 2025
+</footer>
+</body>
+</html>
