@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="ind-container">
+        <div class="filters">
+            <h3>Szűrők</h3>
+            <form method="get">
+                <label class="ctrl" style="display:block; margin-bottom:12px;">
+                    <input value="{{filters.name|default:''}}" name='name' id="q" type="search" placeholder="Keresés (pl. „fülhallgató”)"
+                           style="width:100%;"/>
+                </label>
+                <label class="ctrl" style="display:block; margin-bottom:12px;">
+                    <select name="category" id="cat" style="width:100%;">
+                        <option value="all">Összes termék</option>
+                        {% for category in allCategory %}
+                            <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label class="ctrl" style="display:block; margin-bottom:12px;">
+                    <input value="{{filters.min_price|default:''}}" name="minPrice" type="search" placeholder="Minimum ár" style="width:100%;"/>
+                </label>
+
+                <label class="ctrl" style="display:block; margin-bottom:12px;">
+                    <input value="{{filters.max_price|default:''}}" name="maxPrice" type="search" placeholder="Maximum ár" style="width:100%;"/>
+                </label>
+
+                <button class="btn" id="save">Szűrés</button>
+            </form>
+
+        </div>
+        <div class="product-grid">
+            {% for product in products %}
+                {% comment %} <a class="product-link" href="{% url 'product-name' product.name %}"> {% endcomment %}
+                    <div class="product-card">
+                       <div class="product-image-container">
+                            {% if product.image_path %}
+                                <img data-images="{{ product.image_path|join:',' }}" src="{% static 'images/' %}{{ product.image_path.0 }}"
+                                     alt="{{ product.name }}" id="{{ product.id }}" class="product-image" width="200">
+                            {% else %}
+                                <img src="{% static 'images/no-image.png' %}"
+                                     alt="No image available" class="product-image" width="200">
+                            {% endif %}
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">{{ product.name }}</h3>
+                            <p class="product-price">{{ product.price }},-Ft</p>
+                            <ul class="product-colors">
+                                {% for color in product.colors %}
+                                    {% comment %} <span class="color-badge">{{ color }}</span> {% endcomment %}
+                                    <li class='color-circle' onclick="changeImage('{{ color }}', '{{product.id}}')" style="background-color: {{color}};"></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+
+        const STATIC_IMAGES_URL = "{% static 'images/' %}";
+    </script>
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
