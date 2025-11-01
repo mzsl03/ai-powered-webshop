@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/add_product.css' %}"/>
+{% endblock %}
+
+{% block main %}
+
+{% if messages %}
+  <div id="message-modal" style="display:block; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border:1px solid #ccc; z-index:1000;">
+    {% for message in messages %}
+      <p style="color: #000">{{ message }}</p>
+    {% endfor %}
+    <button onclick="document.getElementById('message-modal').style.display='none'">OK</button>
+  </div>
+{% endif %}
+    <div class="prod-add-div">
+        <div class="prod-add-container">
+            <form method="POST">
+                <h2 class="prod-add-title-card">Új termék létrehozása</h2>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}">Termék neve</label>
+                    {{ form.name }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.price.id_for_label }}">Ár (Ft)</label>
+                    {{ form.price }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.category.id_for_label }}">Kategória</label>
+                    {{ form.category }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.colors.id_for_label }}">Színek (vesszővel elválasztva)</label>
+                    {{ form.colors }}
+                </div>
+                <button class="btn" type="submit">Termék létrehozása</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
