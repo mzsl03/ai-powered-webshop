@@ -39,6 +39,10 @@
             <div>
                 <button type="submit" class="btn">Bejelentkezés</button>
             </div>
+            <p class="text-muted" style="margin-top: 12px;">
+                Nincs még fiókod?
+                <a href="{% url 'register' %}">Regisztráció</a>
+            </p>
             {% if error %}
                 <p>{{ error }}</p>
             {% endif %}
