@@ -39,7 +39,17 @@ mivel a rendszer nem használ fejlett szűrési vagy ajánlórendszert.
 Ennek következtében a felhasználók gyakran elvesznek a termékek között, ami csökkenti a vásárlási élményt és a konverziós arányt.
 
 A háttérfolyamatok szintén problémásak: az adminisztrátorok számára az adatok elemzése és riportálása manuális, időigényes feladat.
+A készletkezelés sem automatizált, ezért gyakran fordul elő, hogy a rendszer késve jelzi a hiányt vagy a forgalmi változásokat.
 
+További hiányosság, hogy a jelenlegi rendszer nem rendelkezik sem automatizált ügyféltámogatással,
+sem személyre szabott kommunikációval. A felhasználók kérdései gyakran megválaszolatlanok maradnak, 
+vagy manuális beavatkozást igényelnek, ami leterheli az ügyfélszolgálatot.
+
+Összességében elmondható, hogy a meglévő rendszer nem képes megfelelni a modern e-kereskedelmi elvárásoknak:
+hiányzik belőle a személyre szabott élmény, a mesterséges intelligencia által támogatott automatizálás és a hatékony adatkezelés.
+Az új **AI-powered Phoneshop** bevezetésének célja, hogy ezeket a hiányosságokat orvosolja,
+és egy gyors, intelligens, önfejlesztő rendszert biztosítson, amely mind a vásárlók,
+mind az adminisztrátorok számára kényelmes és hatékony megoldást nyújt.
 
 ### Vágyálom rendszer
 
