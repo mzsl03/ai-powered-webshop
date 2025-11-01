@@ -232,6 +232,11 @@ Az AI-asszisztens az alkalmazás intelligens központi eleme, amely a vásárló
   - Készletfigyelés és előrejelzés a forgalmi adatok alapján.
   - AI-tanulás: a rendszer folyamatosan fejleszti magát a felhasználói interakciók alapján.
 
+### Képernyő terv
+
+![Image of the front-page](./doc_img/img_of_homepage.png)
+*A webalkalmazás főoldalának tervezete*
+
 ### Forgatókönyv
 
 - Cél:  
