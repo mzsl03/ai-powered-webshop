@@ -2,100 +2,103 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/add_specs.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}"/>
 {% endblock %}
 
 {% block main %}
 
-{% if messages %}
-  <div id="message-modal" style="display:block; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border:1px solid #ccc; z-index:1000;">
-    {% for message in messages %}
-      <p style="color: #000">{{ message }}</p>
-    {% endfor %}
-    <button onclick="document.getElementById('message-modal').style.display='none'">OK</button>
-  </div>
-{% endif %}
+    {% if messages %}
+        <div id="message-modal"
+             style="display:block; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border:1px solid #ccc; z-index:1000;">
+            {% for message in messages %}
+                <p style="color: #000">{{ message }}</p>
+            {% endfor %}
+            <button onclick="document.getElementById('message-modal').style.display='none'">OK</button>
+        </div>
+    {% endif %}
+    <div class="form-page">
+        <div class="form-div">
+            <div class="form-container">
+                <form method="POST" class="form-form">
+                    <h2 class="form-title-card">Új termék specifikáció létrehozása</h2>
+                    {% csrf_token %}
 
-    <div class="specs-add-div">
-        <div class="specs-add-container">
-            <form method="POST">
-                <h2 class="specs-add-title-card">Új termék specifikáció létrehozása</h2>
-                {% csrf_token %}
-                
-                <div class="form-group">
-                    <label for="{{ form.CPU_speed.id_for_label }}">CPU sebesség</label>
-                    {{ form.CPU_speed }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.CPU_type.id_for_label }}">CPU típus</label>
-                    {{ form.CPU_type }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.display_size.id_for_label }}">Kijelző mérete</label>
-                    {{ form.display_size }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.resolution.id_for_label }}">Felbontás</label>
-                    {{ form.resolution }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.display_technology.id_for_label }}">Kijelző technológia</label>
-                    {{ form.display_technology }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.max_refresh_rate.id_for_label }}">Max képfrissítési ráta</label>
-                    {{ form.max_refresh_rate }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.Spen.id_for_label }}">Spen (Van/Nincs)</label>
-                    {{ form.Spen }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.camera.id_for_label }}">Kamera (MP)</label>
-                    {{ form.camera }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.memory.id_for_label }}">Memória (GB)</label>
-                    {{ form.memory }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.storage.id_for_label }}">Tárhely (GB, vesszővel elválasztva)</label>
-                    {{ form.storage }}
-                    {% if form.storage.help_text %}
-                        <small class="helptext">{{ form.storage.help_text }}</small>
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.os.id_for_label }}">Operációs rendszer</label>
-                    {{ form.os }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.charge.id_for_label }}">Töltési sebesség (W)</label>
-                    {{ form.charge }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.sensors.id_for_label }}">Szenzorok (vesszővel elválasztva)</label>
-                    {{ form.sensors }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.size.id_for_label }}">Méret (mm)</label>
-                    {{ form.size }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.weight.id_for_label }}">Súly (g)</label>
-                    {{ form.weight }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.battery.id_for_label }}">Akkumulátor (mAh)</label>
-                    {{ form.battery }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.release_date.id_for_label }}">Kiadási dátum</label>
-                    {{ form.release_date }}
-                </div>
-                
-                <button class="btn" type="submit">Specifikáció létrehozása</button>
-            </form>
+                    <div class="form-group">
+                        <label for="{{ form.CPU_speed.id_for_label }}">CPU sebesség</label>
+                        {{ form.CPU_speed }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.CPU_type.id_for_label }}">CPU típus</label>
+                        {{ form.CPU_type }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.display_size.id_for_label }}">Kijelző mérete</label>
+                        {{ form.display_size }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.resolution.id_for_label }}">Felbontás</label>
+                        {{ form.resolution }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.display_technology.id_for_label }}">Kijelző technológia</label>
+                        {{ form.display_technology }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.max_refresh_rate.id_for_label }}">Max képfrissítési ráta</label>
+                        {{ form.max_refresh_rate }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.Spen.id_for_label }}">Spen (Van/Nincs)</label>
+                        {{ form.Spen }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.camera.id_for_label }}">Kamera (MP)</label>
+                        {{ form.camera }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.memory.id_for_label }}">Memória (GB)</label>
+                        {{ form.memory }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.storage.id_for_label }}">Tárhely (GB, vesszővel elválasztva)</label>
+                        {{ form.storage }}
+                        {% if form.storage.help_text %}
+                            <small class="helptext">{{ form.storage.help_text }}</small>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.os.id_for_label }}">Operációs rendszer</label>
+                        {{ form.os }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.charge.id_for_label }}">Töltési sebesség (W)</label>
+                        {{ form.charge }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.sensors.id_for_label }}">Szenzorok (vesszővel elválasztva)</label>
+                        {{ form.sensors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.size.id_for_label }}">Méret (mm)</label>
+                        {{ form.size }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.weight.id_for_label }}">Súly (g)</label>
+                        {{ form.weight }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.battery.id_for_label }}">Akkumulátor (mAh)</label>
+                        {{ form.battery }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.release_date.id_for_label }}">Kiadási dátum</label>
+                        {{ form.release_date }}
+                    </div>
+
+                    <button class="btn" type="submit">Specifikáció létrehozása</button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

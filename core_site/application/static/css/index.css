@@ -1,180 +1,177 @@
-main {
-    align-items: flex-start;
-}
-
-.ctrl > input, select {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: #1e222a;
-    color: var(--text);
-    transition: border-color 0.2s ease, background 0.2s ease;
-}
+@import url('style.css');
 
 .ind-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 40px;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: var(--color-bg);
 }
 
 .filters {
-    background: var(--panel);
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    max-width: 280px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-self: flex-start;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 1.8rem 1.5rem;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: var(--transition);
+}
+
+.filters:hover {
+  background-color: var(--color-surface-hover);
 }
 
 .filters h3 {
-    font-size: 1.3rem;
-    color: var(--brand);
-    margin-bottom: 10px;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 8px;
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
 }
 
 .filters form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .filters label {
-    display: block;
-    width: 100%;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .filters input[type="search"],
 .filters select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: #1e222a;
-    color: var(--text);
-    font-size: 0.95rem;
-    transition: all 0.2s ease-in-out;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: #121215;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition);
 }
 
 .filters input[type="search"]:focus,
 .filters select:focus {
-    border-color: var(--brand);
-    background: #242832;
-    box-shadow: 0 0 6px var(--brand);
-    outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(212, 60, 60, 0.25);
 }
 
 .filters .btn {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 8px;
-    margin-top: 5px;
-}
-
-.product-image-container {
-    flex: 1 1 calc(25% - 20px);
-    display: grid;
-    place-items: center;
-    height: 200px;
-    width: 200px;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
 }
 
 .product-grid {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    min-width: 900px;
-    max-width: 900px;
-    margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  flex: 1;
+  justify-items: center;
 }
 
-.product-colors{
-    display: flex;
-    list-style: none;
-    justify-content: center;
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 15px;
-
+.product-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 1rem;
+  text-align: center;
+  width: 220px;
+  transition: var(--transition);
 }
 
-.product-card{
-    border-radius: 20px;
-}
-    .product-card:hover{
-    background-color: white;
-    color: black;
-    }
-
-
-.color-circle {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: 2px solid #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease;
+.product-card:hover {
+  background-color: var(--color-surface-hover);
+  transform: translateY(-3px);
 }
 
-    .color-circle:hover {
-        transform: scale(1.2);
-    }
-
-
+.product-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  margin-bottom: 1rem;
+}
 
 .product-image {
-    height: 150px;
-    width: auto;
+  max-height: 160px;
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  object-fit: contain;
 }
 
-.product-link {
-    text-decoration: none;
-    color: inherit;
+.product-colors {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.2);
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.4rem;
+}
+
+.product-price {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.6rem;
 }
 
 .product-info * {
-    max-width: 200px;
-    text-align: center;
+  text-align: center;
 }
 
-.product-info .product-name {
-    min-height: 60px;
+.product-link {
+  text-decoration: none;
+  color: inherit;
 }
 
-#save {
-    background: var(--brand);
-}
+@media (max-width: 900px) {
+  .ind-container {
+    flex-direction: column;
+    align-items: center;
+  }
 
-#save:hover {
-    background: #4a89e8;
-}
+  .filters {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
 
-#clear {
-    background: #3a3f4a;
-    color: var(--muted);
-}
-
-#clear:hover {
-    background: var(--border);
-    color: var(--text);
-}
-
-@media (max-width: 768px) {
-    .filters {
-        max-width: 100%;
-        margin-bottom: 20px;
-    }
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
 }
