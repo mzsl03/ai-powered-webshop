@@ -1,13 +1,15 @@
 from django.contrib.auth import authenticate, login as auth_login
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-
 from .forms.register_form import RegistrationForm
 from .models import Products, Cart, Sales, Specs, Orders, UserInfo
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from support_files.add_prod import ProductForm
+from support_files.add_specs import SpecsForm
 from django.contrib import messages
+from django.utils import timezone
+
 
 
 
@@ -118,7 +120,7 @@ def add_product(request):
 
             product = form.save()
             if product.category == 'Telefon':
-                return redirect('edit_specs', product_id=product.id)
+                return redirect('add_specs', product_id=product.id)
             else:
                 return redirect('home')
     else:
@@ -127,3 +129,28 @@ def add_product(request):
         'form': form,
         "categories": all_categories
     })
+
+@login_required(login_url='/')
+def add_specs(request, product_id):
+    if not request.user.is_superuser:
+        return redirect('home')
+    product = get_object_or_404(Products, id=product_id)
+    specs, created = Specs.objects.get_or_create(product=product,
+                                                 defaults={
+                                                     "weight": 0,
+                                                     "battery": 0,
+                                                     "release_date": timezone.now(),
+                                                 })
+
+    if request.method == 'POST':
+        form = SpecsForm(request.POST, instance=specs)
+        if form.is_valid():
+            form.save()
+            available_count = len(specs.storage) * len(specs.product.colors)
+            product.stock =  [10] * available_count
+            product.save()
+            return redirect('home')
+    else:
+        form = SpecsForm(instance=specs)
+
+    return render(request, 'add_specs.html', {'form': form, 'product': product})
