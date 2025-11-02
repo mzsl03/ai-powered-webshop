@@ -142,7 +142,7 @@ A rendszer teljes mértékben open source komponensekre épül, nem használ meg
 - Git és Github - verziókezelés és csapatmunka támogatása
 
 7. Geri
-
+![absztrakt domain modell](../doc_img/abstract_domain__model.png)
 8. Marci
 
 9. Zoli
