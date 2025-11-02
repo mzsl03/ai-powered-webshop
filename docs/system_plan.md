@@ -58,7 +58,64 @@ mivel egyértelműen látható, mely feladatok igényelnek azonnali figyelmet,
 
 3. Zoli
 4. Geri
+### Követelmények
+
+**Funkcionális követelmények**
+
+- Felhasználók regisztrációja és bejelentkezése email-cím és jelszó alapján.  
+- Jogosultsági szintek kezelése (admin, vásárló).  
+- Termékek listájának megjelenítése, keresése és szűrése név, ár vagy kategória alapján.  
+- Termékadatok valós idejű frissítése a készlet változásai szerint.  
+- Kosárfunkció: termékek hozzáadása, eltávolítása és mennyiség módosítása.  
+- Vásárlási folyamat támogatása a rendelés leadásáig.  
+- Rendelés állapotának megtekintése a felhasználói fiókban.  
+- AI-asszisztens által biztosított termékajánlások és keresési javaslatok.  
+- Admin felület a termékek, rendelések és felhasználók kezelésére.
+
+**Nem funkcionális követelmények**
+
+- A rendszer felülete legyen letisztult, gyors és reszponzív.  
+- A keresési és szűrési műveletek legfeljebb 2 másodpercen belül válaszoljanak.  
+- Az oldal hibamentesen működjön modern böngészőkben (Chrome, Firefox, Edge, Safari).  
+- A jelszavak biztonságos, egyirányú hash-eléssel legyenek tárolva.  
+- Az adatbázis kapcsolata titkosított legyen.  
+- A rendszer kezelje a többfelhasználós működést egyidejű hozzáférés esetén.  
+- Naplózás és alapvető hibadetektálás valós időben működjön.
+
+**Törvényi előírások és szabványok**
+
+- A rendszer megfelel az **EU GDPR** adatvédelmi előírásainak.  
+- Követi az **ISO/IEC 27001** adatbiztonsági szabvány alapelveit.  
+- A felhasználói adatokhoz kizárólag engedélyezett személyek férhetnek hozzá.  
+- Minden művelet naplózásra kerül az átláthatóság és visszakövethetőség érdekében.
 5. Geri
+### Funkcionális terv
+
+**Rendszerszereplők:**
+- Adminisztrátor  
+- Vásárló  
+
+**Rendszerhasználati esetek és lefutásaik:**
+
+**Adminisztrátor:**
+- Teljes hozzáféréssel rendelkezik a rendszerhez.  
+- Felhasználók és jogosultságok kezelése.  
+- Termékek hozzáadása, módosítása és törlése.  
+- Készletadatok frissítése és árak módosítása.  
+- Rendelések megtekintése, státuszok módosítása.  
+- Rendszernaplók és statisztikák ellenőrzése.  
+
+**Vásárló:**
+- Regisztráció és bejelentkezés email-címmel és jelszóval.  
+- Termékek megtekintése, keresése és szűrése név, kategória vagy ár alapján.  
+- Termékek kosárba helyezése, mennyiség módosítása, eltávolítása.  
+- Rendelés leadása és visszaigazolás megtekintése.  
+- AI-asszisztens használata termékajánlások és információk kérésére.  
+- Saját fiókadatok és korábbi rendelések megtekintése.  
+
+A rendszer célja, hogy mindkét szereplő számára átlátható,
+logikus működést biztosítson: az admin könnyen kezelje a termékeket és a készletet,
+míg a vásárlók egyszerűen böngészhessenek és rendeljenek.
 
 
 6. Zsolti
@@ -85,7 +142,7 @@ A rendszer teljes mértékben open source komponensekre épül, nem használ meg
 - Git és Github - verziókezelés és csapatmunka támogatása
 
 7. Geri
-
+![absztrakt domain modell](../doc_img/abstract_domain__model.png)
 8. Marci
 
 9. Zoli
