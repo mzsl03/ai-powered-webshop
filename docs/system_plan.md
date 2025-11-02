@@ -146,6 +146,8 @@ A rendszer teljes mértékben open source komponensekre épül, nem használ meg
 8. Marci
 
 9. Zoli
+### Adatbázis terv
+![adatbázis terv](../doc_img/database_plan.png)
 
 10. Zoli
 ### Implementációs terv
