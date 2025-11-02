@@ -148,6 +148,40 @@ A rendszer teljes mértékben open source komponensekre épül, nem használ meg
 9. Zoli
 
 10. Zoli
+### Implementációs terv
+
+A webáruház fejlesztése során a cél egy biztonságos,
+jól strukturált és könnyen bővíthető rendszer létrehozása,
+amely hatékonyan szolgálja ki a vásárlók igényeit.
+Az alkalmazás kizárólag Django alapokon készül,
+ahol a frontend a Django Template rendszert használja HTML, CSS és minimális JavaScript segítségével.
+A kódok logikusan elválasztott fájlokban helyezkednek el,
+ezzel elősegítve az átláthatóságot és a jövőbeli bővíthetőséget.
+
+A backend a Django keretrendszeren fut,
+amely kezeli a felhasználói autentikációt, a termékkezelést, a kosár- és rendeléslogikát,
+valamint az adminisztrációs feladatokat.
+A Django ORM biztosítja az adatbázis-műveletek biztonságos kezelését,
+és garantálja az adatintegritást. Az adatbázis PostgreSQL alapú,
+amely lokális szerveren fut, megfelelő indexeléssel a gyors lekérdezések érdekében.
+
+A rendszer fő funkciói közé tartozik a regisztráció, bejelentkezés, termékkeresés,
+kosárkezelés, rendelésleadás, valamint az adminisztrátori oldalon a termék- és felhasználókezelés.
+Az AI-asszisztens a vásárlókat segíti termékajánlásokkal és kérdések megválaszolásával.
+
+A rendelési folyamat során a backend ellenőrzi a készletet,
+és a sikeres tranzakció után automatikusan frissíti az adatbázist.
+A hibás vagy visszavont rendelések sztornózhatók,
+a készlet pedig helyreállítható.
+Az adatok titkosított formában tárolódnak,
+a jelszavak hash-elve kerülnek mentésre.  
+
+A rendszer teljesen reszponzív, és minden modern böngészőben fut.
+A fejlesztés során egység- és integrációs tesztek biztosítják a stabil működést.
+A verziókezelés Git alapon történik, a fejlesztők közösen dolgoznak egy helyi szerveren futó példányon.  
+
+A cél egy megbízható, felhasználóbarát és karbantartható webshop megvalósítása,
+amely hosszú távon is könnyen továbbfejleszthető.
 
 11. Zsolti
 ### Tesztterv
