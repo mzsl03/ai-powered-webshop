@@ -89,6 +89,33 @@ mivel egyértelműen látható, mely feladatok igényelnek azonnali figyelmet,
 - A felhasználói adatokhoz kizárólag engedélyezett személyek férhetnek hozzá.  
 - Minden művelet naplózásra kerül az átláthatóság és visszakövethetőség érdekében.
 5. Geri
+### Funkcionális terv
+
+**Rendszerszereplők:**
+- Adminisztrátor  
+- Vásárló  
+
+**Rendszerhasználati esetek és lefutásaik:**
+
+**Adminisztrátor:**
+- Teljes hozzáféréssel rendelkezik a rendszerhez.  
+- Felhasználók és jogosultságok kezelése.  
+- Termékek hozzáadása, módosítása és törlése.  
+- Készletadatok frissítése és árak módosítása.  
+- Rendelések megtekintése, státuszok módosítása.  
+- Rendszernaplók és statisztikák ellenőrzése.  
+
+**Vásárló:**
+- Regisztráció és bejelentkezés email-címmel és jelszóval.  
+- Termékek megtekintése, keresése és szűrése név, kategória vagy ár alapján.  
+- Termékek kosárba helyezése, mennyiség módosítása, eltávolítása.  
+- Rendelés leadása és visszaigazolás megtekintése.  
+- AI-asszisztens használata termékajánlások és információk kérésére.  
+- Saját fiókadatok és korábbi rendelések megtekintése.  
+
+A rendszer célja, hogy mindkét szereplő számára átlátható,
+logikus működést biztosítson: az admin könnyen kezelje a termékeket és a készletet,
+míg a vásárlók egyszerűen böngészhessenek és rendeljenek.
 
 
 6. Zsolti
