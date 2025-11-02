@@ -36,12 +36,12 @@
         </div>
         <div class="product-grid">
             {% for product in products %}
-                {% comment %} <a class="product-link" href="{% url 'product-name' product.name %}"> {% endcomment %}
+                <a class="product-link" href="{% url 'product-name' product.name %}">
                     <div class="product-card">
-                       <div class="product-image-container">
+                        <div class="product-image-container">
                             {% if product.image_path %}
-                                <img data-images="{{ product.image_path|join:',' }}" src="{% static 'images/' %}{{ product.image_path.0 }}"
-                                     alt="{{ product.name }}" id="{{ product.id }}" class="product-image" width="200">
+                                <img src="{% static 'images/' %}{{ product.image_path.0 }}"
+                                     alt="{{ product.name }}" class="product-image" width="200">
                             {% else %}
                                 <img src="{% static 'images/no-image.png' %}"
                                      alt="No image available" class="product-image" width="200">
@@ -50,12 +50,11 @@
                         <div class="product-info">
                             <h3 class="product-name">{{ product.name }}</h3>
                             <p class="product-price">{{ product.price }},-Ft</p>
-                            <ul class="product-colors">
+                            <p class="product-colors">
                                 {% for color in product.colors %}
-                                    {% comment %} <span class="color-badge">{{ color }}</span> {% endcomment %}
-                                    <li class='color-circle' onclick="changeImage('{{ color }}', '{{product.id}}')" style="background-color: {{color}};"></li>
+                                    <span class="color-badge">{{ color }}</span>
                                 {% endfor %}
-                            </ul>
+                            </p>
                         </div>
                     </div>
                 </a>
