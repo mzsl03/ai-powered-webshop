@@ -57,6 +57,9 @@ mivel egyértelműen látható, mely feladatok igényelnek azonnali figyelmet,
 és hol szükséges erőforrásokat átcsoportosítani.
 
 3. Zoli
+### Üzleti folyamatok modellje
+![üzleti folyamatok modellje](../doc_img/business_process_model.png)
+
 4. Geri
 ### Követelmények
 
