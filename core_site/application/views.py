@@ -154,3 +154,30 @@ def add_specs(request, product_id):
         form = SpecsForm(instance=specs)
 
     return render(request, 'add_specs.html', {'form': form, 'product': product})
+
+
+@login_required(login_url='/')
+def product_detail(request, name):
+    product = get_object_or_404(Products, name=name)
+    specs = None
+    if product.category != "Tartozék":
+        specs = Specs.objects.filter(product=product).first()
+
+   # phoneshop_user = request.user.phoneshop_user
+
+    if request.method == 'POST':
+        form = SpecsForm(request.POST, instance=specs)
+        if form.is_valid():
+            form.save()
+            available_count = len(specs.storage) * len(specs.product.colors)
+            product.stock = [10] * available_count
+            product.save()
+            return redirect('home')
+    else:
+        form = SpecsForm(instance=specs)
+
+
+    return render(request, 'item_view.html', {
+        'product': product,
+        'form': form
+    })
