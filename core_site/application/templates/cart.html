@@ -46,13 +46,15 @@
         </table>
 
         <p class="total-sum">Végösszeg: 
-            <span>
+            <span id="cart-total">
                 {% if sum %}
-                    {{ sum }} Ft
+                    {{ sum }}
                 {% else %}
-                    0 Ft
+                    0
                 {% endif %}
-            </span> 
+            </span> Ft
         </p>
     </div>
+
+    <script src="{% static 'js/cart_delete.js' %}"></script>
 {% endblock %}
