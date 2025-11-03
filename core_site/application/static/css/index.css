@@ -93,6 +93,7 @@
   text-align: center;
   width: 220px;
   transition: var(--transition);
+  min-height: 365px;
 }
 
 .product-card:hover {
