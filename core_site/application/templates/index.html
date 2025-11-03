@@ -36,28 +36,28 @@
         </div>
         <div class="product-grid">
             {% for product in products %}
-                <a class="product-link" href="{% url 'product-name' product.name %}">
-                    <div class="product-card">
+            <div class="product-card">
+                    <a class="product-link" href="{% url 'product-name' product.name %}">
                         <div class="product-image-container">
                             {% if product.image_path %}
-                                <img src="{% static 'images/' %}{{ product.image_path.0 }}"
-                                     alt="{{ product.name }}" class="product-image" width="200">
+                                <img data-images="{{ product.image_path|join:", " }}" src="{% static 'images/' %}{{ product.image_path.0 }}"
+                                     alt="{{ product.name }}" class="product-image" id="{{ product.id }}" width="200">
                             {% else %}
                                 <img src="{% static 'images/no-image.png' %}"
                                      alt="No image available" class="product-image" width="200">
                             {% endif %}
                         </div>
+                    </a>
                         <div class="product-info">
                             <h3 class="product-name">{{ product.name }}</h3>
                             <p class="product-price">{{ product.price }},-Ft</p>
                             <p class="product-colors">
                                 {% for color in product.colors %}
-                                    <span class="color-badge">{{ color }}</span>
+                                    <span onclick="changeImage('{{ color }}', '{{product.id}}')" class="color-circle" style="background-color: {{ color }}"></span>
                                 {% endfor %}
                             </p>
                         </div>
                     </div>
-                </a>
             {% endfor %}
         </div>
     </div>
