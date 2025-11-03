@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div id="cart-container">
+        <table class="cart-list">
+            <tr class="cart-header">
+                <th>Termék</th>
+                <th>Darabszám</th>
+                <th>Szín</th>
+                <th>Tárhely</th>
+                <th>Ára</th>
+                <th>Törlés</th>
+            </tr>
+            {% if products %}
+                {% for item in products %}
+                    <tr id="{{ item.id }}" class="cart-items">
+                        <td>{{ item.product }}</td>
+                        <td>{{ item.quantity }} db</td>
+                        <td>{{ item.color }}</td>
+                        {% if item.storage > 1 %}
+                            <td>{{ item.storage }} GB</td>
+                        {% else %}
+                            {% if item.storage == None %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ item.storage }} TB</td>
+                            {% endif %}
+                        {% endif %}
+                        <td>{{ item.price }} Ft</td>
+                        <td>
+                            <button class="delete-item" data-item-id="{{ item.id }}"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr class="cart-items">
+                <td colspan="4">A kosár üres</td>
+            {% endif %}
+        </table>
+
+        <p class="total-sum">Végösszeg: 
+            <span>
+                {% if sum %}
+                    {{ sum }} Ft
+                {% else %}
+                    0 Ft
+                {% endif %}
+            </span> 
+        </p>
+    </div>
+{% endblock %}

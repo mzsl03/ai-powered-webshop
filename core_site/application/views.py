@@ -181,3 +181,19 @@ def product_detail(request, name):
         'product': product,
         'form': form
     })
+
+@login_required(login_url='/')
+def cart(request):
+    user_id = request.user.id
+
+    user_products = Cart.objects.filter(user_id=user_id)
+
+    total_sum = sum(item.price for item in user_products)
+
+    context = {
+        "user_id": user_id,
+        "products": user_products,
+        "sum": total_sum
+    }
+
+    return render(request, "cart.html", context)
