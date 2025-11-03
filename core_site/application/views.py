@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login as auth_login
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from .forms.register_form import RegistrationForm
@@ -8,6 +9,8 @@ from support_files.add_prod import ProductForm
 from support_files.add_specs import SpecsForm
 from django.contrib import messages
 from django.utils import timezone
+from django.views.decorators.http import require_POST
+
 
 
 
@@ -197,3 +200,17 @@ def cart(request):
     }
 
     return render(request, "cart.html", context)
+
+@require_POST
+@login_required
+def delete_cart_item(request, item_id):
+    try:
+        item = Cart.objects.get(id=item_id, user=request.user)
+        item.delete()
+
+
+        user_products = Cart.objects.filter(user_id=request.user)
+        new_total_sum = sum(item.price for item in user_products)
+        return JsonResponse({'success': True, "new_total": new_total_sum})
+    except Cart.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Item not found'}, status=404)
