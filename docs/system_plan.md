@@ -1,6 +1,5 @@
 # AI-powered-Webshop Rendszerterv
 
-1. Zsolti
 ### A rendszer célja
 
 Az AI-powered Webshop célja, hogy modern,
@@ -21,7 +20,6 @@ A cél egy stabil, biztonságos és rugalmas online platform megvalósítása,
 amely hosszú távon is képes alkalmazkodni a változó igényekhez,
 és hatékonyan támogatja a vásárlók mindennapi online vásárlási szokásait.
 
-2. Zsolti
 ### Projektterv
 
 A projektet négytagú fejlesztőcsapat valósítja meg, 
@@ -56,11 +54,9 @@ Segíti a csapat kommunikációját és az időgazdálkodást,
 mivel egyértelműen látható, mely feladatok igényelnek azonnali figyelmet, 
 és hol szükséges erőforrásokat átcsoportosítani.
 
-3. Zoli
 ### Üzleti folyamatok modellje
 ![üzleti folyamatok modellje](../doc_img/business_process_model.png)
 
-4. Geri
 ### Követelmények
 
 **Funkcionális követelmények**
@@ -120,8 +116,6 @@ A rendszer célja, hogy mindkét szereplő számára átlátható,
 logikus működést biztosítson: az admin könnyen kezelje a termékeket és a készletet,
 míg a vásárlók egyszerűen böngészhessenek és rendeljenek.
 
-
-6. Zsolti
 ### Fizikai környezet
 
 Az alkalmazás webes platformra készül, reszponzív kialakítással, így asztali számítógépeken és laptopokon is használható.
@@ -144,9 +138,8 @@ A rendszer teljes mértékben open source komponensekre épül, nem használ meg
 - Figma - felhasználói felület tervezése, képernyő tervezés
 - Git és Github - verziókezelés és csapatmunka támogatása
 
-7. Geri
 ![absztrakt domain modell](../doc_img/abstract_domain__model.png)
-8. Marci
+
 ### Architekturális terv
 
 Az AI-powered Webshop architektúrája három rétegből épül fel:  
@@ -171,11 +164,10 @@ Az **adatkezelési réteg** PostgreSQL adatbázison alapul, amelyet a Django ORM
 A rendszer fő moduljai: felhasználókezelés, termékkezelés, kosár, rendelésfeldolgozás és AI-asszisztens.  
 A jogosultságkezelés Django beépített `auth` rendszerével történik, session alapú autentikációval.  
 Az architektúra célja a hosszú távon fenntartható, bővíthető és biztonságos működés biztosítása.
-9. Zoli
+
 ### Adatbázis terv
 ![adatbázis terv](../doc_img/database_plan.png)
 
-10. Zoli
 ### Implementációs terv
 
 A webáruház fejlesztése során a cél egy biztonságos,
@@ -211,7 +203,6 @@ A verziókezelés Git alapon történik, a fejlesztők közösen dolgoznak egy h
 A cél egy megbízható, felhasználóbarát és karbantartható webshop megvalósítása,
 amely hosszú távon is könnyen továbbfejleszthető.
 
-11. Zsolti
 ### Tesztterv
 
 A tesztelés célja annak biztosítása, hogy a rendszer minden komponense hibamentesen, a követelményeknek megfelelően működjön. A folyamat során ellenőrzésre kerül a funkcionalitás, a teljesítmény, a biztonság és a böngésző-kompatibilitás. Cél, hogy a rendszer stabil és megbízható legyen az éles használat során.
@@ -238,7 +229,6 @@ Tesztelt szempontok:
 A rendszer valós felhasználói környezetben, tesztfelhasználók által kerül kipróbálásra.  
 Célja az esetleges rejtett hibák feltárása és a felhasználói élmény vizsgálata.  
 A visszajelzéseket a fejlesztői csapat kiértékeli, és szükség esetén módosításokat hajt végre.
-
 
 ### Tesztelendő funkciók
 
@@ -268,7 +258,6 @@ A visszajelzéseket a fejlesztői csapat kiértékeli, és szükség esetén mó
 - **AI-asszisztens:**  
   A felhasználói kérdésekre pontos és releváns válaszokat adjon.
 
-12. Marci
 ### Telepítési terv
 
 Az alkalmazás használatához nincs szükség külön telepítésre, mivel a rendszer teljes egészében webes felületen működik.  
