@@ -269,3 +269,43 @@ A visszajelzéseket a fejlesztői csapat kiértékeli, és szükség esetén mó
   A felhasználói kérdésekre pontos és releváns válaszokat adjon.
 
 12. Marci
+### Telepítési terv
+
+Az alkalmazás használatához nincs szükség külön telepítésre, mivel a rendszer teljes egészében webes felületen működik.  
+A felhasználók modern böngészőn (Google Chrome, Mozilla Firefox, Edge, Safari) keresztül érik el a webáruházat, telepítés vagy konfiguráció nélkül.  
+
+A backend Django alapú alkalmazás, amely a saját, lokális szerveren kerül futtatásra.  
+Az adatbázis PostgreSQL rendszeren működik, szintén helyi kiszolgálón, biztosítva a gyors adatkezelést és a biztonságos működést.  
+
+A szerver beállítása magában foglalja a szükséges Python-csomagok és Django környezet telepítését, az adatbázis inicializálását, valamint az adminisztrátori hozzáférések beállítását.  
+
+A rendszer frissítése és karbantartása manuálisan történik, a fejlesztőcsapat által, közvetlenül a szerveren keresztül.  
+A cél egy stabil, megbízható környezet biztosítása, amely minimális konfigurációs igényt támaszt a felhasználók felé.
+
+### Karbantartási terv
+
+A webáruház karbantartása rendszeres és tervezett feladatokat igényel annak érdekében, hogy a rendszer hosszú távon is biztonságosan, gyorsan és megbízhatóan működjön.
+
+- **Technikai karbantartás:**  
+  A szerver operációs rendszerének, a Django környezetnek és a PostgreSQL adatbázisnak rendszeres frissítése.  
+  Az adatbázis optimalizálása, biztonsági mentések és helyreállítási tesztek végrehajtása.
+
+- **Biztonsági karbantartás:**  
+  Az SSL tanúsítvány érvényességének ellenőrzése, jelszóvédelmi szabályok és hozzáférési jogosultságok időszakos felülvizsgálata.  
+  A sérülékenységek vizsgálata és javítása szükség esetén.
+
+- **Tartalomkarbantartás:**  
+  Termékadatok, árak, készletinformációk és leírások frissítése.  
+  Elavult vagy kifutott termékek törlése, kategóriák újrastrukturálása igény szerint.
+
+- **Teljesítményfigyelés:**  
+  A rendszer sebességének és válaszidejének rendszeres mérése.  
+  Hibanaplók elemzése, 404 és 500-as hibák javítása.
+
+- **Tesztelés és ellenőrzés:**  
+  A fő funkciók (regisztráció, bejelentkezés, kosár, vásárlás) rendszeres működésellenőrzése.  
+  A frissítések után rövid funkcionális tesztek futtatása.
+
+- **Dokumentáció:**  
+  Minden változtatás és javítás naplózása, verziókövetése.  
+  A karbantartási tevékenységek nyilvántartása belső dokumentációban.
