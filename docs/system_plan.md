@@ -144,7 +144,30 @@ A rendszer teljes mértékben open source komponensekre épül, nem használ meg
 7. Geri
 ![absztrakt domain modell](../doc_img/abstract_domain__model.png)
 8. Marci
+### Architekturális terv
 
+Az AI-powered Webshop architektúrája három rétegből épül fel:  
+1. **Prezentációs réteg (frontend)**  
+2. **Alkalmazásréteg (backend)**  
+3. **Adatkezelési réteg (adatbázis)**  
+
+A cél egy biztonságos, stabil és jól karbantartható rendszer kialakítása,
+amely támogatja a termékek megjelenítését, a kosárkezelést, a rendelésfeldolgozást és az AI-asszisztens működését.
+
+A **frontend** a Django Template rendszerére épül, amely HTML,
+CSS és minimális JavaScript segítségével biztosítja az oldal megjelenítését és az interaktív elemeket,
+például a kosár dinamikus frissítését.  
+
+A **backend** Django keretrendszert használ, amely az MVC mintára épül:  
+- **Model:** az adatbázis szerkezetét és kapcsolatokat kezeli.  
+- **View:** az üzleti logikát valósítja meg.  
+- **Template:** a felhasználói felület megjelenítését biztosítja.  
+
+Az **adatkezelési réteg** PostgreSQL adatbázison alapul, amelyet a Django ORM kezel. Az adatbázis tárolja a felhasználókat, termékeket, rendelések adatait és a kosár tartalmát.  
+
+A rendszer fő moduljai: felhasználókezelés, termékkezelés, kosár, rendelésfeldolgozás és AI-asszisztens.  
+A jogosultságkezelés Django beépített `auth` rendszerével történik, session alapú autentikációval.  
+Az architektúra célja a hosszú távon fenntartható, bővíthető és biztonságos működés biztosítása.
 9. Zoli
 
 10. Zoli
