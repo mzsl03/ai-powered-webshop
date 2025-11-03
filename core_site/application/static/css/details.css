@@ -1,0 +1,120 @@
+@import url('style.css');
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 4rem 3rem 2rem;
+    background: radial-gradient(circle at 50% 25%, #0b0b0b, #050505 80%);
+    position: relative;
+}
+
+.image-section {
+    flex: 0 0 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.product-image-page {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 12px;
+    background: #101010;
+    padding: 1.5rem;
+    border: 1px solid #222;
+    transition: transform 0.5s ease, box-shadow 0.4s ease;
+}
+
+.text-section {
+    flex: 1;
+    background: linear-gradient(160deg, #101010, #0b0b0b);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 2rem 2.5rem 2.2rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    height: fit-content;
+}
+
+.text-section h2 {
+    font-family: "Orbitron", "Share Tech Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2.1rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.8rem;
+}
+
+.spec-list {
+    list-style: none;
+    margin-top: 0.8rem;
+    padding-left: 0;
+}
+
+.spec-list li {
+    margin-bottom: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    border-bottom: 1px dashed #1f1f1f;
+    padding-bottom: 0.3rem;
+}
+
+.order-product {
+    background: rgba(18, 18, 18, 0.75);
+    border: 1px solid #2a2a2a;
+    border-radius: var(--radius-md);
+    padding: 1.8rem 2rem;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.06);
+    text-align: center;
+    backdrop-filter: blur(6px);
+}
+
+.order-add-title-card {
+    font-family: "Orbitron", "Share Tech Mono", monospace;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.back_btn {
+    background: transparent;
+    border: 1px solid #2d2d2d;
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+
+.back_btn:hover {
+    color: #fff;
+    border-color: #444;
+    background: #1a1a1a;
+}
+
+@media (max-width: 900px) {
+    .product-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 1.5rem;
+    }
+
+    .image-section {
+        width: 90%;
+    }
+
+    .product-image-page {
+        max-width: 380px;
+    }
+
+    .text-section {
+        width: 100%;
+        margin-top: 2rem;
+    }
+}

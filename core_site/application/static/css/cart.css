@@ -1,11 +1,104 @@
-table{
-    width: 100%;
-    margin-top: 3%;
-}
-table, tr, td{
-    text-align: center;
+@import url('style.css');
+
+#cart-container {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: linear-gradient(145deg, #0f0f0f, #090909);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
 }
 
-.total-sum{
-    margin-left: 10%;
+#cart-container:hover {
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.05);
+}
+
+.cart-list {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.cart-header th {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.9rem 0.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.cart-items td {
+  padding: 0.9rem 0.5rem;
+  border-bottom: 1px solid rgba(40, 40, 40, 0.8);
+  text-align: center;
+  transition: background 0.25s ease;
+}
+
+.cart-items:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.delete-item {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-item:hover {
+  color: #ff4c4c;
+  border-color: #ff4c4c;
+  box-shadow: 0 0 10px rgba(255, 50, 50, 0.3);
+  transform: scale(1.05);
+}
+
+.total-sum {
+  margin-top: 2rem;
+  text-align: right;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.total-sum span {
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(90deg, #555, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 70% 20%, rgba(80, 80, 80, 0.08), transparent 80%);
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #cart-container {
+    padding: 1.2rem;
+  }
+
+  .cart-list {
+    font-size: 0.85rem;
+  }
+
+  .total-sum {
+    text-align: center;
+  }
 }
