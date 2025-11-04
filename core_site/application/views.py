@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from .forms.register_form import RegistrationForm
+from .forms.user_update_form import UserUpdateForm
 from .models import Products, Cart, Sales, Specs, Orders, UserInfo
 from django.contrib.auth.decorators import login_required
 from support_files.add_prod import ProductForm
@@ -214,3 +215,19 @@ def delete_cart_item(request, item_id):
         return JsonResponse({'success': True, "new_total": new_total_sum})
     except Cart.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Item not found'}, status=404)
+
+@login_required(login_url='/')
+def user_update(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            for field, value in form.cleaned_data.items():
+                if value != '' and value is not None:
+                    setattr(user, field, value)
+            user.save()
+            return redirect('user_update')
+    else:
+        form = UserUpdateForm(instance=user)
+
+    return render(request, 'update_user.html', {'form': form, 'user': user})
