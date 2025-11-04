@@ -13,5 +13,9 @@ urlpatterns = [
     path('cart/', views.cart, name="cart"),
     path('cart/delete/<int:item_id>/', views.delete_cart_item, name='delete_cart_item'),
     path('user_update/', views.user_update, name='user_update'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='forgot_password/password_reset_form.html'), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='forgot_password/password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='forgot_password/password_reset_confirm.html'), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='forgot_password/password_reset_complete.html'), name='password_reset_complete'),
 
 ]

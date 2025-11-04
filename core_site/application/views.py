@@ -222,10 +222,8 @@ def user_update(request):
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
-            for field, value in form.cleaned_data.items():
-                if value != '' and value is not None:
-                    setattr(user, field, value)
-            user.save()
+            form.save()
+            messages.success(request, "A profilod sikeresen frissült!")
             return redirect('user_update')
     else:
         form = UserUpdateForm(instance=user)
