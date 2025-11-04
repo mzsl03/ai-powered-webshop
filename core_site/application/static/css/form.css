@@ -1,25 +1,46 @@
 @import url('style.css');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 .form-page {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     min-height: 100vh;
-    width: 100%;
     padding: 4rem 1rem;
-    overflow-y: auto;
 }
 
 .form-div {
-    background: linear-gradient(145deg, #111111, #0d0d0d);
+    background: linear-gradient(160deg, #101010, #0b0b0b);
     border: 1px solid var(--color-border);
-    border-radius: 14px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
-    padding: 2.2rem 2.6rem;
+    border-radius: 6px; /* szögletes sarkok */
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.65);
+    padding: 2.4rem 2.8rem;
     max-width: 520px;
     width: 100%;
     margin: 0 auto;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.4s ease, transform 0.25s ease;
+}
+
+.form-div::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(120deg, #171717, #222222, #1d1d1d);
+    background-size: 300%;
+    border-radius: 6px;
+    filter: blur(6px);
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+    animation: glowAmber 9s linear infinite;
+}
+
+@keyframes glowAmber {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .form-div:hover {
@@ -28,6 +49,7 @@
 
 .form-title-card {
     text-align: center;
+    text-transform: uppercase;
     font-size: 1.4rem;
     margin-bottom: 1.8rem;
     color: var(--color-text);
@@ -48,15 +70,16 @@
     font-size: 0.9rem;
     margin-bottom: 0.35rem;
     letter-spacing: 0.3px;
+    text-transform: uppercase;
 }
 
 .form-group input,
 .form-group select {
     border: 1px solid var(--color-border);
-    border-radius: 8px;
-    background: #121212;
-    padding: 0.85rem;
-    font-size: 1rem;
+    border-radius: 4px;
+    background: #141414;
+    padding: 0.8rem;
+    font-size: 0.95rem;
     color: var(--color-text);
     outline: none;
     transition: all 0.25s ease;
@@ -95,6 +118,26 @@
     font-size: 0.85rem;
     margin-top: 0.25rem;
     letter-spacing: 0.2px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-div {
+    animation: fadeIn 0.5s ease-out;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 html, body {
