@@ -61,6 +61,7 @@ def register_view(request):
                 birth_date=form.cleaned_data['birth_date'],
                 phone_number=form.cleaned_data['phone_number'],
             )
+        messages.success(request, 'Sikeres regisztráció')
         return redirect('login')
     else:
         form = RegistrationForm()
