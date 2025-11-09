@@ -7,36 +7,69 @@
 {% endblock %}
 
 {% block main %}
-    <div class="orders-container">
-        <div class="column">
-            {% for order in processing %}
-                <div class="card" data-id="{{ order.id }}">
-                    <strong>{{ order.product }}</strong><br>
-                    <small>Orderd on: {{ order.order_time }}</small>
-                </div>
-            {% empty %}
-                <p>Nothing to deliver...</p>
-            {% endfor %}
-        </div>
-        <div class="column">
-            {% for order in delivered %}
-                <div class="card" data-id="{{ order.id }}">
-                    <strong>{{ order.product }}</strong><br>
-                    <small>Orderd on: {{ order.order_time }}</small>
-                </div>
-            {% empty %}
-                <p>No product delivered...</p>
-            {% endfor %}
-        </div>
-        <div class="column">
-            {% for order in deleted %}
-                <div class="card" data-id="{{ order.id }}">
-                    <strong>{{ order.product }}</strong><br>
-                    <small>Orderd on: {{ order.order_time }}</small>
-                </div>
-            {% empty %}
-                <p>No deleted product orders...</p>
-            {% endfor %}
-        </div>
+<div class="orders-container">
+    <div class="column">
+        {% for order in processing %}
+            <div class="card">
+                {% with items=order.items.all %}
+                    {% if items %}
+                        <strong>
+                            {{ items.0.product.name }} × {{ items.0.quantity }}
+                            {% if items|length > 1 %}
+                                ...
+                            {% endif %}
+                        </strong><br>
+                    {% else %}
+                        <strong>No items</strong><br>
+                    {% endif %}
+                {% endwith %}
+                <small>Ordered on: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
+            </div>
+        {% empty %}
+            <p>No processing product orders...</p>
+        {% endfor %}
     </div>
+    <div class="column">
+        {% for order in delivered %}
+            <div class="card">
+                {% with items=order.items.all %}
+                    {% if items %}
+                        <strong>
+                            {{ items.0.product.name }} × {{ items.0.quantity }}
+                            {% if items|length > 1 %}
+                                ...
+                            {% endif %}
+                        </strong><br>
+                    {% else %}
+                        <strong>No items</strong><br>
+                    {% endif %}
+                {% endwith %}
+                <small>Ordered on: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
+            </div>
+        {% empty %}
+            <p>No delivered product orders...</p>
+        {% endfor %}
+    </div>
+    <div class="column">
+        {% for order in deleted %}
+            <div class="card">
+                {% with items=order.items.all %}
+                    {% if items %}
+                        <strong>
+                            {{ items.0.product.name }} × {{ items.0.quantity }}
+                            {% if items|length > 1 %}
+                                ...
+                            {% endif %}
+                        </strong><br>
+                    {% else %}
+                        <strong>No items</strong><br>
+                    {% endif %}
+                {% endwith %}
+                <small>Ordered on: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
+            </div>
+        {% empty %}
+            <p>No deleted product orders...</p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
