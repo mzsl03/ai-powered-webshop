@@ -69,37 +69,28 @@ class Specs(models.Model):
         return f"{self.product.name} specifikációs adatai"
 
 class Orders(models.Model):
-    status_choices = (
+    STATUS_CHOICES = (
         ("feldolgozás_alatt", "Feldolgozás alatt"),
         ("kiszállítva", "Kiszállítva"),
         ("törölve", "Törölve"),
     )
-
-    product = models.ManyToManyField(
-        Products,
-        related_name='orders'
-    )
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='orders'
-    )
-    quantity = models.IntegerField()
-    order_time = models.DateTimeField()
-    color = ArrayField(
-        models.CharField(max_length=255),
-        blank=True,
-        default=list
-    )
-    status = models.CharField(choices=status_choices, default="feldolgozás alatt")
-    storage = models.IntegerField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    order_time = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="feldolgozás_alatt")
 
     def __str__(self):
-        unit = "TB"
-        if self.storage > 100:
-            unit = "GB"
-        return f"{self.product.name} rendelés {self.color} színnel {self.storage} {unit} tárhellyel"
+        return f"{self.user.username} rendelése ({self.get_status_display()})"
 
+class OrderItem(models.Model):
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    color = models.CharField(max_length=255)
+    storage = models.IntegerField(null=True, blank=True)
+    price = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.product.name} x {self.quantity}"
 
 class UserInfo(models.Model):
     user = models.OneToOneField(
@@ -119,31 +110,26 @@ class UserInfo(models.Model):
 
 
 class Sales(models.Model):
-    product = models.ForeignKey(
-        Products,
+    order = models.OneToOneField(
+        Orders,
         on_delete=models.CASCADE,
-        related_name='sales'
-    )
-    
+        related_name='sale')
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='sales'
-    )
-
+        related_name='sales')
+    product = models.ForeignKey(
+        Products,
+        on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    selling_time = models.DateTimeField()
-    tax_number = models.CharField(max_length=10)
-    zip_code = models.CharField(max_length=4)
-    address = models.CharField(max_length=255)
-    costumer_name = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
     price = models.IntegerField()
     color = models.CharField(max_length=255)
-    storage = models.IntegerField(null = True, blank = True)
+    storage = models.IntegerField(null=True, blank=True)
+    tax_number = models.CharField(max_length=10)
+    selling_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.costumer_name} vásárlása"
+        return f"Számla: {self.user.username} ({self.selling_time.strftime('%Y-%m-%d')})"
 
 
 class Cart(models.Model):
@@ -164,4 +150,4 @@ class Cart(models.Model):
     storage = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.user.user} felhasználónak kosárban levő termékei"
+        return f"{self.user} felhasználónak kosárban levő termékei"
