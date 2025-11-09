@@ -35,7 +35,8 @@
                         {% endif %}
                         <td>{{ item.price }} Ft</td>
                         <td>
-                            <button class="delete-item" data-item-id="{{ item.id }}"><i class="fa fa-trash-o"></i></button>
+                            <button class="delete-item" data-item-id="{{ item.id }}"><i class="fa fa-trash-o"></i>
+                            </button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -45,7 +46,7 @@
             {% endif %}
         </table>
 
-        <p class="total-sum">Végösszeg: 
+        <p class="total-sum">Végösszeg:
             <span id="cart-total">
                 {% if sum %}
                     {{ sum }}
@@ -55,6 +56,9 @@
             </span> Ft
         </p>
     </div>
-
+    <form action="{% url 'checkout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn">Rendelés leadása</button>
+    </form>
     <script src="{% static 'js/cart_delete.js' %}"></script>
 {% endblock %}
