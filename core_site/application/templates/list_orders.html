@@ -11,7 +11,7 @@
     <div id="cart-container">
         <table class="cart-list">
             <tr class="cart-header">
-                <th>Termék</th>
+                <th>Termékek</th>
                 <th>Darabszám</th>
                 <th>Szín</th>
                 <th>Tárhely</th>
@@ -23,29 +23,42 @@
                 {% for order in orders %}
                     <tr class="cart-items">
                         <td>
-                            {% for product in order.product.all %}
-                                {{ product.name }}{% if not forloop.last %}, {% endif %}
+                            {% for item in order.items.all %}
+                                {{ item.product.name }}{% if not forloop.last %}, {% endif %}
+                                {% empty %}
+                                -
                             {% endfor %}
                         </td>
-                        <td>{{ order.quantity }} db</td>
                         <td>
-                            {% if order.color %}
-                                {{ order.color|join:", " }}
-                            {% else %}
-                                -
-                            {% endif %}
+                            {% with total_qty=0 %}
+                                {% for item in order.items.all %}
+                                    {% widthratio total_qty|add:item.quantity 1 1 as total_qty %}
+                                {% endfor %}
+                                {{ order.items.all|length }} tétel
+                            {% endwith %}
                         </td>
-                        {% if order.storage %}
-                            <td>
-                                {% if order.storage > 100 %}
-                                    {{ order.storage }} GB
+                        <td>
+                            {% for item in order.items.all %}
+                                {{ item.color }}{% if not forloop.last %}, {% endif %}
+                                {% empty %}
+                                -
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for item in order.items.all %}
+                                {% if item.storage %}
+                                    {% if item.storage > 100 %}
+                                        {{ item.storage }} GB{% if not forloop.last %}, {% endif %}
+                                    {% else %}
+                                        {{ item.storage }} TB{% if not forloop.last %}, {% endif %}
+                                    {% endif %}
                                 {% else %}
-                                    {{ order.storage }} TB
+                                    -
                                 {% endif %}
-                            </td>
-                        {% else %}
-                            <td>-</td>
-                        {% endif %}
+                                {% empty %}
+                                -
+                            {% endfor %}
+                        </td>
                         <td>{{ order.get_status_display }}</td>
                         <td>{{ order.order_time|date:"Y-m-d H:i" }}</td>
                     </tr>
