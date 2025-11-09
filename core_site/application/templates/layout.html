@@ -21,12 +21,13 @@
                 {% comment %}
                     <li class="item"><a href="/receipts/">Számlák</a></li>{% endcomment %}
                 {% if request.user.is_authenticated and request.user.is_staff %}
-                    <li class="item"><a href="/add_product/"><i class="fa fa-cubes"></i>  Termék létrehozása</a></li>
+                    <li class="item"><a href="/add_product/"><i class="fa fa-cubes"></i> Termék létrehozása</a></li>
                 {% endif %}
                 <li class="item"><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Kosár</a></li>
-                <li class="item"><a href="{% url 'user_update' %}"><i class="fa fa-user-secret"></i> Adatok módosítása</a></li>
+                <li class="item"><a href="{% url 'user_update' %}"><i class="fa fa-user-secret"></i> Adatok
+                    módosítása</a></li>
+                <li class="item"><a href ={% url 'user_order' user.id  %}>Rendelések</a></li>
                 {% comment %}
-                    <li class="item"><a href="/order/">Rendelések</a></li>
                     {% if request.user.is_authenticated and request.user.is_superuser %}
                         <li class="item"><a href="/user_list/">Felhasználók listája</a></li>
                     {% endif %}

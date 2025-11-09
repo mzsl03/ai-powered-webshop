@@ -229,3 +229,17 @@ def user_update(request):
         form = UserUpdateForm(instance=user)
 
     return render(request, 'update_user.html', {'form': form, 'user': user})
+
+@login_required(login_url='/')
+def user_order(request, user_id):
+    user = request.user
+    if hasattr(user, 'admin'):
+        user = get_object_or_404(User, id=user_id)
+    else:
+        if user.id != user_id:
+            return redirect('home')
+        user = user
+    processing = Orders.objects.filter(user=user, status='feldolgozas_alatt')
+    delivered = Orders.objects.filter(user=user, status='kiszállítva')
+    deleted = Orders.objects.filter(user=user, status='törölve')
+    return render(request, 'user_order.html', {'processing': processing, 'delivered': delivered, 'deleted': deleted, })
