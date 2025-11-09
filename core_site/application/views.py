@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from .forms.register_form import RegistrationForm
 from .forms.user_update_form import UserUpdateForm
-from .models import Products, Cart, Sales, Specs, Orders, UserInfo
+from .models import Products, Cart, Sales, Specs, Orders, UserInfo, OrderItem
 from django.contrib.auth.decorators import login_required
 from support_files.add_prod import ProductForm
 from support_files.add_specs import SpecsForm
@@ -233,22 +233,16 @@ def user_update(request):
 
 
 @login_required(login_url='/')
-def user_order(request, user_id):
+def user_order(request):
     user = request.user
-    if hasattr(user, 'admin'):
-        user = get_object_or_404(User, id=user_id)
-    else:
-        if user.id != user_id:
-            return redirect('home')
-        user = user
-    processing = Orders.objects.filter(user=user, status='feldolgozas_alatt')
+    processing = Orders.objects.filter(user=user, status='feldolgozás_alatt')
     delivered = Orders.objects.filter(user=user, status='kiszállítva')
     deleted = Orders.objects.filter(user=user, status='törölve')
     return render(request, 'user_order.html', {'processing': processing, 'delivered': delivered, 'deleted': deleted, })
 
 @login_required
 def all_user_order(request):
-    orders = Orders.objects.filter(user=request.user).order_by('-order_time')
+    orders = Orders.objects.all().order_by('-order_time')
     return render(request, 'list_orders.html', {'orders': orders})
 
 
@@ -303,3 +297,33 @@ def add_to_cart(request, product_id):
         cart_item.save()
 
     return redirect('cart')
+
+@login_required(login_url='/')
+def checkout(request):
+    cart_items = Cart.objects.filter(user=request.user)
+
+    if not cart_items.exists():
+        messages.warning(request, "A kosár üres, nincs mit leadni.")
+        return redirect("cart")
+
+    order = Orders.objects.create(
+        user=request.user,
+        status="feldolgozás_alatt",
+        order_time=timezone.now()
+    )
+
+    for item in cart_items:
+        OrderItem.objects.create(
+            order=order,
+            product=item.product,
+            quantity=item.quantity,
+            color=item.color,
+            storage=item.storage,
+            price=item.price * item.quantity,
+        )
+
+    cart_items.delete()
+
+    messages.success(request, "Rendelésed sikeresen leadva!")
+
+    return redirect("user_order", user_id=request.user.id)
