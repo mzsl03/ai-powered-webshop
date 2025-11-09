@@ -14,41 +14,79 @@
 <div class="form-page">
 <div class="form-div">
     <div class="form-container">
-        <form method="POST" class="form-form">
+        <form method="POST" class="form-form" novalidate>
             <h3 class="form-title-card">Felhasználó regisztrációja</h3>
             {% csrf_token %}
             <div class="form-group">
+                {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
                 <label for="{{ form.username.id_for_label }}">Felhasználónév</label>
                 {{ form.username }}
-                <p class="error">{{ form.username.errors.0 }}</p>
             </div>
             <div class="form-group">
+                {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
                 <label for="{{ form.email.id_for_label }}">E-mail</label>
                 {{ form.email }}
-                <p class="error">{{ form.email.errors.0 }}</p>
             </div>
 
             <div class="form-group">
+                {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
                 <label for="{{ form.password.id_for_label }}">Jelszó</label>
                 {{ form.password }}
             </div>
             <div class="form-group">
+                {% if form.first_name.errors %}
+                    {% for error in form.first_name.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
                 <label for="{{ form.first_name.id_for_label }}">Keresztnév</label>
                 {{ form.first_name }}
             </div>
             <div class="form-group">
+                {% if form.last_name.errors %}
+                    {% for error in form.last_name.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
                 <label for="{{ form.last_name.id_for_label }}">Vezetéknév</label>
                 {{ form.last_name }}
             </div>
             <div class="form-group">
+                {% if form.address.errors %}
+                    {% for error in form.address.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
                 <label for="{{ form.address.id_for_label }}">Cím</label>
                 {{ form.address }}
             </div>
             <div class="form-group">
+                {% if form.birth_date.errors %}
+                    {% for error in form.birth_date.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
                 <label for="{{ form.birth_date.id_for_label }}">Születési dátum</label>
                 {{ form.birth_date }}
             </div>
             <div class="form-group">
+                {% if form.phone_number.errors %}
+                    {% for error in form.phone_number.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
                 <label for="{{ form.phone_number.id_for_label }}">Telefonszám</label>
                 {{ form.phone_number }}
             </div>
