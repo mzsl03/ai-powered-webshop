@@ -26,7 +26,12 @@
                 <li class="item"><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Kosár</a></li>
                 <li class="item"><a href="{% url 'user_update' %}"><i class="fa fa-user-secret"></i> Adatok
                     módosítása</a></li>
-                <li class="item"><a href ={% url 'user_order' user.id  %}>Rendelések</a></li>
+                {% if request.user.is_authenticated and not request.user.is_staff %}
+                    <li class="item"><a href={% url 'user_order' user.id %}>Rendelések</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated and request.user.is_staff %}
+                    <li class="item"><a href={% url 'all_user_order' %}>Rendelések</a></li>
+                {% endif %}
                 {% comment %}
                     {% if request.user.is_authenticated and request.user.is_superuser %}
                         <li class="item"><a href="/user_list/">Felhasználók listája</a></li>

@@ -243,3 +243,8 @@ def user_order(request, user_id):
     delivered = Orders.objects.filter(user=user, status='kiszállítva')
     deleted = Orders.objects.filter(user=user, status='törölve')
     return render(request, 'user_order.html', {'processing': processing, 'delivered': delivered, 'deleted': deleted, })
+
+@login_required
+def all_user_order(request):
+    orders = Orders.objects.filter(user=request.user).order_by('-order_time')
+    return render(request, 'list_orders.html', {'orders': orders})
