@@ -130,14 +130,11 @@ h1, h2, h3, h4, h5 {
 }
 
 a {
-    color: var(--color-primary);
+    color: var(--color-primary-hover);
     text-decoration: none;
     transition: var(--transition);
 }
 
-a:hover {
-    color: var(--color-primary-hover);
-}
 
 .card {
     background-color: var(--color-surface);
