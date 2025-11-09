@@ -25,6 +25,8 @@
     box-sizing: border-box;
 }
 
+
+
 html, body {
     height: 100%;
     margin: 0;
@@ -279,5 +281,44 @@ footer {
     backdrop-filter: blur(6px);
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
 }
+
+.error{
+    color: red;
+}
+.success{
+    color: lightgreen !important;
+}
+
+
+
+@keyframes fadeOut {
+    /* 0%-nál (kezdet) teljesen látható */
+    0% { 
+        opacity: 1; 
+    }
+    
+    /* 80%-ig (pl. 4 másodpercig) látható marad */
+    80% { 
+        opacity: 1; 
+    }
+
+    /* 100%-nál (pl. 5 másodpercnél) teljesen eltűnik */
+    100% { 
+        opacity: 0; 
+    }
+}
+
+.messages{
+    top: 40px;
+    left: 20px;
+    width: 300px;
+    z-index: 1000;
+
+    animation-name: fadeOut;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
 
 

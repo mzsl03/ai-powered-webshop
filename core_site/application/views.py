@@ -17,19 +17,32 @@ from django.views.decorators.http import require_POST
 
 
 def login(request):
+    error = ""
+
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username_raw = request.POST.get('username')
+        password_raw = request.POST.get('password')
+
+        username = username_raw.strip() if username_raw else ""
+        password = password_raw.strip() if password_raw else ""
 
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
             auth_login(request, user)
-
+            messages.success(request, f"Sikeresen bejelentkezett {username}!")
             return redirect('home')
         else:
-            return render(request, 'login.html', {'error': 'Hibás felhasználónév vagy jelszó!'})
-    return render(request, 'login.html')
+            error = 'Hibás felhasználónév vagy jelszó!'
+            if username == "" or password == "":
+                error = "Minden mező kitöltése kötelező!"
+            context = {
+                "error": error,
+                "request": request
+            }
+        return render(request, 'login.html', context)
+
+    return render(request, 'login.html', {'error': error})
 
 def register_view(request):
     if request.method == 'POST':
@@ -48,7 +61,8 @@ def register_view(request):
                 birth_date=form.cleaned_data['birth_date'],
                 phone_number=form.cleaned_data['phone_number'],
             )
-        return redirect('login')
+            messages.success(request, 'Sikeres regisztráció')
+            return redirect('login')
     else:
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
@@ -225,7 +239,7 @@ def user_update(request):
         if form.is_valid():
             form.save()
             messages.success(request, "A profilod sikeresen frissült!")
-            return redirect('user_update')
+            return redirect('home')
     else:
         form = UserUpdateForm(instance=user)
 

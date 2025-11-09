@@ -9,34 +9,50 @@
     <div class="form-page">
         <div class="form-div">
             <div class="form-container">
-                <form method="POST" class="form-form">
+                <form method="POST" class="form-form" novalidate>
                     <h2 class="form-title-card">Felhasználói adatok frissítése</h2>
                     {% csrf_token %}
 
                     <div class="form-group">
+                        {% if form.username.errors %}
+                            {% for error in form.username.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
                         <label for="{{ form.username.id_for_label }}">Felhasználónév</label>
                         {{ form.username }}
-                        <p class="error">{{ form.username.errors.0 }}</p>
                     </div>
 
                     <div class="form-group">
+                        {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
                         <label for="{{ form.email.id_for_label }}">E-mail</label>
                         {{ form.email }}
-                        <p class="error">{{ form.email.errors.0 }}</p>
                     </div>
 
                     <div class="form-group">
+                        {% if form.address.errors %}
+                            {% for error in form.address.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
                         <label for="{{ form.address.id_for_label }}">Cím</label>
                         {{ form.address }}
-                        <p class="error">{{ form.address.errors.0 }}</p>
                     </div>
 
                     <div class="form-group">
+                        {% if form.phone_number.errors %}
+                            {% for error in form.phone_number.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
                         <label for="{{ form.phone_number.id_for_label }}">Telefonszám</label>
                         {{ form.phone_number }}
-                        <p class="error">{{ form.phone_number.errors.0 }}</p>
                     </div>
-                    {% if messages %}
+                    {% comment %} {% if messages %}
                         <div class="messages">
                             {% for message in messages %}
                                 <div class="alert {{ message.tags }}">
@@ -44,7 +60,7 @@
                                 </div>
                             {% endfor %}
                         </div>
-                    {% endif %}
+                    {% endif %} {% endcomment %}
                     <div class="form-actions">
                         <button class="btn" type="submit">Adatok frissítése</button>
                     </div>
