@@ -238,7 +238,7 @@ def user_update(request):
         if form.is_valid():
             form.save()
             messages.success(request, "A profilod sikeresen frissült!")
-            return redirect('user_update')
+            return redirect('home')
     else:
         form = UserUpdateForm(instance=user)
 
