@@ -6,6 +6,13 @@
 {% endblock %}
 
 {% block main %}
+    {% if messages %}
+            {% for message in messages %}
+                <span class="success messages">
+                    {{ message }}
+                </span>
+            {% endfor %}
+    {% endif %}
     <div class="ind-container">
         <div class="filters">
             <h3>Szűrők</h3>
