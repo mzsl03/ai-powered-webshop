@@ -48,12 +48,11 @@
         </div>
     </div>
     <div class="order-product order-product-out">
-        <form method="POST">
-            <h3 class="order-add-title-card">{{ product.name }} termék megrendelése</h3>
-            {% csrf_token %}
-            <button class="btn" type="submit">Rendelés leadása</button>
-            <button class="back_btn" type="submit">Vissza</button>
+        <form method="POST" action="{% url 'add_to_cart' product.id %}?color={{ color }}">
+        {% csrf_token %}
 
+        <button class="btn" type="submit">Rendelés leadása</button>
+        <a href="{% url 'home' %}" class="back_btn">Vissza</a>
         </form>
     </div>
     <script src="{% static 'js/order_product.js' %}"></script>

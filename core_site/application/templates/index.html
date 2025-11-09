@@ -37,7 +37,7 @@
         <div class="product-grid">
             {% for product in products %}
             <div class="product-card">
-                    <a class="product-link" href="{% url 'product-name' product.name %}">
+                    <a class="product-link" href="{% url 'product-name' product.name product.colors.0 %}">
                         <div class="product-image-container">
                             {% if product.image_path %}
                                 <img data-images="{{ product.image_path|join:", " }}" src="{% static 'images/' %}{{ product.image_path.0 }}"
@@ -53,7 +53,10 @@
                             <p class="product-price">{{ product.price }},-Ft</p>
                             <p class="product-colors">
                                 {% for color in product.colors %}
-                                    <span onclick="changeImage('{{ color }}', '{{product.id}}')" class="color-circle" style="background-color: {{ color }}"></span>
+                                <a href="{% url 'product-name' product.name color %}"
+                                class="color-circle"
+                                style="background-color: {{ color }}">
+                                </a>
                                 {% endfor %}
                             </p>
                         </div>
