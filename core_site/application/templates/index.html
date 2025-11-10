@@ -3,38 +3,56 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/filters.css' %}">
 {% endblock %}
 
 {% block main %}
     {% if messages %}
-            {% for message in messages %}
-                <span class="success messages">
+        {% for message in messages %}
+            <span class="success messages">
                     {{ message }}
                 </span>
-            {% endfor %}
+        {% endfor %}
     {% endif %}
-    <div class="ind-container">
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner">
+            <h1 class="hero-title">AI Powered Webshop</h1>
+            <p class="hero-subtitle">
+                Minimalista felület. Intelligens ajánlórendszer.
+                A jövő vásárlási élménye.
+            </p>
+            <a href="#products" class="btn hero-btn">Fedezd fel</a>
+        </div>
+    </section>
+
+    <div class="ind-container" id="products">
         <div class="filters">
             <h3>Szűrők</h3>
-            <form method="get">
-                <label class="ctrl" style="display:block; margin-bottom:12px;">
-                    <input value="{{filters.name|default:''}}" name='name' id="q" type="search" placeholder="Keresés (pl. „fülhallgató”)"
-                           style="width:100%;"/>
+            <form method="get" action="#products">
+                <label class="ctrl">
+                    <input value="{{ filters.name|default:''}}" name='name' id="q" type="search"
+                           placeholder="Keresés (pl. „fülhallgató”)"
+                    />
                 </label>
-                <label class="ctrl" style="display:block; margin-bottom:12px;">
-                    <select name="category" id="cat" style="width:100%;">
+                <label class="ctrl">
+                    <span class="filter-label">Kategória</span>
+                    <select name="category" id="cat">
                         <option value="all">Összes termék</option>
                         {% for category in allCategory %}
                             <option value="{{ category }}">{{ category }}</option>
                         {% endfor %}
                     </select>
                 </label>
-                <label class="ctrl" style="display:block; margin-bottom:12px;">
-                    <input value="{{filters.min_price|default:''}}" name="minPrice" type="search" placeholder="Minimum ár" style="width:100%;"/>
+                <label class="ctrl">
+                    <input value="{{ filters.min_price|default:''}}" name="minPrice" type="search"
+                           placeholder="Minimum ár"/>
                 </label>
 
-                <label class="ctrl" style="display:block; margin-bottom:12px;">
-                    <input value="{{filters.max_price|default:''}}" name="maxPrice" type="search" placeholder="Maximum ár" style="width:100%;"/>
+                <label class="ctrl">
+                    <input value="{{ filters.max_price|default:''}}" name="maxPrice" type="search"
+                           placeholder="Maximum ár"/>
                 </label>
 
                 <button class="btn" id="save">Szűrés</button>
@@ -43,11 +61,12 @@
         </div>
         <div class="product-grid">
             {% for product in products %}
-            <div class="product-card">
+                <div class="product-card">
                     <a class="product-link" href="{% url 'product-name' product.name product.colors.0 %}">
                         <div class="product-image-container">
                             {% if product.image_path %}
-                                <img data-images="{{ product.image_path|join:", " }}" src="{% static 'images/' %}{{ product.image_path.0 }}"
+                                <img data-images="{{ product.image_path|join:", " }}"
+                                     src="{% static 'images/' %}{{ product.image_path.0 }}"
                                      alt="{{ product.name }}" class="product-image" id="{{ product.id }}" width="200">
                             {% else %}
                                 <img src="{% static 'images/no-image.png' %}"
@@ -55,19 +74,21 @@
                             {% endif %}
                         </div>
                     </a>
-                        <div class="product-info">
+                    <div class="product-info">
+                        <a class="product-link" href="{% url 'product-name' product.name product.colors.0 %}">
                             <h3 class="product-name">{{ product.name }}</h3>
                             <p class="product-price">{{ product.price }},-Ft</p>
+                        </a>
                             <p class="product-colors">
-                                {% for color in product.colors %}
-                                <a href="{% url 'product-name' product.name color %}"
-                                class="color-circle"
-                                style="background-color: {{ color }}">
-                                </a>
-                                {% endfor %}
-                            </p>
-                        </div>
+                        {% for color in product.colors %}
+                            <a href="{% url 'product-name' product.name color %}"
+                               class="color-circle"
+                               style="background-color: {{ color }}">
+                            </a>
+                        {% endfor %}
+                        </p>
                     </div>
+                </div>
             {% endfor %}
         </div>
     </div>
@@ -77,4 +98,5 @@
         const STATIC_IMAGES_URL = "{% static 'images/' %}";
     </script>
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/filter.js' %}"></script>
 {% endblock %}

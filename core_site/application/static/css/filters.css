@@ -1,0 +1,417 @@
+/* Replace the .filters section in index.css with this */
+
+.filters {
+    position: sticky;
+    top: 10vh;
+    flex: 0 0 260px;
+    align-self: flex-start;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    max-height: calc(100vh - 15vh);
+    overflow-y: auto;
+    transition: all 0.4s ease;
+    z-index: 5;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom scrollbar for filters */
+.filters::-webkit-scrollbar {
+  width: 2px;
+}
+
+.filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filters::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.filters:hover {
+  box-shadow: none;
+  border-right-color: rgba(255, 255, 255, 0.12);
+}
+
+.filters h3 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: left;
+  letter-spacing: 0.25em;
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  position: relative;
+  padding-left: 12px;
+}
+
+.filters h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent);
+  border-radius: 2px;
+}
+
+.filters form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.filters label {
+  display: block;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.6rem;
+  transition: color 0.3s ease;
+}
+
+.filters label:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.filters input[type="search"],
+.filters select {
+  width: 100%;
+  padding: 0.9rem 0;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  transition: all 0.4s ease;
+  font-family: var(--font-family);
+}
+
+.filters input[type="search"]::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 300;
+}
+
+.filters input[type="search"]:focus,
+.filters select:focus {
+  outline: none;
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+  background: transparent;
+  padding-left: 0;
+  box-shadow: none;
+}
+
+.filters select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 32px;
+  outline: none;
+  box-shadow: none;
+}
+
+.filters select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.filters select:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom dropdown styles - works in all browsers including Firefox */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+  display: block;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+  display: block;
+}
+.custom-select-trigger {
+  font-size: 0.85rem;
+  font-weight: 300;
+  padding: 0.7rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-transform: none;
+  letter-spacing: 0.03em;
+}
+
+.custom-select-trigger:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.custom-option {
+  font-size: 0.85rem;
+  background: #111;
+}
+
+.custom-option:hover {
+  background: #1b1b1b;
+  color: #fff;
+}
+
+.custom-option.selected {
+  background: #222;
+  font-weight: 400;
+  color: #e0e0e0;
+}
+
+.custom-select-trigger::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.custom-select.open .custom-select-trigger::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.custom-select-trigger:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.custom-select.open .custom-select-trigger {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+.custom-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.custom-select.open .custom-options {
+  max-height: 300px;
+  opacity: 1;
+  overflow-y: auto;
+  pointer-events: all;
+}
+
+.custom-options::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-options::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-options::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.custom-option {
+  padding: 0.9rem 1rem;
+  color: #e6e6e6;
+  font-size: 0.95rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.custom-option:last-child {
+  border-bottom: none;
+}
+
+.custom-option:hover {
+  background: #252525;
+  color: #fff;
+}
+
+.custom-option.selected {
+  background: #2a2a2a;
+  color: #fff;
+  font-weight: 400;
+}
+
+/* Hide original select but keep it functional */
+.filters select[name="category"] {
+  display: none !important;
+}
+
+/* Make sure label doesn't block clicks */
+.filters label.ctrl {
+  pointer-events: none;
+  display: block;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0 !important;
+}
+
+.filters label.ctrl * {
+  pointer-events: auto;
+}
+
+/* Hide any direct text nodes in label that contains custom dropdown */
+.filters label.ctrl:has(.custom-select-wrapper) {
+  font-size: 0;
+  line-height: 0;
+}
+
+/* But show the custom dropdown normally */
+.filters label.ctrl .custom-select-wrapper {
+  pointer-events: all;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.filters .btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+  border-radius: 0;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.filters .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+  transition: left 0.8s ease;
+}
+
+.filters .btn:hover {
+  background: rgba(255, 255, 255, 0.015);
+  transform: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.filters .btn:hover::before {
+  left: 100%;
+}
+
+.filters .btn:active {
+  transform: none;
+  outline: none;
+}
+
+/* Label animation on focus */
+.filters .ctrl {
+  position: relative;
+  display: block;
+  margin-bottom: 0 !important;
+}
+
+.filters .ctrl:focus-within label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Remove inline styles - add to HTML or override */
+.filters .ctrl {
+  display: block !important;
+  margin-bottom: 0 !important;
+}
+
+.filters input,
+.filters select {
+  width: 100% !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .filters {
+    width: 100%;
+    max-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 2rem 1.5rem;
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+
+  .filters form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .filters .btn {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Add subtle enter animations */
+@keyframes filterFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.filters .ctrl {
+  animation: filterFadeIn 0.6s ease-out backwards;
+}
+
+.filters .ctrl:nth-child(1) { animation-delay: 0.1s; }
+.filters .ctrl:nth-child(2) { animation-delay: 0.2s; }
+.filters .ctrl:nth-child(3) { animation-delay: 0.3s; }
+.filters .ctrl:nth-child(4) { animation-delay: 0.4s; }
+.filters .btn { animation-delay: 0.5s; }
