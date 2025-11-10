@@ -7,10 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
             e.stopPropagation();    // ne menjen tovább az esemény a kártyáig
 
             const selectedColor = circle.style.backgroundColor;
-            const productId = circle.closest(".product-card")?.querySelector(".product-image")?.id;
+            const productCard = circle.closest(".product-card");
+            const productImage = productCard?.querySelector(".product-image");
+            const productLink = productCard?.querySelector(".product-link");
 
-            if (selectedColor && productId) {
-                changeImage(selectedColor, productId);
+            if (selectedColor && productImage) {
+                changeImage(selectedColor, productImage.id);
+                if (productLink && circle.href) {
+                    productLink.href = circle.href;
+                }
             }
         });
     });
