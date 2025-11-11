@@ -71,21 +71,29 @@ class SpecsForm(forms.ModelForm):
     )
 
     memory = SimpleArrayField(
-        forms.IntegerField(min_value=1),
+        forms.IntegerField(
+            min_value=1,
+            error_messages={
+                "invalid": "Csak egész számot adhatsz meg!"
+            }),
         label="Memória",
         error_messages={
             "required": "Memória kitöltése kötelező!",
-            "item_invalid": "A '{item}' nem érvényes szám.",
+            "item_invalid": "Vesszővel elválasztva írja be az egész számokat!",
         },
         help_text="Add meg a számokat vesszővel elválasztva (pl. 8,16,32)."
     )
 
     storage = SimpleArrayField(
-        forms.IntegerField(min_value=1),
+        forms.IntegerField(
+            min_value=1,
+            error_messages={
+                "invalid": "Csak egész számot adhatsz meg!"
+            }),
         label="Tárhely",
         error_messages={
             "required": "Tárhely kitöltése kötelező!",
-            "item_invalid": "A '{item}' nem érvényes szám.",
+            "item_invalid": "Vesszővel elválasztva írja be az egész számokat!",
         },
         help_text="Add meg a számokat vesszővel elválasztva (pl. 64,128,256)."
     )
@@ -123,7 +131,7 @@ class SpecsForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'pl. 10.5'}),
         error_messages={
             "required": "Súly kitöltése kötelező!",
-            "invalid": "Csak számot adhatsz meg (pl. 10 vagy 10.5)"
+            "invalid": "Csak számot adhatsz meg (pl. 10 vagy 10.5)!"
         }
     )
     

@@ -48,12 +48,12 @@ class Specs(models.Model):
     Spen = models.BooleanField(default=False)
     camera = models.CharField(max_length=255)
     memory = ArrayField(
-        models.CharField(max_length=255),
+        models.IntegerField(),
         blank=False,
         default=list
     )
     storage = ArrayField(
-        models.CharField(max_length=255),
+        models.IntegerField(),
         blank=False,
         default=list
     )
