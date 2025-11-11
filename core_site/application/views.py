@@ -146,23 +146,23 @@ def add_specs(request, product_id):
     if not request.user.is_superuser:
         return redirect('home')
     product = get_object_or_404(Products, id=product_id)
-    specs, created = Specs.objects.get_or_create(product=product,
-                                                 defaults={
-                                                     "weight": 0,
-                                                     "battery": 0,
-                                                     "release_date": timezone.now(),
-                                                 })
 
     if request.method == 'POST':
-        form = SpecsForm(request.POST, instance=specs)
+        form = SpecsForm(request.POST)
         if form.is_valid():
-            form.save()
-            available_count = len(specs.storage) * len(specs.product.colors)
-            product.stock =  [10] * available_count
+
+            specs = form.save(commit=False)
+            specs.product = product
+            specs = form.save()
+            
+            product_stock_len = len(specs.storage) * len(specs.product.colors)
+            product.stock =  [10] * product_stock_len
             product.save()
+
+            messages.success(request, f"{specs.product.name} specifikációja sikeresen létrehozva!")
             return redirect('home')
     else:
-        form = SpecsForm(instance=specs)
+        form = SpecsForm()
 
     return render(request, 'add_specs.html', {'form': form, 'product': product})
 
