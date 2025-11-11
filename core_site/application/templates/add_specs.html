@@ -34,74 +34,71 @@
                     {% csrf_token %}
 
                     <div class="form-group">
-                        <label for="{{ form.CPU_speed.id_for_label }}">CPU sebesség</label>
+                        {{ form.CPU_speed.label_tag }}
                         {{ form.CPU_speed }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.CPU_type.id_for_label }}">CPU típus</label>
+                        {{ form.CPU_type.label_tag }}
                         {{ form.CPU_type }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.display_size.id_for_label }}">Kijelző mérete</label>
+                        {{ form.display_size.label_tag }}
                         {{ form.display_size }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.resolution.id_for_label }}">Felbontás</label>
+                        {{ form.resolution.label_tag }}
                         {{ form.resolution }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.display_technology.id_for_label }}">Kijelző technológia</label>
+                        {{ form.display_technology.label_tag }}
                         {{ form.display_technology }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.max_refresh_rate.id_for_label }}">Max képfrissítési ráta</label>
+                        {{ form.max_refresh_rate.label_tag }}
                         {{ form.max_refresh_rate }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.Spen.id_for_label }}">Spen (Van/Nincs)</label>
+                        {{ form.Spen.label_tag }}
                         {{ form.Spen }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.camera.id_for_label }}">Kamera (MP)</label>
+                        {{ form.camera.label_tag }}
                         {{ form.camera }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.memory.id_for_label }}">Memória (GB)</label>
+                        {{ form.memory.label_tag }}
                         {{ form.memory }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.storage.id_for_label }}">Tárhely (GB, vesszővel elválasztva)</label>
+                        {{ form.storage.label_tag }}
                         {{ form.storage }}
-                        {% if form.storage.help_text %}
-                            <small class="helptext">{{ form.storage.help_text }}</small>
-                        {% endif %}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.os.id_for_label }}">Operációs rendszer</label>
+                        {{ form.os.label_tag }}
                         {{ form.os }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.charge.id_for_label }}">Töltési sebesség (W)</label>
+                        {{ form.charge.label_tag }}
                         {{ form.charge }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.sensors.id_for_label }}">Szenzorok (vesszővel elválasztva)</label>
+                        {{ form.sensors.label_tag }}
                         {{ form.sensors }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.size.id_for_label }}">Méret (mm)</label>
+                        {{ form.size.label_tag }}
                         {{ form.size }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.weight.id_for_label }}">Súly (g)</label>
+                        {{ form.weight.label_tag }}
                         {{ form.weight }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.battery.id_for_label }}">Akkumulátor (mAh)</label>
+                        {{ form.battery.label_tag }}
                         {{ form.battery }}
                     </div>
                     <div class="form-group">
-                        <label for="{{ form.release_date.id_for_label }}">Kiadási dátum</label>
+                        {{ form.release_date.label_tag }}
                         {{ form.release_date }}
                     </div>
 
