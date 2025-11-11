@@ -19,22 +19,44 @@
     <div class="form-page">
         <div class="form-div">
             <div class="form-container">
-                <form method="POST" class="form-form">
+                <form method="POST" class="form-form" novalidate>
                     <h2 class="form-title-card">Új termék létrehozása</h2>
                     {% csrf_token %}
+                    {% if form.name.errors %}
+                        {% for error in form.name.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         <label for="{{ form.name.id_for_label }}">Termék neve</label>
                         {{ form.name }}
                     </div>
+
+                    {% if form.price.errors %}
+                        {% for error in form.price.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         <label for="{{ form.price.id_for_label }}">Ár (Ft)</label>
                         {{ form.price }}
                     </div>
-
+                    
+                    {% if form.category.errors %}
+                        {% for error in form.category.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         <label for="{{ form.category.id_for_label }}">Kategória</label>
                         {{ form.category }}
                     </div>
+
+                    {% if form.colors.errors %}
+                        {% for error in form.colors.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
                         <label for="{{ form.colors.id_for_label }}">Színek (vesszővel elválasztva)</label>
                         {{ form.colors }}

@@ -126,20 +126,13 @@ def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data["name"]
-            category = form.cleaned_data["category"]
-
-            if Products.objects.filter(name=name, category=category).exists():
-                messages.add_message(request, messages.ERROR, "Ez a termék már létezik!")
-                return render(request, 'add_product.html', {
-                    'form': form,
-                    "categories": all_categories
-                })
-
             product = form.save()
+                 
             if product.category == 'Telefon':
+                messages.success(request, f"{product.name} sikeresen létrehozva. Add meg a specifikációs adatokat!")
                 return redirect('add_specs', product_id=product.id)
             else:
+                messages.success(request, f"{product.name} sikeresen létrehozva!")
                 return redirect('home')
     else:
         form = ProductForm()
