@@ -28,7 +28,7 @@
                         {% endfor %}
                     {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.name.id_for_label }}">Termék neve</label>
+                        {{ form.name.label_tag }}
                         {{ form.name }}
                     </div>
 
@@ -38,7 +38,7 @@
                         {% endfor %}
                     {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.price.id_for_label }}">Ár (Ft)</label>
+                        {{ form.price.label_tag }}
                         {{ form.price }}
                     </div>
                     
@@ -48,7 +48,7 @@
                         {% endfor %}
                     {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.category.id_for_label }}">Kategória</label>
+                        {{ form.category.label_tag }}
                         {{ form.category }}
                     </div>
 
@@ -58,7 +58,7 @@
                         {% endfor %}
                     {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.colors.id_for_label }}">Színek (vesszővel elválasztva)</label>
+                        {{ form.colors.label_tag }}
                         {{ form.colors }}
                     </div>
                     <button class="btn" type="submit">Termék létrehozása</button>
