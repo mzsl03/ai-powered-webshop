@@ -152,7 +152,7 @@ html, body {
     padding: 5rem 3rem;
     justify-items: center;
     grid-auto-rows: minmax(260px, auto);
-    align-items: start
+    align-items: start;
     transform-style: preserve-3d;
     position: relative;
     overflow-y: scroll;
