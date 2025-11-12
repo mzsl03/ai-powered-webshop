@@ -234,6 +234,16 @@ html, body {
     pointer-events: auto;
 }
 
+.product-info a {
+    pointer-events: auto;
+    z-index: 154;
+}
+
+.product-info a:hover {
+    pointer-events: auto;
+    z-index: 154;
+}
+
 .product-card:hover .product-info {
     opacity: 1;
     transform: translateY(0);
@@ -260,7 +270,6 @@ html, body {
     gap: 0.4rem;
     margin-top: 0.6rem;
     position: relative;
-    z-index: 3;
 }
 
 .color-circle {
@@ -269,7 +278,6 @@ html, body {
     border-radius: 50%;
     border: 1px solid #fff;
     opacity: 0.9;
-    pointer-events: auto;
     transition: transform 0.2s ease, opacity 0.3s ease;
 }
 
