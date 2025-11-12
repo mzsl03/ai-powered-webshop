@@ -256,11 +256,11 @@ def all_user_order(request):
 
 @login_required(login_url='/')
 def add_to_cart(request, product_id):
-    # Prevent superusers from adding to cart
+
     if request.user.is_superuser:
         return redirect('home')
 
-    # Access UserInfo if needed
+
     phoneshop_user = request.user.phoneshop_user
     print("Adding to cart for:", phoneshop_user.id)
 
@@ -268,14 +268,14 @@ def add_to_cart(request, product_id):
     color = request.GET.get("color") or request.POST.get("color")
     storage = request.GET.get('storage')
 
-    # Validate color
+
     if not color or color.strip().lower() not in [c.lower() for c in product.colors]:
         color = 'black'
 
     if not storage:
         storage = 128
 
-    # Check if item already in cart
+
     is_in_cart = Cart.objects.filter(
         user=request.user,
         product=product,
@@ -285,7 +285,7 @@ def add_to_cart(request, product_id):
 
     if not is_in_cart:
         Cart.objects.create(
-            user=request.user,   # Cart expects User, not UserInfo
+            user=request.user,
             product=product,
             quantity=1,
             price=product.price,
@@ -293,7 +293,6 @@ def add_to_cart(request, product_id):
             storage=storage
         )
     else:
-        # If already in cart, increment quantity
         cart_item = Cart.objects.get(
             user=request.user,
             product=product,
