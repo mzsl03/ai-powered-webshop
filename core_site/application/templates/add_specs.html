@@ -16,92 +16,180 @@
         {% endfor %}
     {% endif %}
 
-
-    {% comment %} {% if messages %}
-        <div id="message-modal"
-             style="display:block; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border:1px solid #ccc; z-index:1000;">
-            {% for message in messages %}
-                <p style="color: #000">{{ message }}</p>
-            {% endfor %}
-            <button onclick="document.getElementById('message-modal').style.display='none'">OK</button>
-        </div>
-    {% endif %} {% endcomment %}
     <div class="form-page">
         <div class="form-div">
             <div class="form-container">
-                <form method="POST" class="form-form">
+                <form method="POST" class="form-form" novalidate>
                     <h2 class="form-title-card">Új termék specifikáció létrehozása</h2>
                     {% csrf_token %}
-
+                    {% if form.CPU_speed.errors %}
+                        {% for error in form.CPU_speed.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.CPU_speed.id_for_label }}">CPU sebesség</label>
+                        {{ form.CPU_speed.label_tag }}
                         {{ form.CPU_speed }}
                     </div>
+
+
+                    {% if form.CPU_type.errors %}
+                        {% for error in form.CPU_type.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.CPU_type.id_for_label }}">CPU típus</label>
+                        {{ form.CPU_type.label_tag }}
                         {{ form.CPU_type }}
                     </div>
+
+                    {% if form.display_size.errors %}
+                        {% for error in form.display_size.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.display_size.id_for_label }}">Kijelző mérete</label>
+                        {{ form.display_size.label_tag }}
                         {{ form.display_size }}
                     </div>
+
+                    {% if form.resolution.errors %}
+                        {% for error in form.resolution.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.resolution.id_for_label }}">Felbontás</label>
+                        {{ form.resolution.label_tag }}
                         {{ form.resolution }}
                     </div>
+
+                    {% if form.display_technology.errors %}
+                        {% for error in form.display_technology.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.display_technology.id_for_label }}">Kijelző technológia</label>
+                        {{ form.display_technology.label_tag }}
                         {{ form.display_technology }}
                     </div>
+
+                    {% if form.max_refresh_rate.errors %}
+                        {% for error in form.max_refresh_rate.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.max_refresh_rate.id_for_label }}">Max képfrissítési ráta</label>
+                        {{ form.max_refresh_rate.label_tag }}
                         {{ form.max_refresh_rate }}
                     </div>
+
+                    {% if form.Spen.errors %}
+                        {% for error in form.Spen.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.Spen.id_for_label }}">Spen (Van/Nincs)</label>
+                        {{ form.Spen.label_tag }}
                         {{ form.Spen }}
                     </div>
+
+                    {% if form.camera.errors %}
+                        {% for error in form.camera.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.camera.id_for_label }}">Kamera (MP)</label>
+                        {{ form.camera.label_tag }}
                         {{ form.camera }}
                     </div>
+
+                    {% if form.memory.errors %}
+                        {% for error in form.memory.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.memory.id_for_label }}">Memória (GB)</label>
+                        {{ form.memory.label_tag }}
                         {{ form.memory }}
                     </div>
+
+                    {% if form.storage.errors %}
+                        {% for error in form.storage.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.storage.id_for_label }}">Tárhely (GB, vesszővel elválasztva)</label>
+                        {{ form.storage.label_tag }}
                         {{ form.storage }}
-                        {% if form.storage.help_text %}
-                            <small class="helptext">{{ form.storage.help_text }}</small>
-                        {% endif %}
                     </div>
+
+                    {% if form.os.errors %}
+                        {% for error in form.os.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.os.id_for_label }}">Operációs rendszer</label>
+                        {{ form.os.label_tag }}
                         {{ form.os }}
                     </div>
+
+                    {% if form.charge.errors %}
+                        {% for error in form.charge.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.charge.id_for_label }}">Töltési sebesség (W)</label>
+                        {{ form.charge.label_tag }}
                         {{ form.charge }}
                     </div>
+
+                    {% if form.sensors.errors %}
+                        {% for error in form.sensors.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.sensors.id_for_label }}">Szenzorok (vesszővel elválasztva)</label>
+                        {{ form.sensors.label_tag }}
                         {{ form.sensors }}
                     </div>
+
+                    {% if form.size.errors %}
+                        {% for error in form.size.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.size.id_for_label }}">Méret (mm)</label>
+                        {{ form.size.label_tag }}
                         {{ form.size }}
                     </div>
+
+                    {% if form.weight.errors %}
+                        {% for error in form.weight.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.weight.id_for_label }}">Súly (g)</label>
+                        {{ form.weight.label_tag }}
                         {{ form.weight }}
                     </div>
+
+                    {% if form.battery.errors %}
+                        {% for error in form.battery.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.battery.id_for_label }}">Akkumulátor (mAh)</label>
+                        {{ form.battery.label_tag }}
                         {{ form.battery }}
                     </div>
+
+                    {% if form.release_date.errors %}
+                        {% for error in form.release_date.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <div class="form-group">
-                        <label for="{{ form.release_date.id_for_label }}">Kiadási dátum</label>
+                        {{ form.release_date.label_tag }}
                         {{ form.release_date }}
                     </div>
 
