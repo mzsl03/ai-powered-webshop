@@ -11,6 +11,45 @@
         <div class="image-section">
             <img class="product-image-page" src="{% static 'images/' %}{{ product.image_path.0 }}"
                  alt="{{ product.name }}" width="300">
+
+
+            <div class="order-section">
+                <form method="post" class="order-form" novalidate>
+                    <h2>Rendelés</h2>
+                    
+                    <div class="form-group">
+                        <fieldset>
+                            <legend>Válassz színt</legend>
+                        {% for color in product.colors %}
+                            <input type="radio" name="color" id="{{ color }}" value="{{ color }}">
+                            <label for="{{ color }}">{{ color }}</label>
+                        {% endfor %}
+                        </fieldset>
+                    </div>
+
+                    <div class="form-group">
+                        <fieldset>
+                            <legend>Válassz tárhelyet</legend>
+                        {% for storage in specs.storage %}
+                            <input type="radio" name="storage" id="{{ storage }}" value="{{ storage }}">
+                            <label for="{{ storage }}">
+                                {% if storage > 100 %}
+                                    {{ storage }} GB
+                                {% else %}
+                                    {{ storage }} TB
+                                {% endif %}
+                            </label>
+                        {% endfor %}
+                        </fieldset>
+
+                        <div class="order-button">
+                            <button type="submit" class="btn"> Megrendelés</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
         </div>
         <div class="text-section">
             <h2>{{ product.name }}</h2>

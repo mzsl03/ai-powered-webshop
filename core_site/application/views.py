@@ -174,7 +174,6 @@ def product_detail(request, name, color):
     if product.category != "Tartozék":
         specs = Specs.objects.filter(product=product).first()
 
-   # phoneshop_user = request.user.phoneshop_user
 
     if request.method == 'POST':
         form = SpecsForm(request.POST, instance=specs)
@@ -191,7 +190,8 @@ def product_detail(request, name, color):
     return render(request, 'item_view.html', {
         'product': product,
         'form': form,
-        'color': color
+        'color': color,
+        "specs": specs
     })
 
 @login_required(login_url='/')
