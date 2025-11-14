@@ -9,7 +9,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path("add_product/", views.add_product, name="add_product"),
     path('product/<int:product_id>/add_specs/', views.add_specs, name='add_specs'),
-    path('product/<str:name>/<str:color>/', views.product_detail, name='product-name'),
+    path('product/<str:name>/', views.product_detail, name='product-name'),
     path('cart/', views.cart, name="cart"),
     path('cart/add/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
     path('cart/delete/<int:item_id>/', views.delete_cart_item, name='delete_cart_item'),

@@ -168,7 +168,7 @@ def add_specs(request, product_id):
 
 
 @login_required(login_url='/')
-def product_detail(request, name, color):
+def product_detail(request, name):
     product = get_object_or_404(Products, name=name)
     specs = None
     if product.category != "Tartozék":
@@ -190,7 +190,6 @@ def product_detail(request, name, color):
     return render(request, 'item_view.html', {
         'product': product,
         'form': form,
-        'color': color,
         "specs": specs
     })
 
