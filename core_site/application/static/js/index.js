@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
 (function resetScrollContainers() {
   const reset = () => {
     const grid = document.querySelector('.product-grid');
