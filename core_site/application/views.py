@@ -305,6 +305,7 @@ def add_to_cart(request, product_id):
                 storage=storage
             )
             cart_item.quantity += 1
+            cart_item.price += product.price
             cart_item.save()
 
         return redirect('cart')
