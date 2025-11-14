@@ -21,6 +21,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+(function resetScrollContainers() {
+  const reset = () => {
+    const grid = document.querySelector('.product-grid');
+    if (grid) {
+      grid.scrollTop = 0;
+      grid.scrollLeft = 0;
+      requestAnimationFrame(() => grid.scrollTo({ top: 0, left: 0, behavior: 'auto' }));
+    }
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  };
+  document.addEventListener('DOMContentLoaded', reset);
+  window.addEventListener('load', reset);
+  window.addEventListener('pageshow', e => {
+    if (e.persisted || (performance.getEntriesByType('navigation')[0]?.type === 'reload')) reset();
+  });
+})();
+
+
 function changeImage(selectedColor, productId) {
     const mainImage = document.getElementById(productId);
     const allImages = mainImage.getAttribute('data-images').split(',');
