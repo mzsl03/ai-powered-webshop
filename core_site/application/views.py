@@ -262,46 +262,44 @@ def add_to_cart(request, product_id):
 
     phoneshop_user = request.user.phoneshop_user
     print("Adding to cart for:", phoneshop_user.id)
-
     product = get_object_or_404(Products, id=product_id)
-    color = request.GET.get("color") or request.POST.get("color")
-    storage = request.GET.get('storage')
+
+    specs = Specs.objects.filter(product=product).first()
 
 
-    if not color or color.strip().lower() not in [c.lower() for c in product.colors]:
-        color = 'black'
+    if request.method == 'POST':
+        color = request.POST.get("color")
+        storage = request.POST.get('storage')
 
-    if not storage:
-        storage = 128
+        print(storage)
 
-
-    is_in_cart = Cart.objects.filter(
-        user=request.user,
-        product=product,
-        color=color,
-        storage=storage
-    ).exists()
-
-    if not is_in_cart:
-        Cart.objects.create(
-            user=request.user,
-            product=product,
-            quantity=1,
-            price=product.price,
-            color=color,
-            storage=storage
-        )
-    else:
-        cart_item = Cart.objects.get(
+        is_in_cart = Cart.objects.filter(
             user=request.user,
             product=product,
             color=color,
             storage=storage
-        )
-        cart_item.quantity += 1
-        cart_item.save()
+        ).exists()
 
-    return redirect('cart')
+        if not is_in_cart:
+            Cart.objects.create(
+                user=request.user,
+                product=product,
+                quantity=1,
+                price=product.price,
+                color=color,
+                storage=storage
+            )
+        else:
+            cart_item = Cart.objects.get(
+                user=request.user,
+                product=product,
+                color=color,
+                storage=storage
+            )
+            cart_item.quantity += 1
+            cart_item.save()
+
+        return redirect('cart')
 
 @login_required(login_url='/')
 def checkout(request):

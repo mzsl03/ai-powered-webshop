@@ -14,10 +14,13 @@
 
 
             <div class="order-section">
-                <form method="post" class="order-form" novalidate>
+                <form method="post" class="order-form" action="{% url 'add_to_cart' product.id %}" novalidate>
+                    {% csrf_token %}
+
                     <h2>Rendelés</h2>
                     
                     <div class="form-group">
+
                         <fieldset>
                             <legend>Válassz színt</legend>
                         {% for color in product.colors %}
@@ -82,14 +85,6 @@
             {% endif %}
 
         </div>
-    </div>
-    <div class="order-product order-product-out">
-        <form method="POST" action="{% url 'add_to_cart' product.id %}?color={{ color }}">
-        {% csrf_token %}
-
-        <button class="btn" type="submit">Rendelés leadása</button>
-        <a href="{% url 'home' %}" class="back_btn">Vissza</a>
-        </form>
     </div>
     <script src="{% static 'js/order_product.js' %}"></script>
 {% endblock %}
