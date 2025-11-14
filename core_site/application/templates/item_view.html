@@ -21,6 +21,9 @@
                     
                     <div class="form-group">
 
+                        {% if error %}
+                            <span class="error">{{ error }}</span>
+                        {% endif %}
                         <fieldset>
                             <legend>Válassz színt</legend>
                         {% for color in product.colors %}

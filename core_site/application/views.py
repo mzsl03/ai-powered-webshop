@@ -266,12 +266,20 @@ def add_to_cart(request, product_id):
 
     specs = Specs.objects.filter(product=product).first()
 
+    error = ""
 
     if request.method == 'POST':
         color = request.POST.get("color")
         storage = request.POST.get('storage')
 
         print(storage)
+
+        if storage == None or color == None:
+            error = "Válassz színt és tárhelyet is!"
+
+            return render(request, 'item_view.html', {'error': error, "product": product, "specs": specs})
+        
+
 
         is_in_cart = Cart.objects.filter(
             user=request.user,
