@@ -7,6 +7,66 @@
 {% endblock %}
 
 {% block main %}
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const chatMessages = document.getElementById("chat-messages");
+            const chatInput = document.getElementById("chat-text");
+            const sendBtn = document.getElementById("send-btn");
+
+            function sendMessage() {
+                const text = chatInput.value.trim();
+                if (text !== "") {
+                    // create user message
+                    const userMsg = document.createElement("div");
+                    userMsg.className = "message-user";
+                    userMsg.textContent = text;
+                    chatMessages.appendChild(userMsg);
+
+                    // clear input
+                    chatInput.value = "";
+
+                    // auto scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                    // optional: simulate bot reply
+                    setTimeout(() => {
+                        const botMsg = document.createElement("div");
+                        botMsg.className = "message-bot";
+                        botMsg.textContent = "This is a simulated reply.";
+                        chatMessages.appendChild(botMsg);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 500);
+                }
+            }
+
+            // send on button click
+            sendBtn.addEventListener("click", sendMessage);
+
+            // send on Enter key
+            chatInput.addEventListener("keypress", e => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+    <div class="chat-div" id="chat-div">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Chat with Assistant</h2>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message-user" id="message-user">Hello!</div>
+                <div class="message-bot" id="message-bot">Hi there, how can I help?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-text" placeholder="Type a message..."/>
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
     {% if messages %}
         {% for message in messages %}
             <span class="success messages">
@@ -15,7 +75,36 @@
         {% endfor %}
     {% endif %}
 
-    <section class="hero">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const hero = document.querySelector(".hero");
+            let scrollCount = 0;
+            const scrollTimeout = 1000; // 1 second to detect double scroll
+            let timer = null;
+
+            window.addEventListener("wheel", (e) => {
+                if (e.deltaY > 0) { // only downward scroll
+                    scrollCount++;
+
+                    if (scrollCount === 2) {
+                        hero.scrollIntoView({behavior: "smooth"});
+                        scrollCount = 0; // reset
+                        clearTimeout(timer);
+                    } else {
+                        // start/reset timer
+                        clearTimeout(timer);
+                        timer = setTimeout(() => {
+                            scrollCount = 0;
+                        }, scrollTimeout);
+                    }
+                }
+            });
+        });
+    </script>
+
+
+    <section class="hero" id="hero">
         <div class="hero-bg"></div>
         <div class="hero-inner">
             <h1 class="hero-title">AI Powered Webshop</h1>
@@ -23,7 +112,8 @@
                 Minimalista felület. Intelligens ajánlórendszer.
                 A jövő vásárlási élménye.
             </p>
-            <a href="#products" class="btn hero-btn">Fedezd fel</a>
+            <a class="btn hero-btn" id="products">Fedezd fel</a>
+            <a class="btn hero-btn" id="open-chat">Chatelj az Aszisztensünkkel</a>
         </div>
     </section>
 
@@ -59,7 +149,7 @@
             </form>
 
         </div>
-        <div class="product-grid">
+        <div class="product-grid" id="product-grid">
             {% for product in products %}
                 <div class="product-card">
                     <a class="product-link" href="{% url 'product-name' product.name product.colors.0 %}">
@@ -79,13 +169,13 @@
                             <h3 class="product-name">{{ product.name }}</h3>
                             <p class="product-price">{{ product.price }},-Ft</p>
                         </a>
-                            <p class="product-colors">
-                        {% for color in product.colors %}
-                            <a href="{% url 'product-name' product.name color %}"
-                               class="color-circle"
-                               style="background-color: {{ color }}">
-                            </a>
-                        {% endfor %}
+                        <p class="product-colors">
+                            {% for color in product.colors %}
+                                <a href="{% url 'product-name' product.name color %}"
+                                   class="color-circle"
+                                   style="background-color: {{ color }}">
+                                </a>
+                            {% endfor %}
                         </p>
                     </div>
                 </div>
@@ -96,6 +186,24 @@
     <script>
 
         const STATIC_IMAGES_URL = "{% static 'images/' %}";
+        document.getElementById('open-chat').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('chat-div').classList.add('open');
+            // optional: scroll to chat
+            document.getElementById('chat-div').scrollIntoView({behavior: 'smooth'});
+        });
+
+        document.getElementById('products').addEventListener('click', function (e) {
+            e.preventDefault();
+            const grid = document.getElementById('product-grid');
+            grid.classList.add('open');
+            grid.scrollIntoView({behavior: 'smooth'});
+        });
+
+        window.addEventListener("load", () => {
+            document.querySelector(".hero").scrollIntoView({behavior: "smooth"});
+        });
+
     </script>
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/filter.js' %}"></script>
