@@ -30,7 +30,7 @@
                     <li class="item"><a href="{% url 'user_order' %}"><i class="fa fa-truck"></i> Rendelések</a></li>
                 {% endif %}
                 {% if request.user.is_authenticated and request.user.is_staff %}
-                    <li class="item"><a href={% url 'all_user_order' %}>Rendelések</a></li>
+                    <li class="item"><a href={% url 'all_user_order' %}><i class="fa fa-truck"></i> Rendelések</a></li>
                 {% endif %}
                 {% comment %}
                     {% if request.user.is_authenticated and request.user.is_superuser %}
