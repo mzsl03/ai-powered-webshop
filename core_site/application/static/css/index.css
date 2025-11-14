@@ -110,15 +110,15 @@ html, body {
 .ind-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    gap: 4rem;
+    align-items: center;
+    gap: 3rem;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
+    max-width: 1750px;
+    padding: 3rem 3rem 4rem 3rem;
     position: relative;
     isolation: isolate;
 }
+
 
 .ind-container::before {
     content: "";
