@@ -17,7 +17,7 @@
                     {% with items=order.items.all %}
                         {% if items %}
                             <strong>
-                                {{ items.0.product.name }} × {{ items.0.quantity }}
+                                {{ items.0.product.name }} X {{ items.0.quantity }} DB
                                 {% if items|length > 1 %}
                                     ...
                                 {% endif %}
