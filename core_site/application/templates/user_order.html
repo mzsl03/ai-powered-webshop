@@ -3,76 +3,92 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{% static 'css/user_order.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/user_order.css' %}">
 {% endblock %}
 
 
 {% block main %}
-<div class="orders-container">
-    <div class="column">
-        {% for order in processing %}
-            <div class="card">
-                {% with items=order.items.all %}
-                    {% if items %}
-                        <strong>
-                            {{ items.0.product.name }} × {{ items.0.quantity }}
-                            {% if items|length > 1 %}
-                                ...
-                            {% endif %}
-                        </strong><br>
-                    {% else %}
-                        <strong>No items</strong><br>
-                    {% endif %}
-                {% endwith %}
-                <small>Ordered on: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
-            </div>
-        {% empty %}
-            <p>No processing product orders...</p>
-        {% endfor %}
+    <div class="orders-container">
+        <div class="column">
+            {% for order in processing %}
+                <div class="card">
+                    {% with items=order.items.all %}
+                        {% if items %}
+                            <strong>
+                                {{ items.0.product.name }} × {{ items.0.quantity }}
+                                {% if items|length > 1 %}
+                                    ...
+                                {% endif %}
+                            </strong><br>
+                            <div class="item-list">
+                                {% for item in items %}
+                                    <p>{{ item.product.name }} × {{ item.quantity }}</p>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <strong>No items</strong><br>
+                        {% endif %}
+                    {% endwith %}
+                    <small>Rendelés dátuma: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
+                </div>
+                {% empty %}
+                <p>Nincs feldolgozás alatt álló termék...</p>
+            {% endfor %}
+        </div>
+        <div class="column">
+            {% for order in delivered %}
+                <div class="card">
+                    {% with items=order.items.all %}
+                        {% if items %}
+                            <strong>
+                                {{ items.0.product.name }} × {{ items.0.quantity }}
+                                {% if items|length > 1 %}
+                                    ...
+                                {% endif %}
+                            </strong><br>
+                            <div class="item-list">
+                                {% for item in items %}
+                                    <p>{{ item.product.name }} × {{ item.quantity }}</p>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <strong>Nincs termék</strong><br>
+                        {% endif %}
+                    {% endwith %}
+                    <small>Rendelés dátuma: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
+                </div>
+                {% empty %}
+                <p>Nincs szállítás alatt álló termék ...</p>
+            {% endfor %}
+        </div>
+        <div class="column">
+            {% for order in deleted %}
+                <div class="card">
+                    {% with items=order.items.all %}
+                        {% if items %}
+                            <strong>
+                                {{ items.0.product.name }} × {{ items.0.quantity }}
+                                {% if items|length > 1 %}
+                                    ...
+                                {% endif %}
+                            </strong><br>
+                            <div class="item-list">
+                                {% for item in items %}
+                                    <p>{{ item.product.name }} × {{ item.quantity }}</p>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <strong>Nincs termék</strong><br>
+                        {% endif %}
+                    {% endwith %}
+                    <small>Rendelés dátuma: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
+                </div>
+                {% empty %}
+                <p>Nincs kiszállított termék...</p>
+            {% endfor %}
+        </div>
     </div>
-    <div class="column">
-        {% for order in delivered %}
-            <div class="card">
-                {% with items=order.items.all %}
-                    {% if items %}
-                        <strong>
-                            {{ items.0.product.name }} × {{ items.0.quantity }}
-                            {% if items|length > 1 %}
-                                ...
-                            {% endif %}
-                        </strong><br>
-                    {% else %}
-                        <strong>No items</strong><br>
-                    {% endif %}
-                {% endwith %}
-                <small>Ordered on: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
-            </div>
-        {% empty %}
-            <p>No delivered product orders...</p>
-        {% endfor %}
-    </div>
-    <div class="column">
-        {% for order in deleted %}
-            <div class="card">
-                {% with items=order.items.all %}
-                    {% if items %}
-                        <strong>
-                            {{ items.0.product.name }} × {{ items.0.quantity }}
-                            {% if items|length > 1 %}
-                                ...
-                            {% endif %}
-                        </strong><br>
-                    {% else %}
-                        <strong>No items</strong><br>
-                    {% endif %}
-                {% endwith %}
-                <small>Ordered on: {{ order.order_time|date:"M. j, Y, g:i a" }}</small>
-            </div>
-        {% empty %}
-            <p>No deleted product orders...</p>
-        {% endfor %}
-    </div>
-</div>
+    <script src="{% static 'js/user_order.js' %}"></script>
 {% endblock %}
