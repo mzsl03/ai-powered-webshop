@@ -63,7 +63,8 @@
 }
 
 .total-sum {
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
+  padding-bottom: 8px;
   text-align: right;
   font-size: 1.1rem;
   color: var(--color-text);
@@ -86,6 +87,17 @@ body::before {
   z-index: -1;
   background: radial-gradient(circle at 70% 20%, rgba(80, 80, 80, 0.08), transparent 80%);
   opacity: 0.8;
+}
+
+.order-products {
+    display: flex;                 /* 1. Bekapcsolja a Flexbox elrendezést */
+    justify-content: space-between; /* 2. A két elemet (gomb, összeg) a konténer két szélére tolja */
+    align-items: center;           /* 3. Függőlegesen középre igazítja őket egymáshoz képest */
+
+    /* Opcionális: Adjunk neki egy kis teret és egy elválasztó vonalat */
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid #333;
 }
 
 /* Responsive */

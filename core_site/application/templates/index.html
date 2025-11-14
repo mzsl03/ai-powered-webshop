@@ -152,7 +152,7 @@
         <div class="product-grid" id="product-grid">
             {% for product in products %}
                 <div class="product-card">
-                    <a class="product-link" href="{% url 'product-name' product.name product.colors.0 %}">
+                    <a class="product-link" href="{% url 'product-name' product.name %}">
                         <div class="product-image-container">
                             {% if product.image_path %}
                                 <img data-images="{{ product.image_path|join:", " }}"
@@ -165,17 +165,17 @@
                         </div>
                     </a>
                     <div class="product-info">
-                        <a class="product-link" href="{% url 'product-name' product.name product.colors.0 %}">
+                        <a class="product-link" href="{% url 'product-name' product.name %}">
                             <h3 class="product-name">{{ product.name }}</h3>
                             <p class="product-price">{{ product.price }},-Ft</p>
                         </a>
                         <p class="product-colors">
-                            {% for color in product.colors %}
-                                <a href="{% url 'product-name' product.name color %}"
-                                   class="color-circle"
-                                   style="background-color: {{ color }}">
-                                </a>
-                            {% endfor %}
+                          {% for color in product.colors %}
+                              <a href="{% url 'product-name' product.name %}"
+                                 class="color-circle"
+                                 style="background-color: {{ color }}">
+                              </a>
+                          {% endfor %}
                         </p>
                     </div>
                 </div>

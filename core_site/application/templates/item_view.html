@@ -11,6 +11,51 @@
         <div class="image-section">
             <img class="product-image-page" src="{% static 'images/' %}{{ product.image_path.0 }}"
                  alt="{{ product.name }}" width="300">
+
+
+            <div class="order-section">
+                <form method="post" class="order-form" action="{% url 'add_to_cart' product.id %}" novalidate>
+                    {% csrf_token %}
+
+                    <h2>Rendelés</h2>
+                    
+                    <div class="form-group">
+
+                        {% if error %}
+                            <span class="error">{{ error }}</span>
+                        {% endif %}
+                        <fieldset>
+                            <legend>Válassz színt</legend>
+                        {% for color in product.colors %}
+                            <input type="radio" name="color" id="{{ color }}" value="{{ color }}">
+                            <label for="{{ color }}">{{ color }}</label>
+                        {% endfor %}
+                        </fieldset>
+                    </div>
+
+                    <div class="form-group">
+                        <fieldset>
+                            <legend>Válassz tárhelyet</legend>
+                        {% for storage in specs.storage %}
+                            <input type="radio" name="storage" id="{{ storage }}" value="{{ storage }}">
+                            <label for="{{ storage }}">
+                                {% if storage > 100 %}
+                                    {{ storage }} GB
+                                {% else %}
+                                    {{ storage }} TB
+                                {% endif %}
+                            </label>
+                        {% endfor %}
+                        </fieldset>
+
+                        <div class="order-button">
+                            <button type="submit" class="btn"> Megrendelés</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
         </div>
         <div class="text-section">
             <h2>{{ product.name }}</h2>
@@ -19,9 +64,6 @@
                 {% for color in product.colors %}
                     <span class="color-badge">{{ color }}</span>
                 {% endfor %}
-            </p>
-            <p><strong>Bolt:</strong>
-                <span class="shop-badge">{{ shops.name }}</span>
             </p>
             {% if product.category == 'Telefon' %}
                 <p class="dropdown-label"><strong>Termék adatok:</strong></p>
@@ -46,14 +88,6 @@
             {% endif %}
 
         </div>
-    </div>
-    <div class="order-product order-product-out">
-        <form method="POST" action="{% url 'add_to_cart' product.id %}?color={{ color }}">
-        {% csrf_token %}
-
-        <button class="btn" type="submit">Rendelés leadása</button>
-        <a href="{% url 'home' %}" class="back_btn">Vissza</a>
-        </form>
     </div>
     <script src="{% static 'js/order_product.js' %}"></script>
 {% endblock %}

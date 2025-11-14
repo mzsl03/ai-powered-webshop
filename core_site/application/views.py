@@ -168,13 +168,12 @@ def add_specs(request, product_id):
 
 
 @login_required(login_url='/')
-def product_detail(request, name, color):
+def product_detail(request, name):
     product = get_object_or_404(Products, name=name)
     specs = None
     if product.category != "Tartozék":
         specs = Specs.objects.filter(product=product).first()
 
-   # phoneshop_user = request.user.phoneshop_user
 
     if request.method == 'POST':
         form = SpecsForm(request.POST, instance=specs)
@@ -191,7 +190,7 @@ def product_detail(request, name, color):
     return render(request, 'item_view.html', {
         'product': product,
         'form': form,
-        'color': color
+        "specs": specs
     })
 
 @login_required(login_url='/')
@@ -266,54 +265,60 @@ def update_order_status(request, order_id):
 
 @login_required(login_url='/')
 def add_to_cart(request, product_id):
-    # Prevent superusers from adding to cart
+
     if request.user.is_superuser:
         return redirect('home')
 
-    # Access UserInfo if needed
+
     phoneshop_user = request.user.phoneshop_user
     print("Adding to cart for:", phoneshop_user.id)
-
     product = get_object_or_404(Products, id=product_id)
-    color = request.GET.get("color") or request.POST.get("color")
-    storage = request.GET.get('storage')
 
-    # Validate color
-    if not color or color.strip().lower() not in [c.lower() for c in product.colors]:
-        color = 'black'
+    specs = Specs.objects.filter(product=product).first()
 
-    if not storage:
-        storage = 128
+    error = ""
 
-    # Check if item already in cart
-    is_in_cart = Cart.objects.filter(
-        user=request.user,
-        product=product,
-        color=color,
-        storage=storage
-    ).exists()
+    if request.method == 'POST':
+        color = request.POST.get("color")
+        storage = request.POST.get('storage')
 
-    if not is_in_cart:
-        Cart.objects.create(
-            user=request.user,   # Cart expects User, not UserInfo
-            product=product,
-            quantity=1,
-            price=product.price,
-            color=color,
-            storage=storage
-        )
-    else:
-        # If already in cart, increment quantity
-        cart_item = Cart.objects.get(
+        print(storage)
+
+        if storage == None or color == None:
+            error = "Válassz színt és tárhelyet is!"
+
+            return render(request, 'item_view.html', {'error': error, "product": product, "specs": specs})
+        
+
+
+        is_in_cart = Cart.objects.filter(
             user=request.user,
             product=product,
             color=color,
             storage=storage
-        )
-        cart_item.quantity += 1
-        cart_item.save()
+        ).exists()
 
-    return redirect('cart')
+        if not is_in_cart:
+            Cart.objects.create(
+                user=request.user,
+                product=product,
+                quantity=1,
+                price=product.price,
+                color=color,
+                storage=storage
+            )
+        else:
+            cart_item = Cart.objects.get(
+                user=request.user,
+                product=product,
+                color=color,
+                storage=storage
+            )
+            cart_item.quantity += 1
+            cart_item.price += product.price
+            cart_item.save()
+
+        return redirect('cart')
 
 @login_required(login_url='/')
 def checkout(request):
