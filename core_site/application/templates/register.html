@@ -91,6 +91,10 @@
                 {{ form.phone_number }}
             </div>
             <button class="btn" type="submit">Regisztráció</button>
+            <div class="login-redirect">
+                    Már van profilod?
+                    <a href="{% url 'login' %}">Bejelentkezés</a>
+            </div>
         </form>
     </div>
 </div>
