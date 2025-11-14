@@ -46,19 +46,26 @@
             {% endif %}
         </table>
 
-        <p class="total-sum">Végösszeg:
-            <span id="cart-total">
-                {% if sum %}
-                    {{ sum }}
-                {% else %}
-                    0
-                {% endif %}
-            </span> Ft
-        </p>
+        <div class="order-products">
+
+            <form action="{% url 'checkout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Rendelés leadása</button>
+            </form>
+
+            <p class="total-sum">Végösszeg:
+                <span id="cart-total">
+                    {% if sum %}
+                        {{ sum }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </span> Ft
+            </p>
+        </div>
+
+        
     </div>
-    <form action="{% url 'checkout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn">Rendelés leadása</button>
-    </form>
+    
     <script src="{% static 'js/cart_delete.js' %}"></script>
 {% endblock %}
