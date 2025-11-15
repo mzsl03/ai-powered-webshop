@@ -17,6 +17,10 @@ from django.views.decorators.http import require_POST
 
 
 def login(request):
+
+    if request.user.is_authenticated:
+        return redirect('home')
+
     error = ""
 
     if request.method == 'POST':
@@ -45,6 +49,9 @@ def login(request):
     return render(request, 'login.html', {'error': error})
 
 def register_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -246,6 +253,9 @@ def user_update(request):
 
 @login_required(login_url='/')
 def user_order(request):
+    if request.user.is_superuser:
+        return redirect("home")
+
     user = request.user
     processing = Orders.objects.filter(user=user, status='feldolgozás_alatt')
     delivered = Orders.objects.filter(user=user, status='kiszállítva')
