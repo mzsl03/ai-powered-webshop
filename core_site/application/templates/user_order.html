@@ -12,6 +12,7 @@
 {% block main %}
     <div class="orders-container">
         <div class="column">
+            <h1 class="column-title" >Feldolgozás alatt</h1>
             {% for order in processing %}
                 <div class="card">
                     {% with items=order.items.all %}
@@ -38,6 +39,7 @@
             {% endfor %}
         </div>
         <div class="column">
+            <h1 class="column-title">Elküldve</h1>
             {% for order in delivered %}
                 <div class="card">
                     {% with items=order.items.all %}
@@ -64,6 +66,7 @@
             {% endfor %}
         </div>
         <div class="column">
+         <h1 class="column-title">Kézbesítve</h1>
             {% for order in deleted %}
                 <div class="card">
                     {% with items=order.items.all %}
