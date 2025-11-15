@@ -46,9 +46,11 @@
     </script>
 
     {% if messages %}
+        <div id="container-messages">
         {% for message in messages %}
             <span class="success messages">{{ message }}</span>
         {% endfor %}
+        </div>
     {% endif %}
 
     <section class="section hero" id="hero">

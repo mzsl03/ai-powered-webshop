@@ -9,11 +9,11 @@
 {% block main %}
 
     {% if messages %}
-        {% for message in messages %}
-            <span class="success messages">
-                    {{ message }}
-                </span>
-        {% endfor %}
+        <div id="container-messages">
+            {% for message in messages %}
+                <span class="success messages">{{ message }}</span>
+            {% endfor %}
+        </div>
     {% endif %}
 
     <div class="form-page">
