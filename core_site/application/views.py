@@ -254,6 +254,9 @@ def user_order(request):
 
 @login_required
 def all_user_order(request):
+    if not request.user.is_superuser:
+        return redirect("home")
+
     orders = Orders.objects.all().order_by('-order_time')
     return render(request, 'list_orders.html', {'orders': orders})
 
