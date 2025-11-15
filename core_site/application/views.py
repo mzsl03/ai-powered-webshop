@@ -17,6 +17,10 @@ from django.views.decorators.http import require_POST
 
 
 def login(request):
+
+    if request.user.is_authenticated:
+        return redirect('home')
+
     error = ""
 
     if request.method == 'POST':
@@ -45,6 +49,9 @@ def login(request):
     return render(request, 'login.html', {'error': error})
 
 def register_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -190,12 +197,18 @@ def product_detail(request, name):
     return render(request, 'item_view.html', {
         'product': product,
         'form': form,
-        "specs": specs
+        "specs": specs,
+        "is_admin": request.user.is_superuser 
+
     })
 
 @login_required(login_url='/')
 def cart(request):
+    if request.user.is_superuser:
+        return redirect('home')
+    
     user_id = request.user.id
+
 
     user_products = Cart.objects.filter(user_id=user_id)
 
@@ -240,6 +253,9 @@ def user_update(request):
 
 @login_required(login_url='/')
 def user_order(request):
+    if request.user.is_superuser:
+        return redirect("home")
+
     user = request.user
     processing = Orders.objects.filter(user=user, status='feldolgozás_alatt')
     delivered = Orders.objects.filter(user=user, status='kiszállítva')
@@ -248,6 +264,9 @@ def user_order(request):
 
 @login_required
 def all_user_order(request):
+    if not request.user.is_superuser:
+        return redirect("home")
+
     orders = Orders.objects.all().order_by('-order_time')
     return render(request, 'list_orders.html', {'orders': orders})
 
