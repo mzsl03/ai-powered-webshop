@@ -27,7 +27,7 @@
                     setTimeout(() => {
                         const botMsg = document.createElement("div");
                         botMsg.className = "message-bot";
-                        botMsg.textContent = "This is a simulated reply.";
+                        botMsg.textContent = "Demonstrációs üzenet.";
                         chatMessages.appendChild(botMsg);
                         chatMessages.scrollTop = chatMessages.scrollHeight;
                     }, 500);
@@ -136,11 +136,11 @@
             <div class="chat-container">
                 <div class="chat-messages" id="chat-messages">
                     <div class="message-user">Hello!</div>
-                    <div class="message-bot">Hi there, how can I help?</div>
+                    <div class="message-bot">Szia! Miben segíthetek?</div>
                 </div>
                 <div class="chat-input">
-                    <input type="text" id="chat-text" placeholder="Type a message..."/>
-                    <button id="send-btn">Send</button>
+                    <input type="text" id="chat-text" placeholder="Írj az aszisztensnek..."/>
+                    <button id="send-btn">Küldés</button>
                 </div>
             </div>
         </div>
