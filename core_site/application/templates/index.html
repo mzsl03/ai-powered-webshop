@@ -16,19 +16,14 @@
             function sendMessage() {
                 const text = chatInput.value.trim();
                 if (text !== "") {
-                    // create user message
                     const userMsg = document.createElement("div");
                     userMsg.className = "message-user";
                     userMsg.textContent = text;
                     chatMessages.appendChild(userMsg);
 
-                    // clear input
                     chatInput.value = "";
-
-                    // auto scroll to bottom
                     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-                    // optional: simulate bot reply
                     setTimeout(() => {
                         const botMsg = document.createElement("div");
                         botMsg.className = "message-bot";
@@ -39,10 +34,8 @@
                 }
             }
 
-            // send on button click
             sendBtn.addEventListener("click", sendMessage);
 
-            // send on Enter key
             chatInput.addEventListener("keypress", e => {
                 if (e.key === "Enter") {
                     e.preventDefault();
@@ -51,60 +44,14 @@
             });
         });
     </script>
-    <div class="chat-div" id="chat-div">
-        <div class="chat-container">
-            <div class="chat-header">
-                <h2>Chat with Assistant</h2>
-            </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="message-user" id="message-user">Hello!</div>
-                <div class="message-bot" id="message-bot">Hi there, how can I help?</div>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="chat-text" placeholder="Type a message..."/>
-                <button id="send-btn">Send</button>
-            </div>
-        </div>
-    </div>
 
     {% if messages %}
         {% for message in messages %}
-            <span class="success messages">
-                    {{ message }}
-                </span>
+            <span class="success messages">{{ message }}</span>
         {% endfor %}
     {% endif %}
 
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const hero = document.querySelector(".hero");
-            let scrollCount = 0;
-            const scrollTimeout = 1000; // 1 second to detect double scroll
-            let timer = null;
-
-            window.addEventListener("wheel", (e) => {
-                if (e.deltaY > 0) { // only downward scroll
-                    scrollCount++;
-
-                    if (scrollCount === 2) {
-                        hero.scrollIntoView({behavior: "smooth"});
-                        scrollCount = 0; // reset
-                        clearTimeout(timer);
-                    } else {
-                        // start/reset timer
-                        clearTimeout(timer);
-                        timer = setTimeout(() => {
-                            scrollCount = 0;
-                        }, scrollTimeout);
-                    }
-                }
-            });
-        });
-    </script>
-
-
-    <section class="hero" id="hero">
+    <section class="section hero" id="hero">
         <div class="hero-bg"></div>
         <div class="hero-inner">
             <h1 class="hero-title">AI Powered Webshop</h1>
@@ -112,98 +59,236 @@
                 Minimalista felület. Intelligens ajánlórendszer.
                 A jövő vásárlási élménye.
             </p>
-            <a class="btn hero-btn" id="products">Fedezd fel</a>
-            <a class="btn hero-btn" id="open-chat">Chatelj az Aszisztensünkkel</a>
+            <a href="#products-section" class="btn hero-btn" id="products-btn">Fedezd fel</a>
+            <a href="#ai-chat-messages" class="btn hero-btn" id="open-chat">Chatelj az Aszisztensünkkel</a>
         </div>
     </section>
 
-    <div class="ind-container" id="products">
-        <div class="filters">
-            <h3>Szűrők</h3>
-            <form method="get" action="#products">
-                <label class="ctrl">
-                    <input value="{{ filters.name|default:''}}" name='name' id="q" type="search"
-                           placeholder="Keresés (pl. „fülhallgató”)"
-                    />
-                </label>
-                <label class="ctrl">
-                    <span class="filter-label">Kategória</span>
-                    <select name="category" id="cat">
-                        <option value="all">Összes termék</option>
-                        {% for category in allCategory %}
-                            <option value="{{ category }}">{{ category }}</option>
-                        {% endfor %}
-                    </select>
-                </label>
-                <label class="ctrl">
-                    <input value="{{ filters.min_price|default:''}}" name="minPrice" type="search"
-                           placeholder="Minimum ár"/>
-                </label>
-
-                <label class="ctrl">
-                    <input value="{{ filters.max_price|default:''}}" name="maxPrice" type="search"
-                           placeholder="Maximum ár"/>
-                </label>
-
-                <button class="btn" id="save">Szűrés</button>
-            </form>
-
-        </div>
-        <div class="product-grid" id="product-grid">
-            {% for product in products %}
-                <div class="product-card">
-                    <a class="product-link" href="{% url 'product-name' product.name %}">
-                        <div class="product-image-container">
-                            {% if product.image_path %}
-                                <img data-images="{{ product.image_path|join:", " }}"
-                                     src="{% static 'images/' %}{{ product.image_path.0 }}"
-                                     alt="{{ product.name }}" class="product-image" id="{{ product.id }}" width="200">
-                            {% else %}
-                                <img src="{% static 'images/no-image.png' %}"
-                                     alt="No image available" class="product-image" width="200">
-                            {% endif %}
-                        </div>
-                    </a>
-                    <div class="product-info">
+    <section class="section" id="products-section">
+        <div class="ind-container" id="products">
+            <div class="filters">
+                <h3>Szűrők</h3>
+                <form method="get" action="#products">
+                    <label class="ctrl">
+                        <input value="{{ filters.name|default:''}}" name='name' id="q" type="search"
+                               placeholder="Keresés (pl. „fülhallgató")" />
+                    </label>
+                    <label class="ctrl">
+                        <span class="filter-label">Kategória</span>
+                        <select name="category" id="cat">
+                            <option value="all">Összes termék</option>
+                            {% for category in allCategory %}
+                                <option value="{{ category }}">{{ category }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <label class="ctrl">
+                        <input value="{{ filters.min_price|default:''}}" name="minPrice" type="search"
+                               placeholder="Minimum ár"/>
+                    </label>
+                    <label class="ctrl">
+                        <input value="{{ filters.max_price|default:''}}" name="maxPrice" type="search"
+                               placeholder="Maximum ár"/>
+                    </label>
+                    <button class="btn" id="save">Szűrés</button>
+                </form>
+            </div>
+            <div class="product-grid" id="product-grid">
+                {% for product in products %}
+                    <div class="product-card">
                         <a class="product-link" href="{% url 'product-name' product.name %}">
-                            <h3 class="product-name">{{ product.name }}</h3>
-                            <p class="product-price">{{ product.price }},-Ft</p>
+                            <div class="product-image-container">
+                                {% if product.image_path %}
+                                    <img data-images="{{ product.image_path|join:", " }}"
+                                         src="{% static 'images/' %}{{ product.image_path.0 }}"
+                                         alt="{{ product.name }}" class="product-image" id="{{ product.id }}"
+                                         width="200">
+                                {% else %}
+                                    <img src="{% static 'images/no-image.png' %}"
+                                         alt="No image available" class="product-image" width="200">
+                                {% endif %}
+                            </div>
                         </a>
-                        <p class="product-colors">
-                          {% for color in product.colors %}
-                              <a href="{% url 'product-name' product.name %}"
-                                 class="color-circle"
-                                 style="background-color: {{ color }}">
-                              </a>
-                          {% endfor %}
-                        </p>
+                        <div class="product-info">
+                            <a class="product-link" href="{% url 'product-name' product.name %}">
+                                <h3 class="product-name">{{ product.name }}</h3>
+                                <p class="product-price">{{ product.price }},-Ft</p>
+                            </a>
+                            <p class="product-colors">
+                                {% for color in product.colors %}
+                                    <a href="{% url 'product-name' product.name %}"
+                                       class="color-circle"
+                                       style="background-color: {{ color }}">
+                                    </a>
+                                {% endfor %}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="section" id="ai-chat-messages">
+        <div class="chat-div" id="chat-div">
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message-user">Hello!</div>
+                    <div class="message-bot">Hi there, how can I help?</div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chat-text" placeholder="Type a message..."/>
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script>
-
         const STATIC_IMAGES_URL = "{% static 'images/' %}";
-        document.getElementById('open-chat').addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('chat-div').classList.add('open');
-            // optional: scroll to chat
-            document.getElementById('chat-div').scrollIntoView({behavior: 'smooth'});
-        });
 
-        document.getElementById('products').addEventListener('click', function (e) {
-            e.preventDefault();
-            const grid = document.getElementById('product-grid');
-            grid.classList.add('open');
-            grid.scrollIntoView({behavior: 'smooth'});
-        });
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = [
+                document.getElementById("hero"),
+                document.getElementById("products-section"),
+                document.getElementById("ai-chat-messages")
+            ];
 
-        window.addEventListener("load", () => {
-            document.querySelector(".hero").scrollIntoView({behavior: "smooth"});
-        });
+            let currentSection = 0;
+            let isScrolling = false;
+            const scrollDelay = 900;
 
+            function scrollToSection(index) {
+                if (index >= 0 && index < sections.length) {
+                    currentSection = index;
+                    sections[index].scrollIntoView({behavior: "smooth"});
+                }
+            }
+
+            // Button click handlers
+            document.getElementById('open-chat').addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                scrollToSection(2); // Jump to chat section
+            });
+
+            document.getElementById('products-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                scrollToSection(1); // Jump to products section
+            });
+
+            // Check if user is scrolling inside a scrollable container
+            function isScrollableContainer(target) {
+                const chatMessages = document.getElementById("chat-messages");
+                const productGrid = document.getElementById("product-grid");
+                return chatMessages?.contains(target) || productGrid?.contains(target);
+            }
+
+            // Check if scrollable container can scroll in the given direction
+            function canScrollInContainer(container, direction) {
+                if (direction === "down") {
+                    return container.scrollTop < (container.scrollHeight - container.clientHeight - 5);
+                } else {
+                    return container.scrollTop > 5;
+                }
+            }
+
+            // Wheel event (desktop) - REMOVED passive: true
+            window.addEventListener("wheel", (e) => {
+                // Allow normal scrolling inside chat or product grid
+                if (isScrollableContainer(e.target)) {
+                    const container = e.target.closest("#chat-messages, #product-grid");
+                    if (container) {
+                        const direction = e.deltaY > 0 ? "down" : "up";
+                        if (canScrollInContainer(container, direction)) {
+                            return;
+                        }
+                    }
+                }
+
+                if (isScrolling) {
+                    e.preventDefault();
+                    return;
+                }
+
+                e.preventDefault(); // Prevent default scroll
+                isScrolling = true;
+
+                if (e.deltaY > 0 && currentSection < sections.length - 1) {
+                    currentSection++;
+                    scrollToSection(currentSection);
+                } else if (e.deltaY < 0 && currentSection > 0) {
+                    currentSection--;
+                    scrollToSection(currentSection);
+                } else {
+                    isScrolling = false;
+                    return;
+                }
+
+                setTimeout(() => (isScrolling = false), scrollDelay);
+            });
+
+            // Touch events (mobile)
+            let touchStartY = 0;
+            let touchEndY = 0;
+            let touchStartTarget = null;
+
+            window.addEventListener("touchstart", (e) => {
+                touchStartY = e.changedTouches[0].clientY;
+                touchStartTarget = e.target;
+            });
+
+            window.addEventListener("touchend", (e) => {
+                touchEndY = e.changedTouches[0].clientY;
+
+                if (isScrollableContainer(touchStartTarget)) {
+                    return;
+                }
+
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeDistance = touchStartY - touchEndY;
+
+                if (isScrolling) return;
+                isScrolling = true;
+
+                if (swipeDistance > 50 && currentSection < sections.length - 1) {
+                    currentSection++;
+                } else if (swipeDistance < -50 && currentSection > 0) {
+                    currentSection--;
+                } else {
+                    isScrolling = false;
+                    return;
+                }
+
+                scrollToSection(currentSection);
+                setTimeout(() => (isScrolling = false), scrollDelay);
+            }
+
+            // Update current section on scroll
+            let scrollTimeout;
+            window.addEventListener("scroll", () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+                    sections.forEach((section, index) => {
+                        const rect = section.getBoundingClientRect();
+                        const sectionTop = rect.top + window.scrollY;
+                        const sectionBottom = sectionTop + rect.height;
+
+                        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                            currentSection = index;
+                        }
+                    });
+                }, 100);
+            });
+
+            // Ensure we start at hero on load
+            window.scrollTo(0, 0);
+        });
     </script>
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/filter.js' %}"></script>
