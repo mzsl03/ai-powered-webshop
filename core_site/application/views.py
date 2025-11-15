@@ -190,7 +190,9 @@ def product_detail(request, name):
     return render(request, 'item_view.html', {
         'product': product,
         'form': form,
-        "specs": specs
+        "specs": specs,
+        "is_admin": request.user.is_superuser 
+
     })
 
 @login_required(login_url='/')
@@ -199,6 +201,7 @@ def cart(request):
         return redirect('home')
     
     user_id = request.user.id
+
 
     user_products = Cart.objects.filter(user_id=user_id)
 
