@@ -11,6 +11,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 2vh;
 }
 
 .form-div {
@@ -22,7 +23,7 @@ html {
     max-width: 520px;
     max-height: 80vh;
     width: 100%;
-    margin: 0 auto;
+    margin: 24px auto 12px auto;
     position: relative;
     overflow-y: auto;
     overflow-x: hidden;
