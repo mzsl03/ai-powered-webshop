@@ -195,6 +195,9 @@ def product_detail(request, name):
 
 @login_required(login_url='/')
 def cart(request):
+    if request.user.is_superuser:
+        return redirect('home')
+    
     user_id = request.user.id
 
     user_products = Cart.objects.filter(user_id=user_id)
