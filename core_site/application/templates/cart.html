@@ -21,7 +21,7 @@
             {% if products %}
                 {% for item in products %}
                     <tr id="{{ item.id }}" class="cart-items">
-                        <td>{{ item.product }}</td>
+                        <td class="product-name">{{ item.product }}</td>
                         <td>{{ item.quantity }} db</td>
                         <td>{{ item.color }}</td>
                         {% if item.storage > 1 %}
@@ -41,18 +41,17 @@
                     </tr>
                 {% endfor %}
             {% else %}
-                <tr class="cart-items">
-                <td colspan="4">A kosár üres</td>
+                <tr class="cart-empty-row">
+                    <td colspan="6">
+                        <div class="cart-empty">
+                            <p class="cart-empty-title">A kosár üres</p>
+                        </div>
+                    </td>
+                </tr>
             {% endif %}
         </table>
 
         <div class="order-products">
-
-            <form action="{% url 'checkout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn">Rendelés leadása</button>
-            </form>
-
             <p class="total-sum">Végösszeg:
                 <span id="cart-total">
                     {% if sum %}
@@ -62,6 +61,10 @@
                     {% endif %}
                 </span> Ft
             </p>
+            <form action="{% url 'checkout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Rendelés leadása</button>
+            </form>
         </div>
 
         
