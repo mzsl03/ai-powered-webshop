@@ -29,9 +29,6 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
 
 html, body {
     height: 100%;
@@ -308,17 +305,14 @@ footer {
 
 
 @keyframes fadeOut {
-    /* 0%-nál (kezdet) teljesen látható */
     0% {
         opacity: 1;
     }
 
-    /* 80%-ig (pl. 4 másodpercig) látható marad */
     80% {
         opacity: 1;
     }
-
-    /* 100%-nál (pl. 5 másodpercnél) teljesen eltűnik */
+    
     100% {
         opacity: 0;
     }
