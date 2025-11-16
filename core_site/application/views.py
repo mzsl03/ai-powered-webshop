@@ -367,4 +367,4 @@ def checkout(request):
 
     messages.success(request, "Rendelésed sikeresen leadva!")
 
-    return redirect("user_order", user_id=request.user.id)
+    return redirect("user_order")
