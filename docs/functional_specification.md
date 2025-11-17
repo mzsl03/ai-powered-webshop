@@ -36,7 +36,7 @@ ezért nem tudja értelmezni a felhasználók természetes nyelvű kéréseit
 A hagyományos keresés és szűrés korlátozott, így a vásárlók nehezebben találják meg, amit keresnek,
 ami csökkenti az értékesítési arányt és a felhasználói elégedettséget.
 
-3-as
+
 ### Követelmény lista
 
 | Modul            | Név                      | Kifejtés                                                                                                                            |
@@ -65,7 +65,7 @@ ami csökkenti az értékesítési arányt és a felhasználói elégedettséget
 | Rendszer         | AI-etikai megfelelés     | Az AI működésének átláthatónak kell lennie, nem gyűjthet indokolatlan adatokat, és feleljen meg az EU AI-rendeletnek.               |
 | Rendszer         | Szabványoknak megfelelés | A rendszer igazodjon az ISO/IEC 27001, ISO/IEC 25010 és ISO/IEC 42001 (AI-irányítás) szabványokhoz.                                 |
 
-4-es
+
 ### Jelenlegi üzleti folyamatok modellje
 
 1. Termékkezelés
@@ -108,7 +108,7 @@ ami csökkenti az értékesítési arányt és a felhasználói elégedettséget
 - A pénzügyi kimutatások és forgalmi riportok automatikusan, időzítetten készülnek.
 
 
-5-os
+
 ### Igényelt üzleti folyamatok modellje
 
 - **AI-támogatott termékfeltöltés** –
