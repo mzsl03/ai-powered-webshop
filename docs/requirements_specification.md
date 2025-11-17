@@ -75,7 +75,6 @@ hogy megkönnyítse a vásárlók döntéseit és az adminisztrátor napi munká
 Az **AI-powered Phoneshop** így egy stabil, praktikus és korszerű alapot biztosít a mindennapi online értékesítéshez.
 
 
-4-es
 ### Funkcionális követelmények
 
 | Kategória       | Funkció                            | Leírás                                                                                                  |
@@ -94,7 +93,7 @@ Az **AI-powered Phoneshop** így egy stabil, praktikus és korszerű alapot bizt
 | Egyéb           | Rendszerstabilitás és biztonság    | A felület gyors, megbízható és megfelel a GDPR-előírásoknak.                                            |
 | Egyéb           | Vásárlói élmény és támogatás       | Az AI gördülékennyé teszi a vásárlási folyamatot, segít az ügyfélszolgálat tehermentesítésében.         |
 
-5-os
+
 ### A rendszerre vonatkozó törvények, rendeletek, szabványok
 
 A rendszernek meg kell felelnie a személyes adatok kezelésére és információbiztonságra vonatkozó jogszabályoknak,
@@ -120,7 +119,7 @@ a naplózott adatoknak pedig visszakövethetőnek és hitelesnek kell lenniük.
 Összességében a rendszernek biztonságosnak, jogszerűnek, átláthatónak és hosszú távon fenntarthatónak kell működnie,
 garantálva a vásárlók adatainak védelmét és a rendszer megbízható üzemeltetését.
 
-6-os
+
 ### Jelenlegi üzleti folyamatok modellje
 
 1. **Termékkezelés**
@@ -156,7 +155,7 @@ a mesterséges intelligencia támogatása és a személyre szabott vásárlói �
 ami időigényes és növeli a hibalehetőségeket.
 
 
-7-es
+
 ### Igényelt üzleti folyamatok modellje
 
 - **Termékfeltöltés az adminfelületen** –
@@ -205,7 +204,7 @@ Az igényelt üzleti folyamatok célja, hogy a rendszer hatékony, átlátható 
 támogassa az értékesítést, az adminisztrációt és a pénzügyi kimutatásokat, miközben csökkenti a manuális 
 beavatkozás szükségességét.
 
-8-as
+
 ### Követelmény lista
 
 | Modul          | Név                        | Kifejtés                                                                                                                             |
