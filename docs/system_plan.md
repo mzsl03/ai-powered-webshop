@@ -87,7 +87,7 @@ mivel egyértelműen látható, mely feladatok igényelnek azonnali figyelmet,
 - Követi az **ISO/IEC 27001** adatbiztonsági szabvány alapelveit.  
 - A felhasználói adatokhoz kizárólag engedélyezett személyek férhetnek hozzá.  
 - Minden művelet naplózásra kerül az átláthatóság és visszakövethetőség érdekében.
-5. Geri
+
 ### Funkcionális terv
 
 **Rendszerszereplők:**
