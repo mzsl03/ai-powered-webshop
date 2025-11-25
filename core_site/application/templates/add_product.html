@@ -11,7 +11,12 @@
         <div class="form-div">
             <div class="form-container">
                 <form method="POST" class="form-form" novalidate>
-                    <h2 class="form-title-card">Új termék létrehozása</h2>
+                    {% if product %}
+                        <h2 class="form-title-card">{{product.name}} módosítása</h2>
+                    {% else %}
+                        <h2 class="form-title-card">Új termék létrehozása</h2>
+                    {% endif %}
+
                     {% csrf_token %}
                     {% if form.name.errors %}
                         {% for error in form.name.errors %}
@@ -52,7 +57,11 @@
                         {{ form.colors.label_tag }}
                         {{ form.colors }}
                     </div>
-                    <button class="btn" type="submit">Termék létrehozása</button>
+                    {% if product %}
+                        <button class="btn" type="submit">Termék módosítása</button>
+                    {% else %}
+                        <button class="btn" type="submit">Termék létrehozása</button>
+                    {% endif %}
                 </form>
             </div>
         </div>
