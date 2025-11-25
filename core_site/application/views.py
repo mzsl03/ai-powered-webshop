@@ -148,6 +148,27 @@ def add_product(request):
         "categories": all_categories
     })
 
+login_required(login_url="/")
+def update_product(request, product_id):
+    product = get_object_or_404(Products, pk=product_id)
+    
+    if not request.user.is_superuser:
+        return redirect('home')
+    
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"{product.name} sikeresen módosítva.")
+            return redirect('home')
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, "add_product.html",{
+        "product": product,
+        "form": form,
+    })
+
 @login_required(login_url='/')
 def add_specs(request, product_id):
     if not request.user.is_superuser:
@@ -368,3 +389,4 @@ def checkout(request):
     messages.success(request, "Rendelésed sikeresen leadva!")
 
     return redirect("user_order")
+
