@@ -1,5 +1,5 @@
 from django import forms
-from application.models import Products
+from application.models import Products, Specs
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 
@@ -54,9 +54,29 @@ class ProductForm(forms.ModelForm):
     )
 
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        if self.instance and self.instance.pk and 'colors' in self.initial:
+            
+            raw_data = self.initial['colors']
+            
+            if isinstance(raw_data, list):
+                self.initial['colors'] = ",".join(raw_data)
+                
+            elif isinstance(raw_data, str):
+                cleaned = raw_data.replace('[', '').replace(']', '').replace("'", "").replace('"', "")
+                self.initial['colors'] = cleaned
+
     def clean_name(self):
         name = self.cleaned_data.get('name')
-        if Products.objects.filter(name=name).exists():
+
+        qs = Products.objects.filter(name=name)
+        
+        if self.instance.pk:
+            qs = qs.exclude(pk=self.instance.pk)
+    
+        if qs.exists():
             raise ValidationError("Ez a termék már létezik!")
         return name
 
@@ -109,7 +129,12 @@ class ProductForm(forms.ModelForm):
             instance.stock = [10] * len(colors)
             
         elif self.cleaned_data["category"] == "Telefon":
-            instance.stock = []
+            if self.instance.pk:
+                specs = Specs.objects.get(product_id=self.instance.pk)
+                times = len(specs.memory) * len(colors)
+                instance.stock = [10] * times
+            else:
+                instance.stock = []
 
         instance.image_path = [f"{slug_name}-{color.lower()}.png" for color in colors]
 
