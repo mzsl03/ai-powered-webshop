@@ -1,7 +1,15 @@
+import json
+import os
+import re
+
+from openai import OpenAI
+
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+
 from .forms.register_form import RegistrationForm
 from .forms.user_update_form import UserUpdateForm
 from .models import Products, Cart, Sales, Specs, Orders, UserInfo, OrderItem
@@ -412,3 +420,46 @@ def checkout(request):
 
     return redirect("user_order")
 
+
+@csrf_exempt
+def ai_chat_api(request):
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            user_message = data.get("message", "")
+
+            products = Products.objects.all()
+            product_dict = [(p.name, p.price) for p in products]
+
+
+            system_prompt = f"""
+               Te egy webshop AI-asszisztense vagy.
+               Ezek a raktáron lévő termékek: {product_dict}.
+               Ajánlj közülük a felhasználó kérdése alapján.
+               Ne használj markdown szintaxist a válaszaidban.
+               "http://127.0.0.1:8000/product/{product_dict[0][0]}/"
+               - ilyen formátumban adj ajánlást.
+               - cseréd a space karaktereket '%' karakterre. 
+               """
+
+            response = client.responses.create(
+                model="gpt-4o-mini",
+                input=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_message},
+                ]
+            )
+
+            reply = response.output_text
+            match = re.search(r"http://[^\s ]+", reply)
+            link = match.group(0) if match else None
+            if link:
+                reply = reply.replace(link, "")
+            return JsonResponse({"reply": reply, "link" : link })
+
+        except Exception as e:
+            print("AI chat ERROR:", e)
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
