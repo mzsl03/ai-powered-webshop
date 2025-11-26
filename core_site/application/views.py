@@ -169,6 +169,28 @@ def update_product(request, product_id):
         "form": form,
     })
 
+login_required(login_url='/')
+def update_specs(request,  specs_id):
+    specs = get_object_or_404(Specs, pk=specs_id)
+
+    if not request.user.is_superuser:
+        return redirect('home')
+    
+    if request.method == 'POST':
+        form = SpecsForm(request.POST, instance=specs)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"{specs.product.name} specifikációja sikeresen módosítva.")
+            return redirect('home')
+    else:
+        form = SpecsForm(instance=specs)
+
+    return render(request, "add_specs.html",{
+        "specs": specs,
+        "form": form,
+    })
+
+
 @login_required(login_url='/')
 def add_specs(request, product_id):
     if not request.user.is_superuser:

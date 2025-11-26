@@ -150,3 +150,23 @@ class SpecsForm(forms.ModelForm):
             "required": "Kiadási dátum kitöltése kötelező!"
         }
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if self.instance and self.instance.pk and 'memory' in self.initial and 'storage' in self.initial:
+
+            raw_data_memory = self.initial["memory"]
+            raw_data_storage = self.initial["storage"]
+
+            if isinstance(raw_data_memory, list):
+                self.initial['memory'] = ",".join([str(x) for x in raw_data_memory])
+            elif isinstance(raw_data_memory, str):
+                cleaned_memory = raw_data_memory.replace('[', '').replace(']', '').replace("'", "").replace('"', "")
+                self.initial['memory'] = cleaned_memory
+
+            if isinstance(raw_data_storage, list):
+                self.initial['storage'] = ",".join([str(x) for x in raw_data_storage])
+            elif isinstance(raw_data_storage, str):
+                cleaned_storage = raw_data_storage.replace('[', '').replace(']', '').replace("'", "").replace('"', "")
+                self.initial['storage'] = cleaned_storage
