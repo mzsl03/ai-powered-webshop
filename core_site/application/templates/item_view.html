@@ -15,6 +15,7 @@
             {% if is_admin == True %}
                 <div class="update-button">
                     <a href="{% url 'update_product' product.id %}"><button type="submit" class="btn"> Termék adatok módosítása</button></a>
+                    <a href="{% url 'update_specs' specs.id %}"><button type="submit" class="btn"> Specifikációs adatok módosítása</button></a>
                 </div>
             {% endif %}
 

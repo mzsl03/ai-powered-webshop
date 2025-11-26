@@ -47,4 +47,6 @@ urlpatterns = [
     path("orders/<int:order_id>/update-status/", views.update_order_status, name="update_order_status"),
     path("product/<int:product_id>/update/", views.update_product, name="update_product"),
     path("api/ai-chat/", views.ai_chat_api, name="ai_chat_api"),
+    path("specs/<int:specs_id>/update/", views.update_specs, name="update_specs"),
+
 ]
