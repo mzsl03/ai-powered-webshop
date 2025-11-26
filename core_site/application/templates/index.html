@@ -7,49 +7,12 @@
 {% endblock %}
 
 {% block main %}
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const chatMessages = document.getElementById("chat-messages");
-            const chatInput = document.getElementById("chat-text");
-            const sendBtn = document.getElementById("send-btn");
-
-            function sendMessage() {
-                const text = chatInput.value.trim();
-                if (text !== "") {
-                    const userMsg = document.createElement("div");
-                    userMsg.className = "message-user";
-                    userMsg.textContent = text;
-                    chatMessages.appendChild(userMsg);
-
-                    chatInput.value = "";
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-                    setTimeout(() => {
-                        const botMsg = document.createElement("div");
-                        botMsg.className = "message-bot";
-                        botMsg.textContent = "Demonstrációs üzenet.";
-                        chatMessages.appendChild(botMsg);
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }, 500);
-                }
-            }
-
-            sendBtn.addEventListener("click", sendMessage);
-
-            chatInput.addEventListener("keypress", e => {
-                if (e.key === "Enter") {
-                    e.preventDefault();
-                    sendMessage();
-                }
-            });
-        });
-    </script>
 
     {% if messages %}
         <div id="container-messages">
-        {% for message in messages %}
-            <span class="success messages">{{ message }}</span>
-        {% endfor %}
+            {% for message in messages %}
+                <span class="success messages">{{ message }}</span>
+            {% endfor %}
         </div>
     {% endif %}
 
@@ -73,7 +36,7 @@
                 <form method="get" action="#products">
                     <label class="ctrl">
                         <input value="{{ filters.name|default:''}}" name='name' id="q" type="search"
-                               placeholder="Keresés (pl. 'fülhallgató')" />
+                               placeholder="Keresés (pl. 'fülhallgató')"/>
                     </label>
                     <label class="ctrl">
                         <span class="filter-label">Kategória</span>
@@ -136,7 +99,9 @@
             <div class="chat-container">
                 <div class="chat-messages" id="chat-messages">
                     <div class="message-user">Hello!</div>
-                    <div class="message-bot">Szia! Miben segíthetek?</div>
+                    <div class="message-bot">
+                        Szia! Miben segíthetek?
+                    </div>
                 </div>
                 <div class="chat-input">
                     <input type="text" id="chat-text" placeholder="Írj az aszisztensnek..."/>
@@ -145,6 +110,46 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.getElementById("send-btn").onclick = sendMessage;
+        document.getElementById("chat-text").addEventListener("keypress", e => {
+            if (e.key === "Enter") sendMessage();
+        });
+
+        async function sendMessage() {
+            const input = document.getElementById("chat-text");
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            appendMessage("user", msg);
+            input.value = "";
+
+            const res = await fetch("/api/ai-chat/", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({message: msg}),
+            });
+
+            const data = await res.json();
+            appendMessage("bot", data.reply, data.link);
+        }
+
+        function appendMessage(role, text, link = null) {
+            const messages = document.getElementById("chat-messages");
+            const div = document.createElement("div");
+            div.className = `message-${role}`;
+
+            if (link) {
+                div.innerHTML = `${text} <a href="${link}" class="chat-link" target="_blank">Megnyitás</a>`;
+            } else {
+                div.textContent = text;
+            }
+
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
 
     <script>
         const STATIC_IMAGES_URL = "{% static 'images/' %}";
