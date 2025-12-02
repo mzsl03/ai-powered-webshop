@@ -20,7 +20,12 @@
         <div class="form-div">
             <div class="form-container">
                 <form method="POST" class="form-form" novalidate>
-                    <h2 class="form-title-card">Új termék specifikáció létrehozása</h2>
+                    {% if specs %}
+                        <h2 class="form-title-card">{{ specs.product.name }} specifikáció módosítása</h2>
+                    {% else %}
+                        <h2 class="form-title-card">Új termék specifikáció létrehozása</h2>
+                    {% endif %}
+
                     {% csrf_token %}
                     {% if form.CPU_speed.errors %}
                         {% for error in form.CPU_speed.errors %}
@@ -192,8 +197,12 @@
                         {{ form.release_date.label_tag }}
                         {{ form.release_date }}
                     </div>
-
-                    <button class="btn" type="submit">Specifikáció létrehozása</button>
+                    
+                    {% if specs %}
+                        <button class="btn" type="submit">Specifikáció módosítása</button>
+                    {% else %}
+                        <button class="btn" type="submit">Specifikáció létrehozása</button>
+                    {% endif %}
                 </form>
             </div>
         </div>
