@@ -21,11 +21,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_POST
 
 
-
-
-
 def login(request):
-
     if request.user.is_authenticated:
         return redirect('home')
 
@@ -56,6 +52,7 @@ def login(request):
 
     return render(request, 'login.html', {'error': error})
 
+
 def register_view(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -82,13 +79,14 @@ def register_view(request):
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
 
+
 @login_required(login_url='/')
 def home(request):
     products = Products.objects.all()
 
     all_categories = Products.objects.values_list("category", flat=True).distinct()
 
-    products, categories, filters= sort_product(request, products)
+    products, categories, filters = sort_product(request, products)
 
     context = {
         'products': products,
@@ -117,7 +115,6 @@ def sort_product(request, products):
         name = name.replace(" ", "").lower()
         products = [p for p in products if name in p.name.replace(" ", "").lower()]
 
-
     if category and category != "all":
         products = [p for p in products if p.category == category]
 
@@ -127,10 +124,10 @@ def sort_product(request, products):
     if max_price:
         products = [p for p in products if p.price <= int(max_price)]
 
-
     categories = Products.objects.values_list('category', flat=True).distinct()
 
     return products, categories, filters
+
 
 @login_required(login_url='/')
 def add_product(request):
@@ -142,7 +139,7 @@ def add_product(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             product = form.save()
-                 
+
             if product.category == 'Telefon':
                 messages.success(request, f"{product.name} sikeresen létrehozva. Add meg a specifikációs adatokat!")
                 return redirect('add_specs', product_id=product.id)
@@ -156,13 +153,16 @@ def add_product(request):
         "categories": all_categories
     })
 
+
 login_required(login_url="/")
+
+
 def update_product(request, product_id):
     product = get_object_or_404(Products, pk=product_id)
-    
+
     if not request.user.is_superuser:
         return redirect('home')
-    
+
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
@@ -172,10 +172,11 @@ def update_product(request, product_id):
     else:
         form = ProductForm(instance=product)
 
-    return render(request, "add_product.html",{
+    return render(request, "add_product.html", {
         "product": product,
         "form": form,
     })
+
 
 @login_required(login_url='/')
 def add_specs(request, product_id):
@@ -186,13 +187,12 @@ def add_specs(request, product_id):
     if request.method == 'POST':
         form = SpecsForm(request.POST)
         if form.is_valid():
-
             specs = form.save(commit=False)
             specs.product = product
             specs = form.save()
-            
+
             product_stock_len = len(specs.storage) * len(specs.product.colors)
-            product.stock =  [10] * product_stock_len
+            product.stock = [10] * product_stock_len
             product.save()
 
             messages.success(request, f"{specs.product.name} specifikációja sikeresen létrehozva!")
@@ -210,7 +210,6 @@ def product_detail(request, name):
     if product.category != "Tartozék":
         specs = Specs.objects.filter(product=product).first()
 
-
     if request.method == 'POST':
         form = SpecsForm(request.POST, instance=specs)
         if form.is_valid():
@@ -222,22 +221,21 @@ def product_detail(request, name):
     else:
         form = SpecsForm(instance=specs)
 
-
     return render(request, 'item_view.html', {
         'product': product,
         'form': form,
         "specs": specs,
-        "is_admin": request.user.is_superuser 
+        "is_admin": request.user.is_superuser
 
     })
+
 
 @login_required(login_url='/')
 def cart(request):
     if request.user.is_superuser:
         return redirect('home')
-    
-    user_id = request.user.id
 
+    user_id = request.user.id
 
     user_products = Cart.objects.filter(user_id=user_id)
 
@@ -251,6 +249,7 @@ def cart(request):
 
     return render(request, "cart.html", context)
 
+
 @require_POST
 @login_required
 def delete_cart_item(request, item_id):
@@ -258,12 +257,12 @@ def delete_cart_item(request, item_id):
         item = Cart.objects.get(id=item_id, user=request.user)
         item.delete()
 
-
         user_products = Cart.objects.filter(user_id=request.user)
         new_total_sum = sum(item.price for item in user_products)
         return JsonResponse({'success': True, "new_total": new_total_sum})
     except Cart.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Item not found'}, status=404)
+
 
 @login_required(login_url='/')
 def user_update(request):
@@ -291,6 +290,7 @@ def user_order(request):
     deleted = Orders.objects.filter(user=user, status='törölve')
     return render(request, 'user_order.html', {'processing': processing, 'delivered': delivered, 'deleted': deleted, })
 
+
 @login_required
 def all_user_order(request):
     if not request.user.is_superuser:
@@ -298,6 +298,7 @@ def all_user_order(request):
 
     orders = Orders.objects.all().order_by('-order_time')
     return render(request, 'list_orders.html', {'orders': orders})
+
 
 def update_order_status(request, order_id):
     if request.method == "POST":
@@ -311,12 +312,11 @@ def update_order_status(request, order_id):
 
     return redirect("all_user_order")
 
+
 @login_required(login_url='/')
 def add_to_cart(request, product_id):
-
     if request.user.is_superuser:
         return redirect('home')
-
 
     phoneshop_user = request.user.phoneshop_user
     print("Adding to cart for:", phoneshop_user.id)
@@ -336,8 +336,6 @@ def add_to_cart(request, product_id):
             error = "Válassz színt és tárhelyet is!"
 
             return render(request, 'item_view.html', {'error': error, "product": product, "specs": specs})
-        
-
 
         is_in_cart = Cart.objects.filter(
             user=request.user,
@@ -367,6 +365,7 @@ def add_to_cart(request, product_id):
             cart_item.save()
 
         return redirect('cart')
+
 
 @login_required(login_url='/')
 def checkout(request):
@@ -407,34 +406,49 @@ def ai_chat_api(request):
             data = json.loads(request.body)
             user_message = data.get("message", "")
 
+            history = request.session.get("chat_history", [])
+
             products = Products.objects.all()
             product_dict = [(p.name, p.price) for p in products]
 
-
             system_prompt = f"""
-               Te egy webshop AI-asszisztense vagy.
-               Ezek a raktáron lévő termékek: {product_dict}.
-               Ajánlj közülük a felhasználó kérdése alapján.
-               Ne használj markdown szintaxist a válaszaidban.
-               "http://127.0.0.1:8000/product/{product_dict[0][0]}/"
-               - ilyen formátumban adj ajánlást.
-               - cseréd a space karaktereket '%' karakterre. 
+   Te egy webshop AI-asszisztense vagy.
+   Ezek a raktáron lévő termékek: {product_dict}.
+   Ajánlj közülük a felhasználó kérdése alapján.
+   Ne használj markdown szintaxist a válaszaidban.
+
+   A termék oldalak a következő formátumú URL-en érhetők el:
+   http://127.0.0.1:8000/product/TERMÉKNEV/
+   
+   - A TERMÉKNEV-et pontosan a termék nevéből kell képezni.
+   - A szóközöket %20-ra cseréld (URL encoding).
+   - Pontosan EGY linket küldj a válaszban.
+   - A linket a válasz VÉGÉRE tedd egy külön mondatban.
                """
+
+            messages = [{"role": "system", "content": system_prompt}]
+            messages += history
+            messages.append({"role": "user", "content": user_message})
 
             response = client.responses.create(
                 model="gpt-4o-mini",
-                input=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_message},
-                ]
+                input=messages
             )
 
             reply = response.output_text
             match = re.search(r"http://[^\s ]+", reply)
             link = match.group(0) if match else None
             if link:
-                reply = reply.replace(link, "")
-            return JsonResponse({"reply": reply, "link" : link })
+                reply = reply.replace(link, "").strip()
+
+            history.append({"role": "user", "content": user_message})
+            history.append({"role": "assistant", "content": reply + link})
+            request.session["chat_history"] = history
+
+            if len(history) > 20:
+                history = history[-20:]
+
+            return JsonResponse({"reply": reply, "link": link})
 
         except Exception as e:
             print("AI chat ERROR:", e)
