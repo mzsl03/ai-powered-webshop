@@ -183,7 +183,7 @@ def update_specs(request,  specs_id):
 
     if not request.user.is_superuser:
         return redirect('home')
-    
+
     if request.method == 'POST':
         form = SpecsForm(request.POST, instance=specs)
         if form.is_valid():
@@ -429,34 +429,50 @@ def ai_chat_api(request):
             data = json.loads(request.body)
             user_message = data.get("message", "")
 
+            history = request.session.get("chat_history", [])
+
             products = Products.objects.all()
             product_dict = [(p.name, p.price) for p in products]
 
 
             system_prompt = f"""
-               Te egy webshop AI-asszisztense vagy.
-               Ezek a raktáron lévő termékek: {product_dict}.
-               Ajánlj közülük a felhasználó kérdése alapján.
-               Ne használj markdown szintaxist a válaszaidban.
-               "http://127.0.0.1:8000/product/{product_dict[0][0]}/"
-               - ilyen formátumban adj ajánlást.
-               - cseréd a space karaktereket '%' karakterre. 
+   Te egy webshop AI-asszisztense vagy.
+   Ezek a raktáron lévő termékek: {product_dict}.
+   Ajánlj közülük a felhasználó kérdése alapján.
+   Ne használj markdown szintaxist a válaszaidban.
+
+   A termék oldalak a következő formátumú URL-en érhetők el:
+   http://127.0.0.1:8000/product/TERMÉKNEV/
+   
+   - A TERMÉKNEV-et pontosan a termék nevéből kell képezni.
+   - A szóközöket %20-ra cseréld (URL encoding).
+   - Pontosan EGY linket küldj a válaszban.
+   - A linket a válasz VÉGÉRE tedd egy külön mondatban.
                """
+
+            messages = [{"role": "system", "content": system_prompt}]
+            messages += history
+            messages.append({"role": "user", "content": user_message})
 
             response = client.responses.create(
                 model="gpt-4o-mini",
-                input=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_message},
-                ]
+                input=messages
             )
 
             reply = response.output_text
             match = re.search(r"http://[^\s ]+", reply)
             link = match.group(0) if match else None
             if link:
-                reply = reply.replace(link, "")
-            return JsonResponse({"reply": reply, "link" : link })
+                reply = reply.replace(link, "").strip()
+
+            history.append({"role": "user", "content": user_message})
+            history.append({"role": "assistant", "content": reply + link})
+            request.session["chat_history"] = history
+
+            if len(history) > 20:
+                history = history[-20:]
+
+            return JsonResponse({"reply": reply, "link": link})
 
         except Exception as e:
             print("AI chat ERROR:", e)
