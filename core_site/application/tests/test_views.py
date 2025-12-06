@@ -267,3 +267,33 @@ class ViewTests(TestCase):
         self.phone.refresh_from_db()
         self.assertEqual(self.phone.price, new_price)
 
+    def test_update_specs_view_success(self):
+        self.client.login(username=self.superuser.username, password=self.password)
+        new_cpu_speed = '3.0GHz'
+        
+        specs_data = {
+            'CPU_speed': new_cpu_speed,
+            'CPU_type': self.specs.CPU_type,
+            'display_size': self.specs.display_size,
+            'resolution': self.specs.resolution,
+            'display_technology': self.specs.display_technology,
+            'max_refresh_rate': self.specs.max_refresh_rate,
+            'Spen': self.specs.Spen,
+            'camera': self.specs.camera,
+            'memory': ','.join(map(str, self.specs.memory)),
+            'storage': ','.join(map(str, self.specs.storage)),
+            'os': self.specs.os,
+            'charge': self.specs.charge,
+            'sensors': self.specs.sensors,
+            'size': self.specs.size,
+            'weight': self.specs.weight,
+            'battery': self.specs.battery,
+            'release_date': self.specs.release_date
+        }
+        
+        response = self.client.post(reverse('update_specs', kwargs={'specs_id': self.specs.id}), specs_data, follow=True)
+        
+        self.assertRedirects(response, reverse('home'))
+        self.specs.refresh_from_db()
+        self.assertEqual(self.specs.CPU_speed, new_cpu_speed)
+
