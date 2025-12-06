@@ -304,3 +304,15 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(order, response.context['orders'])
 
+    def test_update_order_status(self):
+        self.client.login(username=self.superuser.username, password=self.password)
+        order = Orders.objects.create(user=self.user, status='feldolgozás_alatt')
+        
+        response = self.client.post(reverse('update_order_status', kwargs={'order_id': order.id}), {
+            'status': 'törölve'
+        }, follow=True)
+        
+        self.assertRedirects(response, reverse('all_user_order'))
+        order.refresh_from_db()
+        self.assertEqual(order.status, 'törölve')
+
