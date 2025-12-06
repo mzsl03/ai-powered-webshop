@@ -185,3 +185,13 @@ class ViewTests(TestCase):
         self.assertEqual(Cart.objects.count(), 1)
         new_item = Cart.objects.first()
         self.assertEqual(new_item.storage, 256)
+
+    def test_delete_cart_item(self):
+        self.client.login(username=self.user.username, password=self.password)
+        cart_item_id = self.cart_item.id
+        
+        response = self.client.post(reverse('delete_cart_item', kwargs={'item_id': cart_item_id}))
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Cart.objects.filter(id=cart_item_id).exists())
+
