@@ -95,3 +95,13 @@ class ViewTests(TestCase):
         }, follow=True)
         self.assertRedirects(response, reverse('home'))
         self.assertTrue(response.context['user'].is_authenticated)
+
+
+    def test_login_view_post_failure(self):
+        response = self.client.post(reverse('login'), {
+            'username': self.user.username,
+            'password': 'rosszjelszo'
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'login.html')
+        self.assertIn('Hibás felhasználónév vagy jelszó!', response.content.decode())
