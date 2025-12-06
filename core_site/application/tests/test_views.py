@@ -128,5 +128,13 @@ class ViewTests(TestCase):
         self.assertRedirects(response, reverse('login'))
         self.assertTrue(User.objects.filter(username='newuser').exists())
         self.assertTrue(UserInfo.objects.filter(user__username='newuser').exists())
+    
+    def test_logout_view(self):
+        self.client.login(username=self.user.username, password=self.password)
+        response = self.client.post(reverse('logout'), follow=True)
+        self.assertRedirects(response, reverse('login'))
+        self.assertFalse(response.context['user'].is_authenticated)
+
+
 
 
