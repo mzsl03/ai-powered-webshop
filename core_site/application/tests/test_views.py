@@ -105,3 +105,9 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'login.html')
         self.assertIn('Hibás felhasználónév vagy jelszó!', response.content.decode())
+    
+    def test_register_view_get(self):
+        response = self.client.get(reverse('register'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'register.html')
+
