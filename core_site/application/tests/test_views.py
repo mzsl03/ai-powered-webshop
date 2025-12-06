@@ -316,3 +316,25 @@ class ViewTests(TestCase):
         order.refresh_from_db()
         self.assertEqual(order.status, 'törölve')
 
+    @patch('application.views.OpenAI')
+    def test_ai_chat_api_success(self, MockOpenAI):
+        self.client.login(username=self.user.username, password=self.password)
+        
+        mock_client = MockOpenAI.return_value
+        mock_response = MagicMock()
+        mock_response.output_text = "Persze, ajánlom a Teszt Telefon-t. Ez a link a termék oldalához: http://127.0.0.1:8000/product/Teszt%20Telefon/"
+        mock_client.responses.create.return_value = mock_response
+        
+        request_data = json.dumps({'message': 'Melyik a legjobb telefon?'})
+        
+        response = self.client.post(
+            reverse('ai_chat_api'),
+            request_data,
+            content_type='application/json'
+        )
+        
+        self.assertEqual(response.status_code, 200)
+        json_response = response.json()
+        self.assertIn('reply', json_response)
+        self.assertIn('link', json_response)
+        self.assertEqual(json_response['link'], 'http://127.0.0.1:8000/product/Teszt%20Telefon/')
