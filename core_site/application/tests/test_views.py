@@ -205,3 +205,16 @@ class ViewTests(TestCase):
         self.assertRedirects(response, reverse('user_order')) 
         self.assertEqual(Cart.objects.count(), 0) 
         self.assertEqual(Orders.objects.count(), 1)
+
+    def test_add_product_view_post_phone_success(self):
+        self.client.login(username=self.superuser.username, password=self.password)
+        product_data = {
+            'name': 'Új Telefon',
+            'price': 200000,
+            'category': 'Telefon',
+            'colors': 'Kék,Zöld',
+            'image_path': '/img/newphone.jpg',
+        }
+        response = self.client.post(reverse('add_product'), product_data, follow=True)
+        new_product = Products.objects.get(name='Új Telefon')
+        self.assertRedirects(response, reverse('add_specs', kwargs={'product_id': new_product.id})) 
