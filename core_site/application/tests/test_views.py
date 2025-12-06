@@ -111,3 +111,22 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'register.html')
 
+    def test_register_view_post_success(self):
+        new_user_data = {
+            'first_name': 'New',
+            'last_name': 'User',
+            'username': 'newuser',
+            'email': 'new@user.com',
+            'password': self.password,
+            'password_confirm': self.password,
+            'address': 'New Address 10',
+            'birth_date': '1995-12-31',
+            'phone_number': '06309876543',
+        }
+        response = self.client.post(reverse('register'), new_user_data, follow=True)
+        
+        self.assertRedirects(response, reverse('login'))
+        self.assertTrue(User.objects.filter(username='newuser').exists())
+        self.assertTrue(UserInfo.objects.filter(user__username='newuser').exists())
+
+
