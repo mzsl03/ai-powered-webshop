@@ -195,3 +195,13 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Cart.objects.filter(id=cart_item_id).exists())
 
+
+    def test_checkout_success(self):
+        self.client.login(username=self.user.username, password=self.password)
+        initial_cart_count = Cart.objects.count()
+
+        response = self.client.get(reverse('checkout'), follow=True)
+        
+        self.assertRedirects(response, reverse('user_order')) 
+        self.assertEqual(Cart.objects.count(), 0) 
+        self.assertEqual(Orders.objects.count(), 1)
