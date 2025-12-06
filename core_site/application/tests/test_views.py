@@ -159,5 +159,9 @@ class ViewTests(TestCase):
         self.assertEqual(len(response.context['products']), 1)
         self.assertIn(self.accessory, response.context['products'])
 
-
-
+    def test_product_detail_phone(self):
+        self.client.login(username=self.user.username, password=self.password)
+        response = self.client.get(reverse('product-name', kwargs={'name': self.phone.name}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['product'], self.phone)
+        self.assertEqual(response.context['specs'], self.specs)
