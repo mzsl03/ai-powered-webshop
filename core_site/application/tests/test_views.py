@@ -147,4 +147,10 @@ class ViewTests(TestCase):
         response = self.client.get(reverse('home'))
         self.assertRedirects(response, '/?next=/home/')
 
+    def test_home_view_filter_by_name(self):
+        self.client.login(username=self.user.username, password=self.password)
+        response = self.client.get(reverse('home'), {'name': 'telefon'})
+        self.assertEqual(len(response.context['products']), 1)
+        self.assertIn(self.phone, response.context['products'])
+
 
