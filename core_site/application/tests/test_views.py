@@ -218,3 +218,33 @@ class ViewTests(TestCase):
         response = self.client.post(reverse('add_product'), product_data, follow=True)
         new_product = Products.objects.get(name='Új Telefon')
         self.assertRedirects(response, reverse('add_specs', kwargs={'product_id': new_product.id})) 
+
+    def test_add_specs_view_post_success(self):
+        self.client.login(username=self.superuser.username, password=self.password)
+        temp_phone = Products.objects.create(
+            name='Temp Phone', price=100, category='Telefon', colors=['Piros', 'Kék']
+        )
+        
+        specs_data = {
+            'CPU_speed': '2.0GHz',
+            'CPU_type': 'Dual',
+            'display_size': '5.0 inch',
+            'resolution': '1080x720',
+            'display_technology': 'LCD',
+            'max_refresh_rate': '60Hz',
+            'Spen': 'on',
+            'camera': '8MP',
+            'memory': '4',
+            'storage': '64,128',
+            'os': 'iOS',
+            'charge': '5W',
+            'sensors': 'Giro',
+            'size': '140x60x10mm',
+            'weight': 150,
+            'battery': 3000,
+            'release_date': '2022-10-10'
+        }
+        
+        response = self.client.post(reverse('add_specs', kwargs={'product_id': temp_phone.id}), specs_data, follow=True)
+        self.assertRedirects(response, reverse('home'))
+        self.assertTrue(Specs.objects.filter(product=temp_phone).exists())
