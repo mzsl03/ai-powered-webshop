@@ -152,5 +152,12 @@ class ViewTests(TestCase):
         response = self.client.get(reverse('home'), {'name': 'telefon'})
         self.assertEqual(len(response.context['products']), 1)
         self.assertIn(self.phone, response.context['products'])
+    
+    def test_home_view_filter_by_category(self):
+        self.client.login(username=self.user.username, password=self.password)
+        response = self.client.get(reverse('home'), {'category': 'Tartozék'})
+        self.assertEqual(len(response.context['products']), 1)
+        self.assertIn(self.accessory, response.context['products'])
+
 
 
