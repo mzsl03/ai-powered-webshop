@@ -142,3 +142,9 @@ class ViewTests(TestCase):
         self.assertTemplateUsed(response, 'index.html')
         self.assertIn(self.phone, response.context['products'])
 
+    
+    def test_home_view_unauthenticated(self):
+        response = self.client.get(reverse('home'))
+        self.assertRedirects(response, '/?next=/home/')
+
+
