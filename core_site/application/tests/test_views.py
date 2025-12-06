@@ -248,3 +248,22 @@ class ViewTests(TestCase):
         response = self.client.post(reverse('add_specs', kwargs={'product_id': temp_phone.id}), specs_data, follow=True)
         self.assertRedirects(response, reverse('home'))
         self.assertTrue(Specs.objects.filter(product=temp_phone).exists())
+
+    def test_update_product_view_success(self):
+        self.client.login(username=self.superuser.username, password=self.password)
+        new_price = 110000
+        
+        update_data = {
+            'name': self.phone.name, 
+            'price': new_price,
+            'category': self.phone.category,
+            'colors': ','.join(self.phone.colors),
+            'image_path': ','.join(self.phone.image_path)
+        }
+        
+        response = self.client.post(reverse('update_product', kwargs={'product_id': self.phone.id}), update_data, follow=True)
+        
+        self.assertRedirects(response, reverse('home'))
+        self.phone.refresh_from_db()
+        self.assertEqual(self.phone.price, new_price)
+
