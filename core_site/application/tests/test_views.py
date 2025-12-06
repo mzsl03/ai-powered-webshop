@@ -87,3 +87,11 @@ class ViewTests(TestCase):
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'login.html')
+
+    def test_login_view_post_success(self):
+        response = self.client.post(reverse('login'), {
+            'username': self.user.username,
+            'password': self.password
+        }, follow=True)
+        self.assertRedirects(response, reverse('home'))
+        self.assertTrue(response.context['user'].is_authenticated)
