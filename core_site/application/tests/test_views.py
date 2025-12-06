@@ -171,3 +171,17 @@ class ViewTests(TestCase):
         response = self.client.get(reverse('cart'))
         self.assertEqual(response.status_code, 200)
         self.assertIn(self.cart_item, response.context['products'])
+
+    def test_add_to_cart_new_item_phone(self):
+        self.client.login(username=self.user.username, password=self.password)
+        Cart.objects.all().delete() 
+
+        response = self.client.post(reverse('add_to_cart', kwargs={'product_id': self.phone.id}), {
+            'color': 'Fekete',
+            'storage': 256
+        }, follow=True)
+        
+        self.assertRedirects(response, reverse('cart'))
+        self.assertEqual(Cart.objects.count(), 1)
+        new_item = Cart.objects.first()
+        self.assertEqual(new_item.storage, 256)
