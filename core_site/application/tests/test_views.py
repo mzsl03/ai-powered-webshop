@@ -135,6 +135,10 @@ class ViewTests(TestCase):
         self.assertRedirects(response, reverse('login'))
         self.assertFalse(response.context['user'].is_authenticated)
 
-
-
+    def test_home_view_authenticated(self):
+        self.client.login(username=self.user.username, password=self.password)
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'index.html')
+        self.assertIn(self.phone, response.context['products'])
 
