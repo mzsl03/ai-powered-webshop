@@ -297,3 +297,10 @@ class ViewTests(TestCase):
         self.specs.refresh_from_db()
         self.assertEqual(self.specs.CPU_speed, new_cpu_speed)
 
+    def test_all_user_order_view_superuser(self):
+        self.client.login(username=self.superuser.username, password=self.password)
+        order = Orders.objects.create(user=self.user, status='kiszállítva')
+        response = self.client.get(reverse('all_user_order'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(order, response.context['orders'])
+
