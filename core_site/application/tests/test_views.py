@@ -165,3 +165,9 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['product'], self.phone)
         self.assertEqual(response.context['specs'], self.specs)
+
+    def test_cart_view(self):
+        self.client.login(username=self.user.username, password=self.password)
+        response = self.client.get(reverse('cart'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(self.cart_item, response.context['products'])
