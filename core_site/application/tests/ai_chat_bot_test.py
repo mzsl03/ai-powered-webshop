@@ -129,3 +129,9 @@ class AIChatApiTest(TestCase):
 
         session = self.client.session
         self.assertEqual(session['chat_history'][1]['content'], mock_reply_no_link)
+
+    def test_invalid_get_request(self):
+        response = self.client.get(self.api_url)
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('Invalid request', response.json()['error'])
