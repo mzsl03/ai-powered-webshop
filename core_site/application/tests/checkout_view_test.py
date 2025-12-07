@@ -57,3 +57,18 @@ class CheckoutViewTest(TestCase):
 
         expected_redirect = f'{self.login_required_redirect}?next={self.checkout_url}'
         self.assertRedirects(response, expected_redirect)
+
+    @patch('application.views.Cart.objects')
+    def test_empty_cart_redirects_with_warning(self, MockCartManager):
+        self.client.force_login(self.user)
+
+        MockCartManager.filter.return_value.exists.return_value = False
+
+        response = self.client.get(self.checkout_url, follow=True)
+
+        self.assertRedirects(response, self.cart_url)
+
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), "A kosár üres, nincs mit leadni.")
+        self.assertEqual(messages[0].level_tag, 'warning')
