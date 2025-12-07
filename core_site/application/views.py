@@ -467,10 +467,12 @@ def ai_chat_api(request):
 
             history.append({"role": "user", "content": user_message})
             history.append({"role": "assistant", "content": reply + (link or "")})
-            request.session["chat_history"] = history
 
             if len(history) > 20:
                 history = history[-20:]
+
+            request.session["chat_history"] = history
+
 
             return JsonResponse({"reply": reply, "link": link})
 
