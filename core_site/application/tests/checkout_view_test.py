@@ -51,3 +51,9 @@ class CheckoutViewTest(TestCase):
         self.cart_items_data = [
             CartItemMock(product=self.product_a, quantity=2, price=5000, color="Red"),  # Összesen 10000
         ]
+
+    def test_access_denied_if_not_logged_in(self):
+        response = self.client.get(self.checkout_url)
+
+        expected_redirect = f'{self.login_required_redirect}?next={self.checkout_url}'
+        self.assertRedirects(response, expected_redirect)
