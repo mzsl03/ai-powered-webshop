@@ -135,3 +135,14 @@ class AIChatApiTest(TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertIn('Invalid request', response.json()['error'])
+
+    def test_exception_handling_invalid_json(self):
+        response = self.client.post(
+            self.api_url,
+            "Ez nem JSON",
+            content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, 500)
+        self.assertIn('error', response.json())
+        self.assertIn('Expecting value:', response.json()['error'])
