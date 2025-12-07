@@ -72,3 +72,44 @@ class CheckoutViewTest(TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), "A kosár üres, nincs mit leadni.")
         self.assertEqual(messages[0].level_tag, 'warning')
+
+
+    @patch('application.views.Orders.objects')
+    @patch('application.views.OrderItem.objects')
+    @patch('application.views.Cart.objects')
+    def test_successful_checkout_process(self, MockCartManager, MockOrderItemManager, MockOrdersManager):
+        self.client.force_login(self.user)
+
+        mock_cart_items = MagicMock()
+        mock_cart_items.exists.return_value = True
+        mock_cart_items.__iter__.return_value = iter(self.cart_items_data)  # Iterálás a mock adatokon
+        MockCartManager.filter.return_value = mock_cart_items
+
+        created_order = OrdersMock(user=self.user, status="feldolgozás_alatt", order_time=timezone.now())
+        MockOrdersManager.create.return_value = created_order
+
+        response = self.client.get(self.checkout_url, follow=True)
+
+        self.assertRedirects(response, self.user_order_url)
+
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Rendelésed sikeresen leadva!")
+        self.assertEqual(messages[0].level_tag, 'success')
+
+        MockOrdersManager.create.assert_called_once()
+        self.assertEqual(MockOrdersManager.create.call_args[1]['user'], self.user)
+        self.assertEqual(MockOrdersManager.create.call_args[1]['status'], "feldolgozás_alatt")
+
+        self.assertEqual(MockOrderItemManager.create.call_count, len(self.cart_items_data))
+
+        expected_price = self.cart_items_data[0].price * self.cart_items_data[0].quantity  # 5000 * 2 = 10000
+        MockOrderItemManager.create.assert_called_once_with(
+            order=created_order,
+            product=self.product_a,
+            quantity=2,
+            color="Red",
+            storage="128GB",
+            price=expected_price,
+        )
+
+        mock_cart_items.delete.assert_called_once()
