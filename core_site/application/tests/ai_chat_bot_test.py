@@ -73,36 +73,36 @@ class AIChatApiTest(TestCase):
         self.assertEqual(session['chat_history'][1]['role'], 'assistant')
         self.assertIn(self.expected_link, session['chat_history'][1]['content'])
 
-        @patch('application.views.OpenAI')
-        @patch('application.views.Products.objects')
-        def test_chat_history_management(self, MockProductsManager, MockOpenAI):
-            MockProductsManager.all.return_value = self.mock_products
+    @patch('application.views.OpenAI')
+    @patch('application.views.Products.objects')
+    def test_chat_history_management(self, MockProductsManager, MockOpenAI):
+        MockProductsManager.all.return_value = self.mock_products
 
-            history = [{"role": "user", "content": f"msg_{i}"} for i in range(19)]
-            session = self.client.session
-            session["chat_history"] = history
-            session.save()
+        history = [{"role": "user", "content": f"msg_{i}"} for i in range(19)]
+        session = self.client.session
+        session["chat_history"] = history
+        session.save()
 
-            self.setup_openai_mock(MockOpenAI, self.mock_openai_reply)
+        self.setup_openai_mock(MockOpenAI, self.mock_openai_reply)
 
-            self.client.post(
-                self.api_url,
-                json.dumps({"message": "Új üzenet 1."}),
-                content_type="application/json"
-            )
+        self.client.post(
+            self.api_url,
+            json.dumps({"message": "Új üzenet 1."}),
+            content_type="application/json"
+        )
 
-            session = self.client.session
-            self.assertEqual(len(session['chat_history']), 20)
+        session = self.client.session
+        self.assertEqual(len(session['chat_history']), 20)
 
-            self.setup_openai_mock(MockOpenAI, self.mock_openai_reply.replace("15", "16"))
-            self.client.post(
-                self.api_url,
-                json.dumps({"message": "Még egy üzenet 2."}),
-                content_type="application/json"
-            )
+        self.setup_openai_mock(MockOpenAI, self.mock_openai_reply.replace("15", "16"))
+        self.client.post(
+            self.api_url,
+            json.dumps({"message": "Még egy üzenet 2."}),
+            content_type="application/json"
+        )
 
-            session = self.client.session
+        session = self.client.session
 
-            self.assertEqual(len(session['chat_history']), 20)
+        self.assertEqual(len(session['chat_history']), 20)
 
-            self.assertNotIn({'role': 'user', 'content': 'msg_0'}, session['chat_history'])
+        self.assertNotIn({'role': 'user', 'content': 'msg_0'}, session['chat_history'])
