@@ -106,3 +106,26 @@ class AIChatApiTest(TestCase):
         self.assertEqual(len(session['chat_history']), 20)
 
         self.assertNotIn({'role': 'user', 'content': 'msg_0'}, session['chat_history'])
+
+    @patch('application.views.OpenAI')
+    @patch('application.views.Products.objects')
+    def test_missing_link_in_ai_response(self, MockProductsManager, MockOpenAI):
+        MockProductsManager.all.return_value = self.mock_products
+
+        mock_reply_no_link = "Bocsánat, nem találok megfelelő terméket."
+        self.setup_openai_mock(MockOpenAI, mock_reply_no_link)
+
+        response = self.client.post(
+            self.api_url,
+            json.dumps({"message": "Valami furcsa."}),
+            content_type="application/json"
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+        response_data = response.json()
+        self.assertEqual(response_data['reply'], mock_reply_no_link)
+        self.assertIsNone(response_data['link'])
+
+        session = self.client.session
+        self.assertEqual(session['chat_history'][1]['content'], mock_reply_no_link)
