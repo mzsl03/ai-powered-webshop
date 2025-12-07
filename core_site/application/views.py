@@ -446,7 +446,7 @@ def ai_chat_api(request):
    
    - A TERMÉKNEV-et pontosan a termék nevéből kell képezni.
    - A szóközöket %20-ra cseréld (URL encoding).
-   - Pontosan EGY linket küldj a válaszban.
+   - Pontosan EGY linket küldj a válaszban, többet nem küldhetsz, véletlenül sem!!!!
    - A linket a válasz VÉGÉRE tedd egy külön mondatban.
                """
 
