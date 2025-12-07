@@ -466,7 +466,7 @@ def ai_chat_api(request):
                 reply = reply.replace(link, "").strip()
 
             history.append({"role": "user", "content": user_message})
-            history.append({"role": "assistant", "content": reply + link})
+            history.append({"role": "assistant", "content": reply + (link or "")})
             request.session["chat_history"] = history
 
             if len(history) > 20:
@@ -475,7 +475,6 @@ def ai_chat_api(request):
             return JsonResponse({"reply": reply, "link": link})
 
         except Exception as e:
-            print("AI chat ERROR:", e)
             return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse({"error": "Invalid request"}, status=400)

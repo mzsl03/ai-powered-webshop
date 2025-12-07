@@ -71,4 +71,38 @@ class AIChatApiTest(TestCase):
         self.assertIn('chat_history', session)
         self.assertEqual(len(session['chat_history']), 2)
         self.assertEqual(session['chat_history'][1]['role'], 'assistant')
-        self.assertIn(self.expected_link, session['chat_history'][1]['content'])  # link hozzáadva az előzményhez
+        self.assertIn(self.expected_link, session['chat_history'][1]['content'])
+
+        @patch('application.views.OpenAI')
+        @patch('application.views.Products.objects')
+        def test_chat_history_management(self, MockProductsManager, MockOpenAI):
+            MockProductsManager.all.return_value = self.mock_products
+
+            history = [{"role": "user", "content": f"msg_{i}"} for i in range(19)]
+            session = self.client.session
+            session["chat_history"] = history
+            session.save()
+
+            self.setup_openai_mock(MockOpenAI, self.mock_openai_reply)
+
+            self.client.post(
+                self.api_url,
+                json.dumps({"message": "Új üzenet 1."}),
+                content_type="application/json"
+            )
+
+            session = self.client.session
+            self.assertEqual(len(session['chat_history']), 20)
+
+            self.setup_openai_mock(MockOpenAI, self.mock_openai_reply.replace("15", "16"))
+            self.client.post(
+                self.api_url,
+                json.dumps({"message": "Még egy üzenet 2."}),
+                content_type="application/json"
+            )
+
+            session = self.client.session
+
+            self.assertEqual(len(session['chat_history']), 20)
+
+            self.assertNotIn({'role': 'user', 'content': 'msg_0'}, session['chat_history'])
