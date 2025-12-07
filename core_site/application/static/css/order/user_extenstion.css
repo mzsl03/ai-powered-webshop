@@ -1,0 +1,15 @@
+body {
+    overflow: hidden;
+}
+
+.orders-container {
+    overflow: auto;
+    max-height: 72vh;
+    margin-bottom: 0px;
+}
+
+.column {
+    overflow: auto;
+    max-height: 72vh;
+    margin-bottom: 0px;
+}
