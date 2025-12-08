@@ -13,16 +13,16 @@
                  alt="{{ product.name }}" width="300">
 
             {% if is_admin == True %}
-                {% if product.category != "Tartozék" %}
-                    <div class="update-button">
-                        <a href="{% url 'update_product' product.id %}">
-                            <button type="submit" class="btn"> Termék adatok módosítása</button>
-                        </a>
+                <div class="update-button">
+                    <a href="{% url 'update_product' product.id %}">
+                        <button type="submit" class="btn"> Termék adatok módosítása</button>
+                    </a>
+                    {% if product.category != "Tartozék" %}
                         <a href="{% url 'update_specs' specs.id %}">
                             <button type="submit" class="btn"> Specifikációs adatok módosítása</button>
                         </a>
-                    </div>
-                {% endif %}
+                    {% endif %}
+                </div>
             {% endif %}
 
             {% if is_admin == False %}
