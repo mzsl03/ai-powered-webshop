@@ -148,6 +148,18 @@ fieldset{
     background: #1a1a1a;
 }
 
+.update-button {
+    margin-top: 4vmin;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 2vmin;
+}
+
+.update-button * {
+    width: 100%;
+}
+
 @media (max-width: 900px) {
     .product-container {
         flex-direction: column;
